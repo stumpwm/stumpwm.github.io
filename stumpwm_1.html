@@ -1,0 +1,756 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- Created on September 4, 2014 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>StumpWM Manual: 1. Introduction</title>
+
+<meta name="description" content="StumpWM Manual: 1. Introduction">
+<meta name="keywords" content="StumpWM Manual: 1. Introduction">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="./style.css">
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="Introduction"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="index.html#Top" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Starting-StumpWM" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[ &lt;&lt; ]</td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm_2.html#Key-Bindings" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="stumpwm_17.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Introduction-1"></a>
+<h1 class="chapter">1. Introduction</h1>
+<p>StumpWM is an X11 window manager written entirely in Common Lisp. Its
+user interface goals are similar to ratpoison&rsquo;s but with an emphasis on
+customizability, completeness, and cushiness.
+</p>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#Starting-StumpWM">1.1 Starting StumpWM</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Basic-Usage">1.2 Basic Usage</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Basic-Concepts">1.3 Basic Concepts</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Manipulating-Frames-and-Windows">1.4 Manipulating Frames and Windows</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Interacting-with-the-Lisp-process">1.5 Interacting with the Lisp process</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Contact-the-StumpWM-developers">1.6 Contact the StumpWM developers</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+<hr size="6">
+<a name="Starting-StumpWM"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Introduction" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Basic-Usage" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Introduction" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Introduction" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm_2.html#Key-Bindings" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="stumpwm_17.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Starting-StumpWM-1"></a>
+<h2 class="section">1.1 Starting StumpWM</h2>
+<p>There are a number of ways to start StumpWM but the most straight
+forward method is as follows. This assumes you have a copy of the
+StumpWM source code and are using the &lsquo;<samp>SBCL</samp>&rsquo; Common Lisp
+environment.
+</p>
+<ol>
+<li>
+Install the prerequisites and build StumpWM as described in
+&lsquo;<tt>README</tt>&rsquo;.  This should give you a &lsquo;<tt>stumpwm</tt>&rsquo; executable.
+
+</li><li>
+In your &lsquo;<tt>~/.xinitrc</tt>&rsquo; file include the line
+<code>/path/to/stumpwm</code>. Remember to replace &lsquo;<samp>/path/to/</samp>&rsquo;
+with the actual path.
+
+</li><li>
+Finally, start X windows with <code>startx</code>. Cross your
+fingers. You should see a &lsquo;<samp>Welcome To the Stump Window Manager</samp>&rsquo;
+message pop up in the upper, right corner. At this point, you have
+successfully started StumpWM.
+</li></ol>
+
+<hr size="6">
+<a name="Basic-Usage"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Starting-StumpWM" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Basic-Concepts" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Introduction" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Introduction" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm_2.html#Key-Bindings" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="stumpwm_17.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Basic-Usage-1"></a>
+<h2 class="section">1.2 Basic Usage</h2>
+<p>Once you have StumpWM up and running, the first thing you might want
+to do is start <code>emacs</code>. Type <kbd>C-t e</kbd>, or in other words
+<kbd>Control + t</kbd> followed by <kbd>e</kbd>. Now perhaps you want an
+<code>xterm</code>. Type <kbd>C-t c</kbd>. Now you have some programs running.
+</p>
+<p>To see a list of windows StumpWM is managing, type <kbd>C-t w</kbd>. The
+highlighted window is the one you&rsquo;re looking at right now. It&rsquo;s the
+focused window.
+</p>
+<p>All of StumpWM&rsquo;s keys are bound to named commands, which can be
+executed not only by keys but also from the input bar. Type <kbd>C-t
+;</kbd> to open a command prompt. Now type <code>time</code> and press
+return. Note, <code>time</code> can also be called by typing <kbd>C-t a</kbd>.
+Throughout this manual you&rsquo;ll find definitions for commands,
+functions, and variables. Any command you see in this manual can be
+executed from the input bar or bound to a key.
+</p>
+<p>At this point you probably want to switch back from your new
+<code>xterm</code> to <code>emacs</code>. Type <kbd>C-t C-t</kbd>. This runs the
+<code>other</code> command. Type it again and you&rsquo;re back to xterm.
+</p>
+<p>Perhaps you&rsquo;d like to see <code>emacs</code> and <code>xterm</code>
+side-by-side. Type <kbd>C-t s</kbd>. You have now split the screen into 2
+<code>frames</code>. For more information see <a href="stumpwm_6.html#Frames">Frames</a>. To switch to the
+empty frame type <kbd>C-t TAB</kbd>. Now let&rsquo;s pull the xterm window into
+this empty frame. Type <kbd>C-t w</kbd> for a window listing. Find the
+<code>xterm</code> window. See the number beside it? Type <kbd>C-t</kbd> followed
+by <code>xterm</code>&rsquo;s window number.
+</p>
+<p>Another common activity is browsing the interwebs. Type <kbd>C-t !</kbd>.
+The input bar pops up again. You can now run a shell command.  Let&rsquo;s
+start a web browser: type <code>firefox</code> into the input bar and press
+return.
+</p>
+<p>Unfortunately, <code>firefox</code> probably isn&rsquo;t wide enough because it&rsquo;s
+in one of the frames. Type <kbd>C-t Q</kbd> to remove all frames but the
+current one and resize it to fit the screen.
+</p>
+<p>For a full list of key bindings, see <a href="stumpwm_2.html#List-of-Default-Keybindings">List of Default Keybindings</a>.
+</p>
+<hr size="6">
+<a name="Basic-Concepts"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Basic-Usage" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Screens-and-Heads" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Introduction" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Introduction" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm_2.html#Key-Bindings" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="stumpwm_17.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Basic-Concepts-1"></a>
+<h2 class="section">1.3 Basic Concepts</h2>
+
+<p>An introduction to some of the basic concepts used by StumpWM.
+</p>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#Screens-and-Heads">1.3.1 Screens and Heads</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Group-Basics">1.3.2 Group Basics</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Floating-Group-Basics">1.3.3 Floating Group Basics</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Frame-Basics">1.3.4 Frame Basics</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Window-Basics">1.3.5 Window Basics</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#System-Trays-and-the-Mode-Line">1.3.6 System Trays and the Mode Line</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+<hr size="6">
+<a name="Screens-and-Heads"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Basic-Concepts" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Group-Basics" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Introduction" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Basic-Concepts" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm_2.html#Key-Bindings" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="stumpwm_17.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Screens-and-Heads-1"></a>
+<h3 class="subsection">1.3.1 Screens and Heads</h3>
+<p>A screen is an Xlib concept representing a section of video memory
+onto which physical monitors, called &ldquo;heads&rdquo;, are mapped. A screen can
+be thought of as an abstract rectangle containing all the heads
+arranged in a particular layout.
+</p>
+<p>With most modern systems, you&rsquo;ll only have a single screen no matter
+how many heads are connected to your computer. Each head will have its
+own frame, and you can move between heads using the normal frame
+movement commands.
+</p>
+<p>The layout of the heads within the screen can be specified in one of two
+ways: either at startup using your system&rsquo;s Xorg configuration files, or
+on the fly using tools like XRandR. If the computer is booted with
+multiple monitors attached, but without specifying a layout for them,
+they will all show identical output.
+</p>
+<p>StumpWM will attempt to detect the layout of the heads once at
+startup, or any time a RandR command is issued.
+</p>
+<p>In rarer setups you may have multiple screens, with one head per
+screen. That means that you&rsquo;ll move between heads using screen
+movement commands (&lsquo;snext&rsquo;, &lsquo;sprev&rsquo;, and &lsquo;sother&rsquo;) rather than frame
+movement commands.
+</p>
+<hr size="6">
+<a name="Group-Basics"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Screens-and-Heads" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Floating-Group-Basics" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Introduction" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Basic-Concepts" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm_2.html#Key-Bindings" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="stumpwm_17.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Group-Basics-1"></a>
+<h3 class="subsection">1.3.2 Group Basics</h3>
+<p>A group is usually referred to as a &ldquo;desktop&rdquo; or &ldquo;workspace&rdquo; in other
+window managers. StumpWM starts with a single group, called &ldquo;Default&rdquo;.
+Each group has its own configuration of frames and windows that is
+separate from and independent of other groups. You can&rsquo;t have
+different groups display in different monitors: when you switch
+groups, all monitors switch to that group.
+</p>
+<p>Each group contains an ordered list of frames.
+</p>
+<hr size="6">
+<a name="Floating-Group-Basics"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Group-Basics" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Frame-Basics" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Introduction" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Basic-Concepts" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm_2.html#Key-Bindings" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="stumpwm_17.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Floating-Group-Basics-1"></a>
+<h3 class="subsection">1.3.3 Floating Group Basics</h3>
+<p>Within a floating group, windows behave more like they do in traditional
+window managers: rather than being arranged into frames, they each have
+their own box, which can be freely resized and repositioned, and allowed
+to overlap. Each window has a thicker border at the top. Left click in
+this border and drag to move the window, or right click and drag to
+resize it.
+</p>
+<p>Most of the window-switching commands listed below do not function in
+a floating group. You&rsquo;re restricted to &lsquo;other&rsquo;, the &lsquo;select-window-*&rsquo;
+commands, and &lsquo;windowlist&rsquo;.
+</p>
+<hr size="6">
+<a name="Frame-Basics"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Floating-Group-Basics" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Window-Basics" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Introduction" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Basic-Concepts" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm_2.html#Key-Bindings" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="stumpwm_17.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Frame-Basics-1"></a>
+<h3 class="subsection">1.3.4 Frame Basics</h3>
+<p>Frames are the boxes within which windows are displayed. StumpWM
+starts with a single frame per head, meaning that each monitor shows a
+single window, full screen. If you want to see windows side-by-side,
+you can &ldquo;split&rdquo; this frame in two, either vertically or horizontally.
+These frames can be further split, creating nested boxes.
+</p>
+<p>Technically speaking, frames live within a &ldquo;frame tree&rdquo;. When you
+split a frame, the command actually creates <em>two</em> new frames
+side-by-side within the original parent frame. This makes no practical
+difference, unless you use the &lsquo;sibling&rsquo; command, which will move to
+the other child frame within the parent frame.
+</p>
+<p>Within this frame tree model, all frames either contain other frames,
+or windows. The command &lsquo;fclear&rsquo; will hide all a frame&rsquo;s windows and
+show the background.
+</p>
+<hr size="6">
+<a name="Window-Basics"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Frame-Basics" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#System-Trays-and-the-Mode-Line" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Introduction" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Basic-Concepts" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm_2.html#Key-Bindings" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="stumpwm_17.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Window-Basics-1"></a>
+<h3 class="subsection">1.3.5 Window Basics</h3>
+<p>Windows are created by programs to display their output. They take the
+shape of the frame in which they are created. The windows within a
+frame are ordered by how recently that window was focused. Only the
+top window in the stack is visible.
+</p>
+<hr size="6">
+<a name="System-Trays-and-the-Mode-Line"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Window-Basics" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Manipulating-Frames-and-Windows" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Introduction" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Basic-Concepts" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm_2.html#Key-Bindings" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="stumpwm_17.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="System-Trays-and-the-Mode-Line-1"></a>
+<h3 class="subsection">1.3.6 System Trays and the Mode Line</h3>
+<p>Many users choose to sacrifice a little screen real-estate to display
+some generally useful information: the current time and date, wireless
+network connections, the names of open windows, etc. StumpWM allows
+you to display this information in a bar across either the top or the
+bottom of the screen. There are two ways to do this: using external
+programs called system trays, or using StumpWM&rsquo;s own mode line.
+</p>
+<p>System trays are a special kind of X window. They advertise to running
+programs that they are available for embedding icons or notifications
+from those programs. They often also display clickable icons for each
+open window. Common tray programs include the GNOME panel or KDE&rsquo;s
+kicker, or simpler programs such as stalonetray. Simply starting one
+of these programs is usually enough for StumpWM to detect it, place it
+correctly, and allow it to function normally.
+</p>
+<p>The mode line, a concept borrowed from Emacs, is a built-in part of
+StumpWM. It is essentially a string of text that can include a variety
+of information about your current session, including the names of
+current groups and windows. Several contrib modules provide for
+different types of information. See section <a href="stumpwm_7.html#Mode_002dline">Mode Line</a>, (and the contrib
+directory) for more.
+</p>
+<hr size="6">
+<a name="Manipulating-Frames-and-Windows"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#System-Trays-and-the-Mode-Line" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Moving-Between-Frames" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Introduction" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Introduction" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm_2.html#Key-Bindings" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="stumpwm_17.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Manipulating-Frames-and-Windows-1"></a>
+<h2 class="section">1.4 Manipulating Frames and Windows</h2>
+<p>Frames and windows are concepts borrowed from Emacs and the GNU Screen
+program, and should be familiar to users of those programs. Others may
+find the terms a little confusing. In other window managers, a
+&ldquo;window&rdquo; usually refers to a bounded box on the screen, showing output
+from a single program. StumpWM splits this into two concepts: the
+&ldquo;frame&rdquo; is the bounded box, the &ldquo;window&rdquo; is the visible output of a
+program.
+</p>
+<p>One frame can contain many windows. As new windows are created, they
+appear at the top of the window-stack of the current frame. This is
+also a little different from other tiling window managers, many of
+which automatically create new frames for new windows.
+</p>
+<p>Both frames and windows are ordered by when they were last focused. In
+the following commands and documentation, the terms &ldquo;next&rdquo; and
+&ldquo;previous&rdquo; refer to this order. &ldquo;Other&rdquo; refers to the most-recently
+focused object. Calling &ldquo;other&rdquo; commands multiple times will bounce
+back and forth between the two most recent objects.
+</p>
+<p>By default, StumpWM starts with a single group, called &ldquo;Default&rdquo;,
+which contains one full-screen frame per head. You can split individual
+frames horizontally or vertically using the &lsquo;hsplit&rsquo; and &lsquo;vsplit&rsquo;
+commands, bound to &ldquo;C-t S&rdquo; and &ldquo;C-t s&rdquo; by default. When a frame is
+split, the next-most-recently-focused window is pulled into the new
+frame. See section <a href="stumpwm_6.html#Frames">Frames</a>, and <a href="stumpwm_5.html#Windows">Windows</a>, for a complete listing of
+commands.
+</p>
+
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#Moving-Between-Frames">1.4.1 Moving Between Frames</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Manipulating-Windows">1.4.2 Manipulating Windows</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+<hr size="6">
+<a name="Moving-Between-Frames"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Manipulating-Frames-and-Windows" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Manipulating-Windows" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Introduction" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Manipulating-Frames-and-Windows" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm_2.html#Key-Bindings" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="stumpwm_17.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Moving-Between-Frames-1"></a>
+<h3 class="subsection">1.4.1 Moving Between Frames</h3>
+<p>Once you have multiple frames, you can move between them in various
+ways:
+</p>
+<ul>
+<li> 
+<code>fnext</code> (<kbd>C-t o</kbd> or <kbd>C-t TAB</kbd>) jumps to the next frame in
+the current group&rsquo;s frame list.
+
+</li><li> 
+<code>fother</code> (<kbd>C-t M-TAB</kbd>) jumps to the last frame that had
+focus.
+
+</li><li> 
+<code>fselect</code> (<kbd>C-t f</kbd>) displays numbers on each visible frame: hit a
+number key to move to that frame.
+
+</li><li> 
+<code>move-focus</code> (<kbd>C-t &lt;arrow key&gt;</kbd>) focus the frame in the direction of
+the arrow key pressed.
+
+</li><li> 
+<code>sibling</code> (unbound by default) focus the frame from which the
+current frame was split.
+
+</li></ul>
+
+<hr size="6">
+<a name="Manipulating-Windows"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Moving-Between-Frames" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Interacting-with-the-Lisp-process" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Introduction" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Manipulating-Frames-and-Windows" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm_2.html#Key-Bindings" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="stumpwm_17.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Manipulating-Windows-1"></a>
+<h3 class="subsection">1.4.2 Manipulating Windows</h3>
+
+<p>Some commands change which window is currently focused, some move
+windows between frames, and some may do both at once.
+</p>
+<p>There are two general ways to move focus between windows: either
+between windows belonging to the current frame, or between all windows
+within the current group. Within a single frame:
+</p>
+<ul>
+<li> 
+<code>next-in-frame</code> (<kbd>C-t C-M-n</kbd>) focus the next window in the current
+frame&rsquo;s list of windows.
+
+</li><li> 
+<code>prev-in-frame</code> (<kbd>C-t C-M-p</kbd>) focus the previous window in the
+current frame&rsquo;s list of windows.
+
+</li><li> 
+<code>other-in-frame</code> (<kbd>C-t M-t</kbd>) focus the most recently focused window
+in the current frame&rsquo;s list of windows.
+
+</li><li> 
+<code>frame-windowlist</code> (unbound by default) display a menu of windows in
+the currently-focused frame, and allow the user to choose one.
+Alternately, the command <code>frame-windows</code> will simply display the
+list of window names, with no menu choice available.
+
+</li></ul>
+
+<p>Within the current group, the following commands will go straight to
+the specified window. They will never move a window from its original
+frame, and so may result in focus switching frames.
+</p>
+<ul>
+<li> 
+<code>next</code> (<kbd>C-t M-n</kbd>) focus the next window in the current group.
+
+</li><li> 
+<code>prev</code> (<kbd>C-t M-p</kbd>) focus the previous window in the current group.
+
+</li><li> 
+<code>other</code> or <code>other-window</code> (unbound by default) focus the
+most recently focused window in the current group.
+
+</li><li> 
+<code>next-urgent</code> (<kbd>C-t C-u</kbd>) focus the next window that has marked
+itself &ldquo;urgent&rdquo;.
+
+</li><li> 
+<code>select</code> or <code>select-window</code> (<kbd>C-t '</kbd>) prompt for the
+title of a window and focus it. Works with partial completion of the
+title.
+
+</li><li> 
+<code>select-window-by-name</code> (unbound by default) prompt for the
+title of a window and focus it. Requires the window title to be entered
+exactly.
+
+</li><li> 
+<code>select-window-by-number</code> (<kbd>C-t &lt;number&gt;</kbd>) choose a window by
+number.
+
+</li><li> 
+<code>windowlist</code> (&ldquo;C-t &quot;&quot;) display a menu of windows in the
+currently-focused group, and allow the user to choose one.
+
+</li></ul>
+
+<p>The following commands always keep the current frame focused. If the
+selected window is not in the current frame, it will be pulled there
+from wherever it is (hence the &ldquo;pull&rdquo; naming scheme).
+</p>
+<ul>
+<li> 
+<code>pull</code> or <code>pull-window-by-number</code> (<kbd>C-t C-&lt;number&gt;</kbd>)
+pull the numbered window into the current frame.
+
+</li><li> 
+<code>pull-hidden-next</code> (<kbd>C-t n</kbd> or <kbd>C-t SPC</kbd>) pull the next
+currently undisplayed window in the window list into the current frame.
+
+</li><li> 
+<code>pull-hidden-previous</code> (<kbd>C-t p</kbd>) pull the previous currently
+undisplayed window in the window list into the current frame.
+
+</li><li> 
+<code>pull-hidden-other</code> (<kbd>C-t C-t</kbd>) pull the most recently
+focused, currently undisplayed window into the current frame.
+
+</li></ul>
+
+<p>The following commands move the current window from one frame to
+another, bringing focus with them.
+</p>
+<ul>
+<li> 
+<code>move-window</code> (<kbd>C-t M-&lt;arrow&gt;</kbd>) move the currently focused
+window in the direction indicated by the arrow key.
+
+</li><li> 
+<code>exchange-direction</code> (unbound by default) prompt for a
+direction, then swap the currently focused window with the top window of
+the frame in that direction.
+
+</li></ul>
+
+<hr size="6">
+<a name="Interacting-with-the-Lisp-process"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Manipulating-Windows" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Contact-the-StumpWM-developers" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Introduction" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Introduction" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm_2.html#Key-Bindings" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="stumpwm_17.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Interacting-with-the-Lisp-process-1"></a>
+<h2 class="section">1.5 Interacting with the Lisp process</h2>
+
+<p>Since StumpWM is a Lisp program, there is a way for you to evaluate
+Lisp code directly, on the same Lisp process that StumpWM is running on.
+Type <kbd>C-t :</kbd> and an input box will appear. Then type some Lisp
+expression.
+</p>
+<p>When you call <code>eval</code> this way, you will be in the STUMPWM-USER
+package, which imports all the exported symbols from the main STUMPWM
+package.
+</p>
+<dl compact="compact">
+<dt> <code>*mode-line-border-width*</code></dt>
+<dd><p>Reads the value of <var>*mode-line-border-width*</var>.
+</p>
+</dd>
+<dt> <code>(setf *mode-line-border-width* 3)</code></dt>
+<dd><p>Sets the variable <var>*mode-line-border-width*</var> to 3.
+</p>
+</dd>
+<dt> <code>(set-prefix-key (kbd &quot;C-M-H-s-z&quot;))</code></dt>
+<dd><p>Calls the <code>set-prefix-key</code> function (and sets a new keyboard prefix)
+</p></dd>
+</dl>
+
+
+<hr size="6">
+<a name="Contact-the-StumpWM-developers"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Interacting-with-the-Lisp-process" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm_2.html#Key-Bindings" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Introduction" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Introduction" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm_2.html#Key-Bindings" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="stumpwm_17.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Contact-the-StumpWM-developers-1"></a>
+<h2 class="section">1.6 Contact the StumpWM developers</h2>
+<p>The StumpWM home page is <a href="http://stumpwm.nongnu.org/">http://stumpwm.nongnu.org/</a>.
+</p>
+<p>You can reach Shawn Betts at <a href="mailto:sabetts at vcn.bc.ca">sabetts at vcn.bc.ca</a>.
+</p>
+<p>The StumpWM mailing list is <a href="mailto:stumpwm-devel@nongnu.org">stumpwm-devel@nongnu.org</a> which
+you can subscribe to at
+<a href="http://mail.nongnu.org/mailman/listinfo/stumpwm-devel">http://mail.nongnu.org/mailman/listinfo/stumpwm-devel</a>. Posting
+is restricted to subscribers to keep spam out of the archives.
+</p>
+<p>The StumpWM IRC channel can be found on Freenode at
+<a href="irc://irc.freenode.net/#stumpwm"><code>#stumpwm</code></a>.
+</p>
+<hr size="6">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Introduction" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm_2.html#Key-Bindings" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="index.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="stumpwm_17.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated by <em>David Bjergaard</em> on <em>September 4, 2014</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>
