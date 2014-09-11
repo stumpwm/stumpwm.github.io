@@ -106,6 +106,7 @@ pre.menu-comment{
     font-weight: 400;
     font-size: 18pt;
 }
+
 h2.section{
     font-weight: 400;
 }
@@ -113,24 +114,29 @@ h3.subsection{
     font-weight: 400;
 }
 a {
-    font-family: 'crimson',sans-serif;
-    font-variant: small-caps;
-    text-decoration: none;
-    letter-spacing: 0.1em;
-    color: black;
+    /* font-family: 'Source Sans Pro',sans-serif; */
+    /* text-decoration: underline; */
+    color: #000080;
 }
-a:hover{
-    background: #D0D0D0;
-}
+/* a:hover{ */
+/*     background: #D0D0D0; */
+/* } */
+
 a:visited{
-    color: #5A5A5A;
+    color: #68228b;
 }
+
 b {
     font-weight: 600;
 }
 body
 {
     font-family: 'crimson', serif;
+    -moz-font-feature-settings: "liga", "calt", "xtex";
+    -webkit-font-feature-settings: "liga", "calt", "xtex";
+    -ms-font-feature-settings: "liga", "xtex";
+    -o-font-feature-settings: "liga", "xtex";
+    font-feature-settings: "liga", "xtex";
     font-size: 15pt;
     clear: center;
     width: 30em;
@@ -183,16 +189,14 @@ table{
 
 th{
     border-collapse: collapse;
-    text-align: center;
+    text-align: left;
     border-style: hidden;
 }
 
 tbody{
-	font-family: 'Source Sans Pro', Sans-Serif;
+	font-family: 'Source Sans Pro';
 	font-size: 18px;
 	background: #fff;
-	margin: 50px ;
-	width: 800px;
 	border-collapse: collapse;
 	text-align: left;
         border-style: hidden;
