@@ -139,7 +139,7 @@ body
     font-feature-settings: "liga", "xtex";
     font-size: 15pt;
     clear: center;
-    width: 30em;
+    max-width: 30em;
     line-height: 1.35;
     text-align: justify;
     padding: 50px;
