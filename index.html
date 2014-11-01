@@ -1,234 +1,180 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
-<html>
-<!-- Created on September 4, 2014 by texi2html 1.82
-texi2html was written by: 
-            Lionel Cons <Lionel.Cons@cern.ch> (original author)
-            Karl Berry  <karl@freefriends.org>
-            Olaf Bachmann <obachman@mathematik.uni-kl.de>
-            and many others.
-Maintained by: Many creative people.
-Send bugs and suggestions to <texi2html-bug@nongnu.org>
--->
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<title>StumpWM Manual: Top</title>
-
-<meta name="description" content="StumpWM Manual: Top">
-<meta name="keywords" content="StumpWM Manual: Top">
-<meta name="resource-type" content="document">
-<meta name="distribution" content="global">
-<meta name="Generator" content="texi2html 1.82">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title></title>
+<!-- 2014-11-01 Sat 17:22 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="David Bjergaard" />
 <style type="text/css">
-<!--
-a.summary-letter {text-decoration: none}
-blockquote.smallquotation {font-size: smaller}
-pre.display {font-family: serif}
-pre.format {font-family: serif}
-pre.menu-comment {font-family: serif}
-pre.menu-preformatted {font-family: serif}
-pre.smalldisplay {font-family: serif; font-size: smaller}
-pre.smallexample {font-size: smaller}
-pre.smallformat {font-family: serif; font-size: smaller}
-pre.smalllisp {font-size: smaller}
-span.roman {font-family:serif; font-weight:normal;}
-span.sansserif {font-family:sans-serif; font-weight:normal;}
-ul.toc {list-style: none}
--->
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
 </style>
-<link rel="stylesheet" type="text/css" href="./style.css">
+<link rel="stylesheet" type="text/css" href="style.css" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
 
 
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
 </head>
+<body>
+<div id="content">
+<h1 class="title"></h1>
 
-<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
-
-<a name="Top"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
-<td valign="middle" align="left">[Contents]</td>
-<td valign="middle" align="left">[<a href="stumpwm_17.html#Command-and-Function-Index" title="Index">Index</a>]</td>
-<td valign="middle" align="left">[<a href="stumpwm_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
-</tr></table>
-<h1 class="settitle">StumpWM Manual</h1>
-
-
-<table class="menu" border="0" cellspacing="0">
-<tr><td align="left" valign="top"><a href="stumpwm_1.html#Introduction">1. Introduction</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="stumpwm_2.html#Key-Bindings">2. Key Bindings</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="stumpwm_3.html#Commands">3. Commands</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="stumpwm_4.html#Message-and-Input-Bar">4. Message and Input Bar</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="stumpwm_5.html#Windows">5. Windows</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="stumpwm_6.html#Frames">6. Frames</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="stumpwm_7.html#Mode_002dline">7. The Mode Line</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="stumpwm_8.html#Groups">8. Groups</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="stumpwm_9.html#Screens">9. Screens</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="stumpwm_10.html#Interacting-With-Unix">10. Interacting With Unix</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="stumpwm_11.html#Interacting-With-X11">11. Interacting With X11</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="stumpwm_12.html#Miscellaneous-Commands">12. Miscellaneous Commands</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="stumpwm_13.html#Colors">13. Colors</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="stumpwm_14.html#Hooks">14. Hooks</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="stumpwm_15.html#Modules">15. Modules</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="stumpwm_16.html#Hacking">16. Hacking</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="stumpwm_17.html#Command-and-Function-Index">Command and Function Index</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="stumpwm_19.html#Variable-Index">Variable Index</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><th colspan="3" align="left" valign="top"><pre class="menu-comment"> &mdash; The Detailed Node Listing &mdash;
-
-Introduction
-
-</pre></th></tr><tr><td align="left" valign="top"><a href="stumpwm_1.html#Starting-StumpWM">1.1 Starting StumpWM</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="stumpwm_1.html#Basic-Usage">1.2 Basic Usage</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="stumpwm_1.html#Basic-Concepts">1.3 Basic Concepts</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="stumpwm_1.html#Manipulating-Frames-and-Windows">1.4 Manipulating Frames and Windows</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="stumpwm_1.html#Interacting-with-the-Lisp-process">1.5 Interacting with the Lisp process</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="stumpwm_1.html#Contact-the-StumpWM-developers">1.6 Contact the StumpWM developers</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><th colspan="3" align="left" valign="top"><pre class="menu-comment">
-Basic Concepts
-
-</pre></th></tr><tr><td align="left" valign="top"><a href="stumpwm_1.html#Screens-and-Heads">1.3.1 Screens and Heads</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="stumpwm_1.html#Group-Basics">1.3.2 Group Basics</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="stumpwm_1.html#Floating-Group-Basics">1.3.3 Floating Group Basics</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="stumpwm_1.html#Frame-Basics">1.3.4 Frame Basics</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="stumpwm_1.html#Window-Basics">1.3.5 Window Basics</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="stumpwm_1.html#System-Trays-and-the-Mode-Line">1.3.6 System Trays and the Mode Line</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><th colspan="3" align="left" valign="top"><pre class="menu-comment">
-Manipulating Frames and Windows
-
-</pre></th></tr><tr><td align="left" valign="top"><a href="stumpwm_1.html#Moving-Between-Frames">1.4.1 Moving Between Frames</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="stumpwm_1.html#Manipulating-Windows">1.4.2 Manipulating Windows</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><th colspan="3" align="left" valign="top"><pre class="menu-comment">
-Key Bindings
-
-</pre></th></tr><tr><td align="left" valign="top"><a href="stumpwm_2.html#List-of-Default-Keybindings">2.1 List of Default Keybindings</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="stumpwm_2.html#Binding-Keys">2.2 Binding Keys</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="stumpwm_2.html#Modifiers">2.3 Modifiers</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><th colspan="3" align="left" valign="top"><pre class="menu-comment">
-Commands
-
-</pre></th></tr><tr><td align="left" valign="top"><a href="stumpwm_3.html#Writing-Commands">3.1 Writing Commands</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="stumpwm_3.html#StumpWM-Types">3.2 StumpWM Types</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><th colspan="3" align="left" valign="top"><pre class="menu-comment">
-Message and Input Bar
-
-</pre></th></tr><tr><td align="left" valign="top"><a href="stumpwm_4.html#Customizing-The-Bar">4.1 Customizing The Bar</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="stumpwm_4.html#Using-The-Input-Bar">4.2 Using The Input Bar</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="stumpwm_4.html#Programming-The-Message-Bar">4.3 Programming The Message Bar</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="stumpwm_4.html#Programming-the-Input-Bar">4.4 Programming the Input Bar</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><th colspan="3" align="left" valign="top"><pre class="menu-comment">
-Windows
-
-</pre></th></tr><tr><td align="left" valign="top"><a href="stumpwm_5.html#Window-Marks">5.1 Window Marks</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="stumpwm_5.html#Customizing-Window-Appearance">5.2 Customizing Window Appearance</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="stumpwm_5.html#Controlling-Raise-And-Map-Requests">5.3 Controlling Raise And Map Requests</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="stumpwm_5.html#Programming-With-Windows">5.4 Programming With Windows</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="stumpwm_5.html#Rule-Based-Window-Placement">5.5 Rule Based Window Placement</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><th colspan="3" align="left" valign="top"><pre class="menu-comment">
-Frames
-
-</pre></th></tr><tr><td align="left" valign="top"><a href="stumpwm_6.html#Interactively-Resizing-Frames">6.1 Interactively Resizing Frames</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="stumpwm_6.html#Frame-Dumping">6.2 Frame Dumping</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><th colspan="3" align="left" valign="top"><pre class="menu-comment">
-Groups
-
-</pre></th></tr><tr><td align="left" valign="top"><a href="stumpwm_8.html#Customizing-Groups">8.1 Customizing Groups</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><th colspan="3" align="left" valign="top"><pre class="menu-comment">
-Screens
-
-</pre></th></tr><tr><td align="left" valign="top"><a href="stumpwm_9.html#Xinerama">9.1 Xinerama</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="stumpwm_9.html#Programming-With-Screens">9.2 Programming With Screens</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><th colspan="3" align="left" valign="top"><pre class="menu-comment">
-Miscellaneous Commands
-
-</pre></th></tr><tr><td align="left" valign="top"><a href="stumpwm_12.html#Menus">12.1 Menus</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="stumpwm_12.html#StumpWM_0027s-Data-Directory">12.2 StumpWM&rsquo;s Data Directory</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="stumpwm_12.html#Debugging-StumpWM">12.3 Debugging StumpWM</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="stumpwm_12.html#Timers">12.4 Timers</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="stumpwm_12.html#Getting-Help">12.5 Getting Help</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><th colspan="3" align="left" valign="top"><pre class="menu-comment">
-Colors
-
-</pre></th></tr><tr><td align="left" valign="top"><a href="stumpwm_13.html#Behind-The-Scenes-Look-At-Colors">13.1 Behind The Scenes Look At Colors</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><th colspan="3" align="left" valign="top"><pre class="menu-comment">
-Hacking
-
-</pre></th></tr><tr><td align="left" valign="top"><a href="stumpwm_16.html#General-Advice">16.1 Hacking: General Advice</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="stumpwm_16.html#Using-git-with-StumpWM">16.2 Hacking: Using git with StumpWM</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="stumpwm_16.html#Sending-Patches">16.3 Sending Patches</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><th colspan="3" align="left" valign="top"><pre class="menu-comment">
-</pre></th></tr></table>
-
-<hr size="1">
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
-<td valign="middle" align="left">[Contents]</td>
-<td valign="middle" align="left">[<a href="stumpwm_17.html#Command-and-Function-Index" title="Index">Index</a>]</td>
-<td valign="middle" align="left">[<a href="stumpwm_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
-</tr></table>
-<p>
- <font size="-1">
-  This document was generated by <em>David Bjergaard</em> on <em>September 4, 2014</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
- </font>
- <br>
-
+<div class="figure">
+<p><img src="./images/stumpwm-logo-stripe.png" alt="stumpwm-logo-stripe.png" />
 </p>
+</div>
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1">Important Links</h2>
+<div class="outline-text-2" id="text-1">
+<ul class="org-ul">
+<li><a href="https://github.com/stumpwm/stumpwm">StumpWM Github Page</a>
+</li>
+<li><a href="https://github.com/stumpwm/stumpwm/wiki">StumpWM Community Wiki</a>
+</li>
+<li><a href="https://github.com/stumpwm/stumpwm-contrib">StumpWM Modules/Extensions</a>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2">StumpWM manual</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Choose your version.
+</p>
+<ul class="org-ul">
+<li><a href="./git/stumpwm-git.html">git</a>
+</li>
+<li>0.9.9 &#x2013; coming soon!
+</li>
+<li><a href="./0.9.8/stumpwm-0.9.8.html">0.9.8</a>
+</li>
+<li><a href="./0.9.7/stumpwm-0.9.7.html">0.9.7</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
 </body>
 </html>

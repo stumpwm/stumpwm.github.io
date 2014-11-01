@@ -1,0 +1,430 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- Created on November 1, 2014 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>StumpWM Manual: 4. Message and Input Bar</title>
+
+<meta name="description" content="StumpWM Manual: 4. Message and Input Bar">
+<meta name="keywords" content="StumpWM Manual: 4. Message and Input Bar">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="../style.css">
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="Message-and-Input-Bar"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="stumpwm-git_3.html#StumpWM-Types" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Customizing-The-Bar" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-git_3.html#Commands" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-git.html#Top" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-git_5.html#Windows" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-git.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="stumpwm-git_17.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-git_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Message-and-Input-Bar-1"></a>
+<h1 class="chapter">4. Message and Input Bar</h1>
+
+<dl>
+<dt><a name="index-echo"></a><u>Command:</u> <b>echo</b><i> string</i></dt>
+<dd><p>Display <var>string</var> in the message bar.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-colon"></a><u>Command:</u> <b>colon</b><i> &amp;optional initial-input</i></dt>
+<dd><p>Read a command from the user. <var>initial-text</var> is optional. When
+supplied, the text will appear in the prompt.
+</p></dd></dl>
+
+
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#Customizing-The-Bar">4.1 Customizing The Bar</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Using-The-Input-Bar">4.2 Using The Input Bar</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Programming-The-Message-Bar">4.3 Programming The Message Bar</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Programming-the-Input-Bar">4.4 Programming the Input Bar</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+<hr size="6">
+<a name="Customizing-The-Bar"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Message-and-Input-Bar" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Using-The-Input-Bar" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Message-and-Input-Bar" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Message-and-Input-Bar" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-git_5.html#Windows" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-git.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="stumpwm-git_17.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-git_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Customizing-The-Bar-1"></a>
+<h2 class="section">4.1 Customizing The Bar</h2>
+<p>The bar&rsquo;s appearance and behavior can be modified with the following
+functions and variables.
+</p>
+<dl>
+<dt><a name="index-set_002dfg_002dcolor"></a><u>Function:</u> <b>set-fg-color</b><i> color</i></dt>
+<dd><p>Set the foreground color for the message bar and input
+bar. <var>color</var> can be any color recognized by X.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-set_002dbg_002dcolor"></a><u>Function:</u> <b>set-bg-color</b><i> color</i></dt>
+<dd><p>Set the background color for the message bar and input
+bar. <var>color</var> can be any color recognized by X.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-set_002dborder_002dcolor"></a><u>Function:</u> <b>set-border-color</b><i> color</i></dt>
+<dd><p>Set the border color for the message bar and input
+bar. <var>color</var> can be any color recognized by X.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-set_002dmsg_002dborder_002dwidth"></a><u>Function:</u> <b>set-msg-border-width</b><i> width</i></dt>
+<dd><p>Set the border width for the message bar, input bar and frame indicator.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-set_002dfont"></a><u>Function:</u> <b>set-font</b><i> font</i></dt>
+<dd><p>Set the font(s) for the message bar and input bar.
+</p></dd></dl>
+
+
+<dl>
+<dt><a name="index-_002amessage_002dwindow_002dpadding_002a"></a><u>Variable:</u> <b>*message-window-padding*</b></dt>
+<dd><p>The number of pixels that pad the text in the message window.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-_002amessage_002dwindow_002dgravity_002a"></a><u>Variable:</u> <b>*message-window-gravity*</b></dt>
+<dd><p>This variable controls where the message window appears. The follow
+are valid values.
+</p><dl compact="compact">
+<dt> :top-left</dt>
+<dt> :top-right</dt>
+<dt> :bottom-left</dt>
+<dt> :bottom-right</dt>
+<dt> :center</dt>
+<dt> :top</dt>
+<dt> :left</dt>
+<dt> :right</dt>
+<dt> :bottom</dt>
+</dl>
+</dd></dl>
+
+<dl>
+<dt><a name="index-_002atimeout_002dwait_002a"></a><u>Variable:</u> <b>*timeout-wait*</b></dt>
+<dd><p>Specifies, in seconds, how long a message will appear for. This must
+be an integer.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-_002ainput_002dwindow_002dgravity_002a"></a><u>Variable:</u> <b>*input-window-gravity*</b></dt>
+<dd><p>This variable controls where the input window appears. The follow
+are valid values.
+</p><dl compact="compact">
+<dt> :top-left</dt>
+<dt> :top-right</dt>
+<dt> :bottom-left</dt>
+<dt> :bottom-right</dt>
+<dt> :center</dt>
+<dt> :top</dt>
+<dt> :left</dt>
+<dt> :right</dt>
+<dt> :bottom</dt>
+</dl>
+</dd></dl>
+
+
+<hr size="6">
+<a name="Using-The-Input-Bar"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Customizing-The-Bar" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Programming-The-Message-Bar" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Message-and-Input-Bar" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Message-and-Input-Bar" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-git_5.html#Windows" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-git.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="stumpwm-git_17.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-git_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Using-The-Input-Bar-1"></a>
+<h2 class="section">4.2 Using The Input Bar</h2>
+
+<p>The following is a list of keybindings for the Input Bar. Users of Emacs
+will recognize them.
+</p>
+<dl compact="compact">
+<dt> <kbd>DEL</kbd></dt>
+<dd><p>Delete the character before point (<code>delete-backward-char</code>).
+</p>
+</dd>
+<dt> <kbd>M-DEL</kbd></dt>
+<dd><p>Kill back to the beginning of the previous word (<code>backward-kill-word</code>).
+</p>
+</dd>
+<dt> <kbd>C-d</kbd></dt>
+<dt> <kbd>Delete</kbd></dt>
+<dd><p>Delete the character after point (<code>delete-forward-char</code>).
+</p>
+</dd>
+<dt> <kbd>M-d</kbd></dt>
+<dd><p>Kill forward to the end of the next word (<code>forward-kill-word</code>).
+</p>
+</dd>
+<dt> <kbd>C-f</kbd></dt>
+<dt> <kbd>Right</kbd></dt>
+<dd><p>Move forward one character (<code>forward-char</code>).
+</p>
+</dd>
+<dt> <kbd>M-f</kbd></dt>
+<dd><p>Move forward one word (<code>forward-word</code>).
+</p>
+</dd>
+<dt> <kbd>C-b</kbd></dt>
+<dt> <kbd>Left</kbd></dt>
+<dd><p>Move backward one character (<code>backward-char</code>).
+</p>
+</dd>
+<dt> <kbd>M-b</kbd></dt>
+<dd><p>Move backward one word (<code>backward-word</code>).
+</p>
+</dd>
+<dt> <kbd>C-a</kbd></dt>
+<dt> <kbd>Home</kbd></dt>
+<dd><p>Move to the beginning of the current line (<code>move-beginning-of-line</code>).
+</p>
+</dd>
+<dt> <kbd>C-e</kbd></dt>
+<dt> <kbd>End</kbd></dt>
+<dd><p>Move to the end of the current line (<code>move-end-of-line</code>).
+</p>
+</dd>
+<dt> <kbd>C-k</kbd></dt>
+<dd><p>Kill to the end of the line (<code>kill-line</code>).
+</p>
+</dd>
+<dt> <kbd>C-u</kbd></dt>
+<dd><p>Kill to the beginning of the line (<code>kill-to-beginning</code>),
+the same as <kbd>C-a C-k</kbd>.
+</p>
+</dd>
+<dt> <kbd>C-p</kbd></dt>
+<dt> <kbd>Up</kbd></dt>
+<dd><p>Move to the next earlier entry saved in the command history (<code>history-back</code>).
+</p>
+</dd>
+<dt> <kbd>C-n</kbd></dt>
+<dt> <kbd>Down</kbd></dt>
+<dd><p>Move to the next later entry saved in the command history (<code>history-forward</code>).
+</p>
+</dd>
+<dt> <kbd>RET</kbd></dt>
+<dd><p>Submit the entered command (<code>submit</code>).
+</p>
+</dd>
+<dt> <kbd>C-g</kbd></dt>
+<dd><p>Abort the current action by closing the Input Bar (<code>abort</code>).
+</p>
+</dd>
+<dt> <kbd>C-y</kbd></dt>
+<dd><p>Paste text from clipboard into the Input Bar (<code>yank-selection</code>).
+</p>
+</dd>
+<dt> <kbd>TAB</kbd></dt>
+<dd><p>Clockwise tab complete the current string, if possible. Press <kbd>TAB</kbd> again to
+cycle through completions.
+</p> 
+</dd>
+<dt> <kbd>S-TAB</kbd></dt>
+<dd><p>Counter-clockwise tab complete the current string, if possible. Press <kbd>S-TAB</kbd> again to
+cycle through completions.
+</p>
+</dd>
+</dl>
+
+<hr size="6">
+<a name="Programming-The-Message-Bar"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Using-The-Input-Bar" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Programming-the-Input-Bar" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Message-and-Input-Bar" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Message-and-Input-Bar" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-git_5.html#Windows" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-git.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="stumpwm-git_17.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-git_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Programming-The-Message-Bar-1"></a>
+<h2 class="section">4.3 Programming The Message Bar</h2>
+
+<dl>
+<dt><a name="index-echo_002dstring"></a><u>Function:</u> <b>echo-string</b><i> screen msg</i></dt>
+<dd><p>Display <var>string</var> in the message bar on <var>screen</var>. You almost always want to use <code>message</code>.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-message"></a><u>Function:</u> <b>message</b><i> fmt &amp;rest args</i></dt>
+<dd><p>run FMT and ARGS through &lsquo;format&rsquo; and echo the result to the current screen.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-_002ainput_002dhistory_002dignore_002dduplicates_002a"></a><u>Variable:</u> <b>*input-history-ignore-duplicates*</b></dt>
+<dd><p>Do not add a command to the input history if it&rsquo;s already the first in the list.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-copy_002dlast_002dmessage"></a><u>Command:</u> <b>copy-last-message</b></dt>
+<dd><p>Copy the last message displayed into the X selection
+</p></dd></dl>
+
+
+<hr size="6">
+<a name="Programming-the-Input-Bar"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Programming-The-Message-Bar" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-git_5.html#Windows" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Message-and-Input-Bar" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Message-and-Input-Bar" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-git_5.html#Windows" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-git.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="stumpwm-git_17.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-git_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Programming-the-Input-Bar-1"></a>
+<h2 class="section">4.4 Programming the Input Bar</h2>
+<p>New input behavior can be added to the input bar by creating editing
+functions and binding them to keys in the <var>*input-map*</var> using
+<code>define-key</code>, just like other key bindings.
+</p>
+<p>An input function takes 2 arguments: the input structure and the key pressed.
+</p>
+<dl>
+<dt><a name="index-read_002done_002dline"></a><u>Function:</u> <b>read-one-line</b><i> screen prompt &amp;key (initial-input ) require-match password</i></dt>
+<dd><p>Read a line of input through stumpwm and return it. returns nil if the user aborted.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-read_002done_002dchar"></a><u>Function:</u> <b>read-one-char</b><i> screen</i></dt>
+<dd><p>Read a single character from the user.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-completing_002dread"></a><u>Function:</u> <b>completing-read</b><i> screen prompt completions &amp;key (initial-input ) require-match</i></dt>
+<dd><p>Read a line of input through stumpwm and return it with TAB
+completion. completions can be a list, an fbound symbol, or a
+function. if its an fbound symbol or a function then that function is
+passed the substring to complete on and is expected to return a list
+of matches. If require-match argument is non-nil then the input must
+match with an element of the completions.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-input_002dinsert_002dstring"></a><u>Function:</u> <b>input-insert-string</b><i> input string</i></dt>
+<dd><p>Insert <var>string</var> into the input at the current
+position. <var>input</var> must be of type <var>input-line</var>. Input
+functions are passed this structure as their first argument.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-input_002dinsert_002dchar"></a><u>Function:</u> <b>input-insert-char</b><i> input char</i></dt>
+<dd><p>Insert <var>char</var> into the input at the current
+position. <var>input</var> must be of type <var>input-line</var>. Input
+functions are passed this structure as their first argument.
+</p></dd></dl>
+
+
+<dl>
+<dt><a name="index-_002ainput_002dmap_002a"></a><u>Variable:</u> <b>*input-map*</b></dt>
+<dd><p>This is the keymap containing all input editing key bindings.
+</p></dd></dl>
+
+
+<hr size="6">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Message-and-Input-Bar" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-git_5.html#Windows" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-git.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="stumpwm-git_17.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-git_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated by <em>David Bjergaard</em> on <em>November 1, 2014</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

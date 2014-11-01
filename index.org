@@ -1,0 +1,23 @@
+#+TITLE: 
+#+AUTHOR:    David Bjergaard
+#+EMAIL:     dbjergaard@gmail.com
+#+LANGUAGE:  en
+#+OPTIONS:   H:3 num:nil toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS:   TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+OPTIONS: html-postamble:nil
+#+EXPORT_SELECT_TAGS: noexport
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="style.css" />
+
+
+[[./images/stumpwm-logo-stripe.png]]
+** Important Links
+- [[https://github.com/stumpwm/stumpwm][StumpWM Github Page]]
+- [[https://github.com/stumpwm/stumpwm/wiki][StumpWM Community Wiki]]
+- [[https://github.com/stumpwm/stumpwm-contrib][StumpWM Modules/Extensions]]
+** StumpWM manual
+Choose your version.
+- [[./git/stumpwm-git.html][git]]
+- 0.9.9 -- coming soon!
+- [[./0.9.8/stumpwm-0.9.8.html][0.9.8]]
+- [[./0.9.7/stumpwm-0.9.7.html][0.9.7]]

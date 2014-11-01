@@ -1,0 +1,639 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- Created on November 1, 2014 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>StumpWM Manual: 5. Windows</title>
+
+<meta name="description" content="StumpWM Manual: 5. Windows">
+<meta name="keywords" content="StumpWM Manual: 5. Windows">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="../style.css">
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="Windows"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="stumpwm-0.9.7_4.html#Programming-the-Input-Bar" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Window-Marks" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.7_4.html#Message-and-Input-Bar" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.7.html#Top" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.7_6.html#Frames" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.7.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.7_17.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.7_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Windows-1"></a>
+<h1 class="chapter">5. Windows</h1>
+
+<dl>
+<dt><a name="index-next"></a><u>Command:</u> <b>next</b></dt>
+<dd><p>Go to the next window in the window list.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-pull_002dhidden_002dnext"></a><u>Command:</u> <b>pull-hidden-next</b></dt>
+<dd><p>Pull the next hidden window into the current frame.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-prev"></a><u>Command:</u> <b>prev</b></dt>
+<dd><p>Go to the previous window in the window list.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-pull_002dhidden_002dprevious"></a><u>Command:</u> <b>pull-hidden-previous</b></dt>
+<dd><p>Pull the next hidden window into the current frame.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-delete_002dwindow"></a><u>Command:</u> <b>delete-window</b><i> &amp;optional (window (current-window))</i></dt>
+<dd><p>Delete a window. By default delete the current window. This is a
+request sent to the window. The window&rsquo;s client may decide not to
+grant the request or may not be able to if it is unresponsive.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-kill_002dwindow"></a><u>Command:</u> <b>kill-window</b><i> &amp;optional (window (current-window))</i></dt>
+<dd><p>Tell X to disconnect the client that owns the specified
+window. Default to the current window. if
+<code>delete-window</code> didn&rsquo;t work, try this.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-echo_002dwindows"></a><u>Command:</u> <b>echo-windows</b><i> &amp;optional (fmt *window-format*) (group</i></dt>
+<dd><p>                                                               (current-group)) (windows
+                                                                                 (group-windows
+                                                                                  group))
+Display a list of managed windows. The optional argument <var>fmt</var> can
+be used to override the default window formatting.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-other_002dwindow"></a><u>Command:</u> <b>other-window</b><i> &amp;optional (group (current-group))</i></dt>
+<dd><p>Switch to the window last focused.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-pull_002dhidden_002dother"></a><u>Command:</u> <b>pull-hidden-other</b></dt>
+<dd><p>Pull the last focused, hidden window into the current frame.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-renumber"></a><u>Command:</u> <b>renumber</b><i> nt &amp;optional (group (current-group))</i></dt>
+<dd><p>Change the current window&rsquo;s number to the specified number. If another window
+is using the number, then the windows swap numbers. Defaults to current group.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-meta"></a><u>Command:</u> <b>meta</b><i> key</i></dt>
+<dd><p>Send a fake key to the current window. <var>key</var> is a typical StumpWM key, like <kbd>C-M-o</kbd>.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-select_002dwindow"></a><u>Command:</u> <b>select-window</b><i> query</i></dt>
+<dd><p>Switch to the first window that starts with <var>query</var>.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-select_002dwindow_002dby_002dnumber"></a><u>Command:</u> <b>select-window-by-number</b><i> num &amp;optional (group (current-group))</i></dt>
+<dd><p>Find the window with the given number and focus it in its frame.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-title"></a><u>Command:</u> <b>title</b><i> title</i></dt>
+<dd><p>Override the current window&rsquo;s title.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-windowlist"></a><u>Command:</u> <b>windowlist</b><i> &amp;optional (fmt *window-format*)</i></dt>
+<dd><p>Allow the user to Select a window from the list of windows and focus
+the selected window. For information of menu bindings
+See section <a href="stumpwm-0.9.7_12.html#Menus">Menus</a>. The optional argument <var>fmt</var> can be specified to
+override the default window formatting.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-fullscreen"></a><u>Command:</u> <b>fullscreen</b></dt>
+<dd><p>Toggle the fullscreen mode of the current widnow. Use this for clients
+with broken (non-NETWM) fullscreen implemenations, such as any program
+using SDL.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-info"></a><u>Command:</u> <b>info</b><i> &amp;optional (fmt *window-info-format*)</i></dt>
+<dd><p>Display information about the current window.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-refresh"></a><u>Command:</u> <b>refresh</b></dt>
+<dd><p>Refresh current window without changing its size.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-redisplay"></a><u>Command:</u> <b>redisplay</b></dt>
+<dd><p>Refresh current window by a pair of resizes, also make it occupy entire frame.
+</p></dd></dl>
+
+
+<dl>
+<dt><a name="index-_002awindow_002dformat_002a"></a><u>Variable:</u> <b>*window-format*</b></dt>
+<dd><p>This variable decides how the window list is formatted. It is a string
+with the following formatting options:
+</p>
+<dl compact="compact">
+<dt> %n</dt>
+<dd><p>Substitute the window number.
+</p></dd>
+<dt> %s</dt>
+<dd><p>Substitute the window&rsquo;s status. * means current window, + means last
+window, and - means any other window.
+</p></dd>
+<dt> %t</dt>
+<dd><p>Substitute the window&rsquo;s name.
+</p></dd>
+<dt> %c</dt>
+<dd><p>Substitute the window&rsquo;s class.
+</p></dd>
+<dt> %i</dt>
+<dd><p>Substitute the window&rsquo;s resource ID.
+</p></dd>
+<dt> %m</dt>
+<dd><p>Draw a # if the window is marked.
+</p></dd>
+</dl>
+
+<p>Note, a prefix number can be used to crop the argument to a specified
+size. For instance, &lsquo;<samp>%20t</samp>&rsquo; crops the window&rsquo;s title to 20
+characters.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-_002awindow_002dname_002dsource_002a"></a><u>Variable:</u> <b>*window-name-source*</b></dt>
+<dd><p>This variable controls what is used for the window&rsquo;s name. The default is <code>:title</code>.
+</p>
+<dl compact="compact">
+<dt> <code>:title</code></dt>
+<dd><p>Use the window&rsquo;s title given to it by its owner.
+</p>
+</dd>
+<dt> <code>:class</code></dt>
+<dd><p>Use the window&rsquo;s resource class.
+</p>
+</dd>
+<dt> <code>:resource-name</code></dt>
+<dd><p>Use the window&rsquo;s resource name.
+</p></dd>
+</dl>
+</dd></dl>
+
+<dl>
+<dt><a name="index-_002anew_002dwindow_002dprefered_002dframe_002a"></a><u>Variable:</u> <b>*new-window-prefered-frame*</b></dt>
+<dd><p>nil
+</p></dd></dl>
+
+
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#Window-Marks">5.1 Window Marks</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">                
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Customizing-Window-Appearance">5.2 Customizing Window Appearance</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">  
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Controlling-Raise-And-Map-Requests">5.3 Controlling Raise And Map Requests</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">  
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Programming-With-Windows">5.4 Programming With Windows</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">    
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Rule-Based-Window-Placement">5.5 Rule Based Window Placement</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">  
+</td></tr>
+</table>
+
+<hr size="6">
+<a name="Window-Marks"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Windows" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Customizing-Window-Appearance" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Windows" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Windows" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.7_6.html#Frames" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.7.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.7_17.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.7_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Window-Marks-1"></a>
+<h2 class="section">5.1 Window Marks</h2>
+<p>Windows can be marked. A marked window has a # beside it in the window
+list. Some commands operate only on marked windows.
+</p>
+<dl>
+<dt><a name="index-mark"></a><u>Command:</u> <b>mark</b></dt>
+<dd><p>Toggle the current window&rsquo;s mark.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-clear_002dwindow_002dmarks"></a><u>Command:</u> <b>clear-window-marks</b><i> &amp;optional (group (current-group)) (windows</i></dt>
+<dd><p>                                                                       (group-windows
+                                                                        group))
+Clear all marks in the current group.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-pull_002dmarked"></a><u>Command:</u> <b>pull-marked</b></dt>
+<dd><p>Pull all marked windows into the current frame and clear the marks.
+</p></dd></dl>
+
+
+<hr size="6">
+<a name="Customizing-Window-Appearance"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Window-Marks" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Controlling-Raise-And-Map-Requests" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Windows" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Windows" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.7_6.html#Frames" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.7.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.7_17.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.7_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Customizing-Window-Appearance-1"></a>
+<h2 class="section">5.2 Customizing Window Appearance</h2>
+
+<dl>
+<dt><a name="index-_002amaxsize_002dborder_002dwidth_002a"></a><u>Variable:</u> <b>*maxsize-border-width*</b></dt>
+<dd><p>The width in pixels given to the borders of windows with maxsize or ratio hints.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-_002atransient_002dborder_002dwidth_002a"></a><u>Variable:</u> <b>*transient-border-width*</b></dt>
+<dd><p>The width in pixels given to the borders of transient or pop-up windows.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-_002anormal_002dborder_002dwidth_002a"></a><u>Variable:</u> <b>*normal-border-width*</b></dt>
+<dd><p>The width in pixels given to the borders of regular windows.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-_002awindow_002dborder_002dstyle_002a"></a><u>Variable:</u> <b>*window-border-style*</b></dt>
+<dd><p>This controls the appearance of the border around windows. valid
+values are:
+</p><dl compact="compact">
+<dt> <var>:thick</var></dt>
+<dd><p>All space within the frame not used by the window is dedicated to the
+border.
+</p>
+</dd>
+<dt> <var>:thin</var></dt>
+<dd><p>Only the border width as controlled by *maxsize-border-width*
+*normal-border-width* and *transient-border-width* is used as the
+border. The rest is filled with the unfocus color.
+</p>
+</dd>
+<dt> <var>:tight</var></dt>
+<dd><p>The same as :thin but the border surrounds the window and the wasted
+space within the frame is not obscured, revealing the background.
+</p>
+</dd>
+<dt> <var>:none</var></dt>
+<dd><p>Like :tight but no border is ever visible.
+</p></dd>
+</dl>
+
+<p>After changing this variable you may need to call
+sync-all-frame-windows to see the change.
+</p></dd></dl>
+
+
+<dl>
+<dt><a name="index-set_002dwin_002dbg_002dcolor"></a><u>Function:</u> <b>set-win-bg-color</b><i> color</i></dt>
+<dd><p>Set the background color of the window. The background color will only
+be visible for windows with size increment hints such as &lsquo;<samp>emacs</samp>&rsquo;
+and &lsquo;<samp>xterm</samp>&rsquo;.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-set_002dfocus_002dcolor"></a><u>Function:</u> <b>set-focus-color</b><i> color</i></dt>
+<dd><p>Set the border color for focused windows. This is only used when
+there is more than one frame.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-set_002dunfocus_002dcolor"></a><u>Function:</u> <b>set-unfocus-color</b><i> color</i></dt>
+<dd><p>Set the border color for windows without focus. This is only used when
+there is more than one frame.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-set_002dnormal_002dgravity"></a><u>Function:</u> <b>set-normal-gravity</b><i> gravity</i></dt>
+<dd><p>Set the default gravity for normal windows. Possible values are
+<code>:center</code> <code>:top</code> <code>:left</code> <code>:right</code> <code>:bottom</code>
+<code>:top-left</code> <code>:top-right</code> <code>:bottom-left</code> and
+<code>:bottom-right</code>.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-set_002dmaxsize_002dgravity"></a><u>Function:</u> <b>set-maxsize-gravity</b><i> gravity</i></dt>
+<dd><p>Set the default gravity for maxsize windows.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-set_002dtransient_002dgravity"></a><u>Function:</u> <b>set-transient-gravity</b><i> gravity</i></dt>
+<dd><p>Set the default gravity for transient/pop-up windows.
+</p></dd></dl>
+
+
+<dl>
+<dt><a name="index-gravity"></a><u>Command:</u> <b>gravity</b><i> gravity</i></dt>
+<dd><p>Set a window&rsquo;s gravity within its frame. Gravity controls where the
+window will appear in a frame if it is smaller that the
+frame. Possible values are:
+</p>
+<dl compact="compact">
+<dt> <var>center</var></dt>
+<dt> <var>top</var></dt>
+<dt> <var>right</var></dt>
+<dt> <var>bottom</var></dt>
+<dt> <var>left</var></dt>
+<dt> <var>top-right</var></dt>
+<dt> <var>top-left</var></dt>
+<dt> <var>bottom-right</var></dt>
+<dt> <var>bottom-left</var></dt>
+</dl>
+</dd></dl>
+
+
+<hr size="6">
+<a name="Controlling-Raise-And-Map-Requests"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Customizing-Window-Appearance" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Programming-With-Windows" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Windows" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Windows" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.7_6.html#Frames" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.7.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.7_17.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.7_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Controlling-Raise-And-Map-Requests-1"></a>
+<h2 class="section">5.3 Controlling Raise And Map Requests</h2>
+<p>It is sometimes handy to deny a window&rsquo;s request to be focused. The
+following variables determine such behavior.
+</p>
+<p>A map request occurs when a new or withdrawn window requests to be
+mapped for the first time.
+</p>
+<p>A raise request occurs when a client asks the window manager to give
+an existing window focus.
+</p>
+<dl>
+<dt><a name="index-_002adeny_002dmap_002drequest_002a"></a><u>Variable:</u> <b>*deny-map-request*</b></dt>
+<dd><p>A list of window properties that stumpwm should deny matching windows&rsquo;
+requests to become mapped for the first time.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-_002adeny_002draise_002drequest_002a"></a><u>Variable:</u> <b>*deny-raise-request*</b></dt>
+<dd><p>Exactly the same as <var>*deny-map-request*</var> but for raise requests.
+</p>
+<p>Note that no denial message is displayed if the window is already visible.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-_002asuppress_002ddeny_002dmessages_002a"></a><u>Variable:</u> <b>*suppress-deny-messages*</b></dt>
+<dd><p>For complete focus on the task at hand, set this to <code>T</code> and no
+raise/map denial messages will be seen.
+</p></dd></dl>
+
+
+<p>Some examples follow.
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">;; Deny the firefox window from taking focus when clicked upon.
+(push '(:class &quot;gecko&quot;) stumpwm:*deny-raise-request*)
+
+;; Deny all map requests
+(setf stumpwm:*deny-map-request* t)
+
+;; Deny transient raise requests
+(push '(:transient) stumpwm:*deny-map-request*)
+
+;; Deny the all windows in the xterm class from taking focus.
+(push '(:class &quot;Xterm&quot;) stumpwm:*deny-raise-request*)
+</pre></td></tr></table>
+
+<hr size="6">
+<a name="Programming-With-Windows"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Controlling-Raise-And-Map-Requests" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Rule-Based-Window-Placement" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Windows" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Windows" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.7_6.html#Frames" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.7.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.7_17.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.7_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Programming-With-Windows-1"></a>
+<h2 class="section">5.4 Programming With Windows</h2>
+
+<dl>
+<dt><a name="index-define_002dwindow_002dslot"></a><u>Macro:</u> <b>define-window-slot</b><i> attr</i></dt>
+<dd><p>Create a new window attribute and corresponding get/set functions.
+</p></dd></dl>
+
+
+<dl>
+<dt><a name="index-window_002dsend_002dstring"></a><u>Function:</u> <b>window-send-string</b><i> string &amp;optional (window (current-window))</i></dt>
+<dd><p>Send the string of characters to the current window as if they&rsquo;d been typed.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-_002adefault_002dwindow_002dname_002a"></a><u>Variable:</u> <b>*default-window-name*</b></dt>
+<dd><p>The name given to a window that does not supply its own name.
+</p></dd></dl>
+
+
+<hr size="6">
+<a name="Rule-Based-Window-Placement"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Programming-With-Windows" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.7_6.html#Frames" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Windows" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Windows" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.7_6.html#Frames" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.7.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.7_17.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.7_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Rule-Based-Window-Placement-1"></a>
+<h2 class="section">5.5 Rule Based Window Placement</h2>
+
+<dl>
+<dt><a name="index-define_002dframe_002dpreference"></a><u>Macro:</u> <b>define-frame-preference</b><i> target-group &amp;rest frame-rules</i></dt>
+<dd><p>Create a rule that matches windows and automatically places them in
+a specified group and frame. Each frame rule is a lambda list:
+</p><table><tr><td>&nbsp;</td><td><pre class="example">(frame-number raise lock &amp;key create restore dump-name class instance type role title)
+</pre></td></tr></table>
+
+<dl compact="compact">
+<dt> <var>frame-number</var></dt>
+<dd><p>The frame number to send matching windows to
+</p>
+</dd>
+<dt> <var>raise</var></dt>
+<dd><p>When non-nil, raise and focus the window in its frame
+</p>
+</dd>
+<dt> <var>lock</var></dt>
+<dd><p>When this is nil, this rule will only match when the current group
+matches <var>target-group</var>. When non-nil, this rule matches regardless
+of the group and the window is sent to <var>target-group</var>. If
+<var>lock</var> and <var>raise</var> are both non-nil, then stumpwm will jump to
+the specified group and focus the matched window.
+</p>
+</dd>
+<dt> <var>create</var></dt>
+<dd><p>When non-NIL the group is created and eventually restored when the value of
+create is a group dump filename in *DATA-DIR*. Defaults to NIL.
+</p>
+</dd>
+<dt> <var>restore</var></dt>
+<dd><p>When non-NIL the group is restored even if it already exists. This arg should
+be set to the dump filename to use for forced restore. Defaults to NIL
+</p>
+</dd>
+<dt> <var>class</var></dt>
+<dd><p>The window&rsquo;s class must match <var>class</var>.
+</p>
+</dd>
+<dt> <var>instance</var></dt>
+<dd><p>The window&rsquo;s instance/resource name must match <var>instance</var>.
+</p>
+</dd>
+<dt> <var>type</var></dt>
+<dd><p>The window&rsquo;s type must match <var>type</var>.
+</p>
+</dd>
+<dt> <var>role</var></dt>
+<dd><p>The window&rsquo;s role must match <var>role</var>.
+</p>
+</dd>
+<dt> <var>title</var></dt>
+<dd><p>The window&rsquo;s title must match <var>title</var>.
+</p></dd>
+</dl>
+</dd></dl>
+
+<dl>
+<dt><a name="index-clear_002dwindow_002dplacement_002drules"></a><u>Function:</u> <b>clear-window-placement-rules</b></dt>
+<dd><p>Clear all window placement rules.
+</p></dd></dl>
+
+
+<dl>
+<dt><a name="index-remember"></a><u>Command:</u> <b>remember</b><i> lock title</i></dt>
+<dd><p>Make a generic placement rule for the current window. Might be too specific/not specific enough!
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-forget"></a><u>Command:</u> <b>forget</b></dt>
+<dd><p>Forget the window placement rule that matches the current window.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-dump_002dwindow_002dplacement_002drules"></a><u>Command:</u> <b>dump-window-placement-rules</b><i> file</i></dt>
+<dd><p>Dump *window-placement-rules* to FILE.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-restore_002dwindow_002dplacement_002drules"></a><u>Command:</u> <b>restore-window-placement-rules</b><i> file</i></dt>
+<dd><p>Restore *window-placement-rules* from FILE.
+</p></dd></dl>
+
+
+<hr size="6">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Windows" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.7_6.html#Frames" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.7.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.7_17.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.7_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated by <em>David Bjergaard</em> on <em>November 1, 2014</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

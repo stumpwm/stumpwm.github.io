@@ -139,12 +139,17 @@ body
     font-feature-settings: "liga", "xtex";
     font-size: 15pt;
     clear: center;
-    width: 30em;
+    max-width: 30em;
     line-height: 1.35;
     text-align: justify;
     padding: 50px;
     margin: 0 auto;
+    background-size: 15%;
+    background-image: url("./images/lisp-lizard.png");
+    background-position: right bottom;
+    background-repeat: no-repeat;
 }
+
 h1 {
   font-size: 1.5em;
 }

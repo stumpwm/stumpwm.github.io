@@ -1,0 +1,432 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- Created on November 1, 2014 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>StumpWM Manual: 16. Hacking</title>
+
+<meta name="description" content="StumpWM Manual: 16. Hacking">
+<meta name="keywords" content="StumpWM Manual: 16. Hacking">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="../style.css">
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="Hacking"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="stumpwm-0.9.8_15.html#Modules" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#General-Advice" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.8_15.html#Modules" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.8.html#Top" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.8_17.html#Command-and-Function-Index" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.8.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.8_17.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.8_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Hacking-1"></a>
+<h1 class="chapter">16. Hacking</h1>
+
+<p>For those of you who have worked on Free Software projects before,
+this part should probably be fairly intuitive.
+</p>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#General-Advice">16.1 Hacking: General Advice</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">              
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Using-git-with-StumpWM">16.2 Hacking: Using git with StumpWM</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">      
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Sending-Patches">16.3 Sending Patches</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">             
+</td></tr>
+</table>
+
+<hr size="6">
+<a name="General-Advice"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Hacking" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Using-git-with-StumpWM" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Hacking" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Hacking" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.8_17.html#Command-and-Function-Index" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.8.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.8_17.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.8_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Hacking_003a-General-Advice"></a>
+<h2 class="section">16.1 Hacking: General Advice</h2>
+
+<ol>
+<li>
+Pay attention to file names and contents. If you&rsquo;re making changes to
+mode-line related code, don&rsquo;t put it in &lsquo;<tt>core.lisp</tt>&rsquo;. If you&rsquo;re
+introducing some completely new featureset, consider putting all of
+the new code in a new file.
+
+</li><li>
+Does a command need to be user-visible (&ldquo;interactive&rdquo;) or is it just
+called by other commands?
+
+<ul>
+<li>
+If it&rsquo;s not going to be user-visible, you can just use the familiar
+<code>(defun foo () ...)</code> syntax.
+
+</li><li>
+If you want the command to be used interactively, you use StumpWM&rsquo;s
+<code>defcommand</code> syntax, as in the examples below.
+
+<table><tr><td>&nbsp;</td><td><pre class="example">(defcommand test (foo bar)
+   ((:string &quot;How you're going to prompt for variable foo: &quot;)
+    (:number &quot;How you want to prompt for variable bar: &quot;))
+   &quot;This command is a test&quot;
+   (body...))
+
+(defcommand test2 () ()
+   &quot;This is also a test&quot;
+   (body...))
+
+(defcommand title (args) (interactive-args)
+   &quot;Doc string&quot;
+   (body...))
+</pre></td></tr></table>
+
+<p>So basically, inside the first set of parentheses after the
+function name, you specify what (if any) arguments will be passed to
+the command. The second set of parentheses tells StumpWM how to get
+those arguments if they&rsquo;re not explicitly passed to the command. For
+example,
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">((:string &quot;What do you want to do: &quot;))
+</pre></td></tr></table>
+
+<p>will read a string from the input the user provides. The quoted
+text is the prompt the user will see. Of course, if you were to, say,
+call the command test, as defined above, from another piece of code,
+it wouldn&rsquo;t give the prompt as long as you fed it arguments.
+</p></li></ul>
+
+</li><li>
+Note that all commands defined using the <code>defcommand</code> syntax are
+available both to be called with <kbd>C-t ;</kbd> and from within other lisp
+programs, as though they had been defun-ned (which, in fact, they
+have).
+
+</li><li>
+Any code that depends on external libraries or programs that some
+users might not have installed should be placed in the &lsquo;<tt>contrib/</tt>&rsquo;
+directory.
+
+</li><li>
+Don&rsquo;t be afraid to submit your patches to the StumpWM mailing list!
+It may not immediately make it into the official git repository, but
+individual users might find it useful and apply it to their own setup,
+or might be willing to offer suggestions on how to improve the code.
+
+</li><li>
+Remember:  StumpWM is designed to run on both clisp and on SBCL. If
+you must use code specific to one or the other, at the very least warn
+people that it only works with one lisp implementation. Better yet,
+figure out how to do it in the other distribution and write a
+statement like this:
+
+<table><tr><td>&nbsp;</td><td><pre class="example">#+clisp
+(your-clisp-code)
+#+sbcl
+(your-sbcl-code)
+</pre></td></tr></table>
+
+<p>#to wrap the code for each lisp. Of course, the best option is to
+find a way to use the same code for clisp and SBCL.
+</p></li></ol>
+
+<hr size="6">
+<a name="Using-git-with-StumpWM"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#General-Advice" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Sending-Patches" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Hacking" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Hacking" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.8_17.html#Command-and-Function-Index" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.8.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.8_17.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.8_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Hacking_003a-Using-git-with-StumpWM"></a>
+<h2 class="section">16.2 Hacking: Using git with StumpWM</h2>
+
+<p>For quite a while now, StumpWM has been using the git version control
+system for development. If you&rsquo;re one using one of the official
+releases or still using the now-obsolete CVS version, you can get the
+bleeding-edge source code from the official git repository with
+a single command:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">$ git clone git@github.com:sabetts/stumpwm.git
+</pre></td></tr></table>
+
+<p>After this, you&rsquo;ll have a complete git repository, along with the
+complete revision history since the switch. Feel free to play around;
+git has some important features that actually make this safe!
+</p>
+<p>Before we get to that stuff, though, you&rsquo;re going to want to tell git
+about yourself so that your information is included in your commits
+and patches. The very minimum you&rsquo;re going to want to do is:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">$ git config --global user.name &quot;Anne N. O'Nymous&quot;
+$ git config --global user.email &quot;anonymous@foo.org&quot;
+</pre></td></tr></table>
+
+<p>Be sure to check out the manual for <code>git-config</code>&ndash;there are several
+options you might want to set, such as enabling colorized output or
+changing the editor and pager you use when making commits and viewing
+logs.
+</p>
+<p>For the sake of argument, let&rsquo;s say you want to make some major
+changes to both &lsquo;<tt>user.lisp</tt>&rsquo; and &lsquo;<tt>core.lisp</tt>&rsquo;, add a file called
+&lsquo;<tt>DANGEROUS_EXPERIMENT_DO_NOT_USE_OR_ELSE.lisp</tt>&rsquo;, and remove the manual
+because you&rsquo;re too 1337 for such things. However, you don&rsquo;t want to
+break your entire StumpWM setup and start over. Thankfully, you don&rsquo;t
+have to. Before you get started, issue this command from the stumpwm
+directory:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">$ git checkout -b experimental
+</pre></td></tr></table>
+
+<p>You should now find yourself in a new branch, called experimental. To
+confirm this, type <code>git branch</code>; there should be
+an asterisk next to the branch you&rsquo;re currently viewing. At any time,
+you can type <code>git checkout master</code> to return to your master branch,
+and at any time you can have as many branches of the project as you
+like. If you want to create a new branch based not on the master
+branch but on your experimental branch, for example, you&rsquo;d type:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">$ git checkout -b new-experiment experimental
+</pre></td></tr></table>
+
+<p>This will place you in a newly-created branch called &ldquo;new-experiment&rdquo;
+which should be identical to your experimental branch as of the last
+commit (more on that soon). If you&rsquo;re actually typing out the
+directions, switch back to your old experimental branch like so:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">$ git checkout experimental
+</pre></td></tr></table>
+
+<p>Anyway, now that you have a new branch, create that new file with the
+long name, which I&rsquo;ll just call &lsquo;<tt>danger.lisp</tt>&rsquo; for brevity. Make whatever
+changes you want to it, and when you&rsquo;re done, tell git about your new
+file.
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">$ git add dangerous.lisp
+</pre></td></tr></table>
+
+<p>Now, let&rsquo;s pretend you&rsquo;re done making changes. Tell git you&rsquo;re done
+for now:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">$ git commit -a
+</pre></td></tr></table>
+
+<p>This will open up a prompt in your editor of choice for you to
+describe your changes. Try to keep the first line short, and then add
+more explanation underneath (for an example, run the command <code>git log</code>
+and take a look at some of the longer commit explanations). Save that
+file and then do this:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">$ git checkout master
+$ ls
+</pre></td></tr></table>
+
+<p>Then look for your new file. It&rsquo;s not there! That&rsquo;s because you&rsquo;ve
+done all of your work in another branch, which git is currently hiding
+from you so that you can &ldquo;check out&rdquo; the branch called &ldquo;master.&rdquo; All
+is as it should be&ndash;your master repository is still safe.
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">$ git checkout experimental
+</pre></td></tr></table>
+
+<p>Now, delete &lsquo;<tt>manual.lisp</tt>&rsquo; and &lsquo;<tt>stumpwm.texi</tt>&rsquo;. That&rsquo;s right. Wipe them off
+the face of the Earth, or at least off the hard drive of your
+computer. When you&rsquo;re done, you don&rsquo;t have to tell git you&rsquo;ve deleted
+them; it&rsquo;ll figure it out on its own (though things may not compile
+properly unless you edit &lsquo;<tt>Makefile.in</tt>&rsquo; and &lsquo;<tt>stumpwm.asd</tt>&rsquo;. Anyway, go ahead
+and edit &lsquo;<tt>core.lisp</tt>&rsquo; and &lsquo;<tt>user.lisp</tt>&rsquo;. Really break &rsquo;em. Run free! When
+you&rsquo;re done, do another commit, as above, and give it a stupid title
+like &ldquo;lolz i b0rked stUmpwm guys wTF!?!?!!111!&rdquo; Now try to compile.
+Just try. It won&rsquo;t work. If it does, you&rsquo;re some kind of savant or
+something. Keep up the good work. If you&rsquo;ve actually managed to break
+StumpWM like you were supposed to, never fear! You have two options at
+this point.
+</p>
+<p>One is to go back to the master branch (with another git checkout) and
+just delete your experimental branch, like so:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">$ git branch -D
+</pre></td></tr></table>
+
+<p>The &ldquo;<code>-D</code>&rdquo; means to force a delete, even if the changes you&rsquo;ve made
+aren&rsquo;t available elsewhere. A &ldquo;<code>-d</code>&rdquo; means to delete the branch if and
+only if you&rsquo;ve merged the changes in elsewhere.
+</p>
+<p>The other option is to create patches for each of your commits so far,
+delete the branch, and then apply any working/wanted patches in a new
+branch. Create your patches (after committing) like so:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">$ git format-patch -o patches origin
+</pre></td></tr></table>
+
+<p>(Before doing that you can review your changes with <code>git log origin..</code>)
+</p>
+<p>You can also use the <code>format-patch</code> command to create a patch of working
+code to send in to the mailing list.
+</p>
+<p>A developer might ask you to try out something they&rsquo;re working on. To
+fetch their master branch, you&rsquo;d do this:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">$ git remote add -f -m master -t master foo git://bar.org/~foo/stumpwm
+</pre></td></tr></table>
+
+<p>Here, &ldquo;foo&rdquo; is the shorthand name you&rsquo;ll use to refer to that
+repository in the future. To checkout a local copy of that repository,
+you&rsquo;d then do
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">$ git checkout --track -b foo-master foo/master
+</pre></td></tr></table>
+
+<p>Later you could use <code>git pull foo</code> to update while looking at that
+branch (and note that <code>git pull</code> with no arguments, in the master
+branch, will update your StumpWM from the official repository).
+</p>
+<p>Finally, if you want to move your experimental changes into your
+master branch, you&rsquo;d checkout your master branch and run:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">$ git merge experimental
+</pre></td></tr></table>
+
+<p>If there are file conflicts, <code>git diff</code> will show you where they are;
+you have to fix them by hand. When you&rsquo;re done, do another
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">$ git commit -a
+</pre></td></tr></table>
+
+<p>to finalize the changes to your master branch. You can then delete
+your experimental branch. Alternately, you can wait until your changes
+(assuming you sent them in) make it into the official repository
+before deleting your experimental branch.
+</p>
+<hr size="6">
+<a name="Sending-Patches"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Using-git-with-StumpWM" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.8_17.html#Command-and-Function-Index" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Hacking" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Hacking" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.8_17.html#Command-and-Function-Index" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.8.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.8_17.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.8_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Sending-Patches-1"></a>
+<h2 class="section">16.3 Sending Patches</h2>
+<p>When sending patches to the mailing list for inclusion in StumpWM,
+there are a few guidelines that will make everything go smoother.
+</p>
+<ul>
+<li>
+Make sure it applies clean to the main git repository
+
+</li><li>
+Ensure that you aren&rsquo;t introducing tabs, extra blank lines, or whitespace at the end of lines.
+
+</li><li>
+Ensure your patch doesn&rsquo;t contain irrelevant indenting or reformatting changes.
+
+</li><li>
+Try to make your patch address a single issue. If your patch changes
+two unrelated issues, break them into two seperate patches that can
+stand on their own.
+
+</li><li>
+Don&rsquo;t send intermediate patches. When you&rsquo;re working on a feature you
+might make several commits to your local repository as you refine it
+and work out the bugs. When it&rsquo;s polished and ready to ship, send it
+as one patch! Sometimes it makes sense to send it as multiple patches
+if each patch contains a discrete feature or bug fix that can stand on
+its own. If one of your patches changes code that was added or
+modified in an earlier patch, consider merging them together and
+sending them as one.
+
+</li></ul>
+
+<hr size="6">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Hacking" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.8_17.html#Command-and-Function-Index" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.8.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.8_17.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.8_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated by <em>David Bjergaard</em> on <em>November 1, 2014</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>
