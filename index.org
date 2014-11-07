@@ -17,7 +17,7 @@
 - [[https://github.com/stumpwm/stumpwm-contrib][StumpWM Modules/Extensions]]
 ** StumpWM manual
 Choose your version.
-- [[./git/stumpwm-git.html][git]]
-- 0.9.9 -- coming soon!
-- [[./0.9.8/stumpwm-0.9.8.html][0.9.8]]
-- [[./0.9.7/stumpwm-0.9.7.html][0.9.7]]
+- git :: [[./git/stumpwm-git.html][html]], [[./git/stumpwm-git.pdf][pdf]]
+- 0.9.9 :: [[./0.9.9/stumpwm-0.9.9.html][html]], [[./0.9.9/stumpwm-0.9.9.pdf][pdf]]
+- 0.9.8 :: [[./0.9.8/stumpwm-0.9.8.html][html]], [[./0.9.8/stumpwm-0.9.8.pdf][pdf]]
+- 0.9.7 :: [[./0.9.7/stumpwm-0.9.7.html][html]], [[./0.9.7/stumpwm-0.9.7.pdf][pdf]]
