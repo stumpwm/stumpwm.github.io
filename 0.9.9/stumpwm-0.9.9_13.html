@@ -1,0 +1,254 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- Created on November 7, 2014 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>StumpWM Manual: 13. Colors</title>
+
+<meta name="description" content="StumpWM Manual: 13. Colors">
+<meta name="keywords" content="StumpWM Manual: 13. Colors">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="../style.css">
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="Colors"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="stumpwm-0.9.9_12.html#Getting-Help" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Behind-The-Scenes-Look-At-Colors" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.9_12.html#Miscellaneous-Commands" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.9.html#Top" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.9_14.html#Hooks" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.9.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.9_17.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.9_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Colors-1"></a>
+<h1 class="chapter">13. Colors</h1>
+<p>When specifying a color, it is possible to use its X11 Color Name
+(usually in the file &lsquo;<tt>/etc/X11/rgb.txt</tt>&rsquo;).  You can also use a
+six digit hex string prefixed by a &rsquo;#&rsquo; character in the same way that
+you can specify colors in HTML.  
+</p>
+<p>All text printed by stumpwm is run through a coloring engine before
+being displayed. All color commands start with a &lsquo;<samp>^</samp>&rsquo; (caret)
+character and apply to all text after it. 
+</p>
+<dl compact="compact">
+<dt> <code>^0-9</code></dt>
+<dd><p>A caret followed by a single digit number changes the foreground color
+to the specified color. A &lsquo;<samp>*</samp>&rsquo; can be used to specify the normal
+color. See the color listing below.
+</p>
+</dd>
+<dt> <code>^0-90-9</code></dt>
+<dd><p>A caret followed by two digits sets the foreground and background
+color. The first digit refers to the foreground color and the second
+digit to the background color. A &lsquo;<samp>*</samp>&rsquo; can be used in place of
+either digit to specify the normal color. See the color listing below.
+</p>
+</dd>
+<dt> <code>^B</code></dt>
+<dd><p>Turn on bright colors.
+</p>
+</dd>
+<dt> <code>^b</code></dt>
+<dd><p>Turn off bright colors.
+</p>
+</dd>
+<dt> <code>^n</code></dt>
+<dd><p>Use the normal background and foreground color.
+</p>
+</dd>
+<dt> <code>^R</code></dt>
+<dd><p>Reverse the foreground and background colors.
+</p>
+</dd>
+<dt> <code>^r</code></dt>
+<dd><p>Turn off reverse colors.
+</p>
+</dd>
+<dt> <code>^[</code></dt>
+<dd><p>Push the current colors onto the color stack. The current colors remain unchanged.
+</p>
+</dd>
+<dt> <code>^]</code></dt>
+<dd><p>Pop the colors off the color stack.
+</p>
+</dd>
+<dt> <code>^&gt;</code></dt>
+<dd><p>Align the rest of the line to the right of the window.
+</p>
+</dd>
+<dt> <code>^f&lt;n&gt;</code></dt>
+<dd><p>Sets the current font to the font at index n in the screen&rsquo;s font list.
+</p>
+</dd>
+<dt> <code>^(&lt;modifier&gt; &amp;rest arguments)</code></dt>
+<dd><p>Allows for more complicated color settings:
+&lt;modifier&gt; can be one of :fg, :bg, :reverse, :bright, :push, :pop, :font and :&gt;.
+The arguments for each modifier differ:
+</p>
+<ul>
+<li>
+:fg and :bg take a color as an argument, which can either be a numeric
+index into the color map or a hexadecimal color in the form of &quot;#fff&quot;
+or &quot;#ffffff&quot;.
+</li><li>
+:reverse and :bright take either t or nil as an argument. T enables
+the setting and nil disables it.
+</li><li>
+:push and :pop take no arguments. :push pushes the current settings onto
+the color stack, leaving the current settings intact. :pop pops color
+settings off the stack, updating the current settings.
+</li><li>
+:font takes an integer that represents an index into the screen&rsquo;s
+list of fonts, or, possibly, a literal font object that can
+immediately be used. In a string you&rsquo;ll probably only want to specify
+an integer.
+</li><li>
+:&gt; takes no arguments. It triggers right-alignment for the rest of the line.
+
+</li></ul>
+
+</dd>
+<dt> <code>^^</code></dt>
+<dd><p>Print a regular caret.
+</p></dd>
+</dl>
+
+<p>The default colors are made to resemble the 16 VGA colors and are:
+</p><dl compact="compact">
+<dt> 0 black</dt>
+<dt> 1 red</dt>
+<dt> 2 green</dt>
+<dt> 3 yellow</dt>
+<dt> 4 blue</dt>
+<dt> 5 magenta</dt>
+<dt> 6 cyan</dt>
+<dt> 7 white</dt>
+</dl>
+
+<p>There are only 8 colors by default but 10 available digits. The last
+two digits are left up to the user. <a href="#Behind-The-Scenes-Look-At-Colors">Behind The Scenes Look At Colors</a> for information on customizing colors.
+</p>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#Behind-The-Scenes-Look-At-Colors">13.1 Behind The Scenes Look At Colors</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+<hr size="6">
+<a name="Behind-The-Scenes-Look-At-Colors"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Colors" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.9_14.html#Hooks" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Colors" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Colors" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.9_14.html#Hooks" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.9.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.9_17.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.9_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Behind-The-Scenes-Look-At-Colors-1"></a>
+<h2 class="section">13.1 Behind The Scenes Look At Colors</h2>
+
+<p>Color indexes are stored in <var>*colors*</var> as a list. The default list
+of colors leave 2 slots for the user to choose. If you&rsquo;d like to use
+&lsquo;<samp>Papaya Whip</samp>&rsquo; and &lsquo;<samp>Dark Golden Rod 3</samp>&rsquo; you might eval the
+following:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">(setf *colors* (append *colors*
+                       (list &quot;PapayaWhip&quot;
+                             &quot;DarkGoldenRod3&quot;)))
+(update-color-map (current-screen))
+</pre></td></tr></table>
+
+<p>Of course, you can change all the colors if you like.
+</p>
+<dl>
+<dt><a name="index-parse_002dcolor_002dstring"></a><u>Function:</u> <b>parse-color-string</b><i> string</i></dt>
+<dd><p>Parse a color-coded string into a list of strings and color modifiers
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-uncolorify"></a><u>Function:</u> <b>uncolorify</b><i> string</i></dt>
+<dd><p>Remove any color markup in STRING
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-_002acolors_002a"></a><u>Variable:</u> <b>*colors*</b></dt>
+<dd><p>Eight colors by default. You can redefine these to whatever you like and
+then call (update-color-map).
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-update_002dcolor_002dmap"></a><u>Function:</u> <b>update-color-map</b><i> screen</i></dt>
+<dd><p>Read *colors* and cache their pixel colors for use when rendering colored text.
+</p></dd></dl>
+
+
+<hr size="6">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Colors" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.9_14.html#Hooks" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.9.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.9_17.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.9_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated by <em>David Bjergaard</em> on <em>November 7, 2014</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>
