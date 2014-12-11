@@ -1,0 +1,11 @@
+#+TITLE: 
+#+INCLUDE: frontmatter.org
+** StumpWM's Universe
+- [[https://github.com/stumpwm/stumpwm][Github Page]]
+- [[https://github.com/stumpwm/stumpwm/wiki][Community Wiki]]
+- [[https://github.com/stumpwm/stumpwm-contrib][Modules/Extensions]]
+** Brethren
+- [[http://ratpoison.nongnu.org/][ratpoison]] - StumpWM's funky uncle.
+- [[http://awesome.naquadah.org/][Awesome]] - extended with Lua, very interesting feature set.
+- [[http://www.xmonad.org/][xmonad]] - Haskell based so that's neat.
+- [[http://www.emacswiki.org/][Vi IMproved]] - The editor of the beast. 
