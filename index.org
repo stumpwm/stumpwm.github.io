@@ -1,16 +1,25 @@
 #+TITLE: 
-#+AUTHOR:    David Bjergaard
-#+EMAIL:     dbjergaard@gmail.com
-#+LANGUAGE:  en
-#+OPTIONS:   H:3 num:nil toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
-#+OPTIONS:   TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
-#+OPTIONS: html-postamble:nil
-#+EXPORT_SELECT_TAGS: noexport
-#+EXPORT_EXCLUDE_TAGS: noexport
-#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="style.css" />
+#+INCLUDE: frontmatter.org
+* Welcome!
+StumpWM is a tiling, keyboard driven X11 Window Manager written
+entirely in Common Lisp.
 
+If you're tired of flipping through themes like channel-surfing, and
+going from one perfect-except-for-just-one-thing window manager to
+another even-more-broken-in-some-other-way then perhaps StumpWM can
+help.
 
-[[./images/stumpwm-logo-stripe.png]]
+StumpWM attempts to be customizable yet visually minimal. There are no
+window decorations, no icons, and no buttons. It does have various
+hooks to attach your personal customizations, and variables to tweak.
+
+- Hack the good hack
+- Debug your good hack
+- Customize your window manager
+
+*While it's running* That's right. With a 100% Common Lisp window
+manager there's no stopping the hacks. Just re-eval and GO!
+
 ** Important Links
 - [[https://github.com/stumpwm/stumpwm][StumpWM Github Page]]
 - [[https://github.com/stumpwm/stumpwm/wiki][StumpWM Community Wiki]]
