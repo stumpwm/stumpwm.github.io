@@ -5,6 +5,6 @@ commitment to stumpwm. If you have a heart condition or are easily
 whipped into psychotic frenzies please consult your doctor before
 viewing these pictures.
 #+ATTR_HTML: :width 500px
-[[file:images/boring.jpg][file:~/stumpwm.github.io/images/boring.jpg]]
+[[file:images/boring.jpg]]
 #+ATTR_HTML: :width 500px
-[[file:images/boring.jpg][file:~/stumpwm.github.io/images/exciting.jpg]]
+[[file:images/exciting.jpg]]
