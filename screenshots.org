@@ -5,6 +5,9 @@ commitment to stumpwm. If you have a heart condition or are easily
 whipped into psychotic frenzies please consult your doctor before
 viewing these pictures.
 #+ATTR_HTML: :width 500px
-[[file:images/boring.jpg]]
+[[file:images/screens/boring.jpg]]
 #+ATTR_HTML: :width 500px
-[[file:images/exciting.jpg]]
+[[file:images/screens/exciting.jpg]]
+** User Submitted Screens
+#+ATTR_HTML: :width 500px
+[[file:images/screens/et-stumpscreen.jpg]]
