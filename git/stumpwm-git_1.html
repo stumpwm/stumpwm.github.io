@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
 <html>
-<!-- Created on November 7, 2014 by texi2html 1.82
+<!-- Created on April 8, 2015 by texi2html 1.82
 texi2html was written by: 
             Lionel Cons <Lionel.Cons@cern.ch> (original author)
             Karl Berry  <karl@freefriends.org>
@@ -85,7 +85,9 @@ completeness, and cushiness.
 </td></tr>
 <tr><td align="left" valign="top"><a href="#Interacting-with-the-Lisp-process">1.5 Interacting with the Lisp process</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top"><a href="#Contact-the-StumpWM-developers">1.6 Contact the StumpWM developers</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top"><a href="#Init-File">1.6 Init File</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Contact-the-StumpWM-developers">1.7 Contact the StumpWM developers</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
 </table>
 
@@ -667,7 +669,7 @@ the frame in that direction.
 <a name="Interacting-with-the-Lisp-process"></a>
 <table cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#Manipulating-Windows" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Contact-the-StumpWM-developers" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Init-File" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left">[<a href="#Introduction" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Introduction" title="Up section"> Up </a>]</td>
@@ -707,11 +709,62 @@ package.
 </p></dd>
 </dl>
 
+<hr size="6">
+<a name="Init-File"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Interacting-with-the-Lisp-process" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Contact-the-StumpWM-developers" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Introduction" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Introduction" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-git_2.html#Key-Bindings" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-git.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="stumpwm-git_17.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-git_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Init-File-1"></a>
+<h2 class="section">1.6 Init File</h2>
 
+<p>Like other window managers, StumpWM&rsquo;s configuration and startup
+state can be controlled by an initialization file. Unlike other
+window managers, StumpWM&rsquo;s init is not limited to changing settings
+and keybindings. The init file is itself a Common Lisp program
+running in a Common Lisp environment, so you can write your own
+hacks and make them a part of your StumpWM experience.
+</p>
+<p>On launch, StumpWM searches for an init file of different names and
+locations on your system, and will use the first one found in this
+order:
+</p>
+<ul>
+<li> &lsquo;~/.stumpwmrc&rsquo; is the classic UNIX-style configuration name;
+
+</li><li> &lsquo;~/.stumpwm.d/init.lisp&rsquo; is an Emacs-style location and name;
+
+</li><li> &lsquo;~/.config/stumpwm/config&rsquo; is the XDG standard;
+
+</li><li> &lsquo;/etc/stumpwmrc&rsquo; is a system-wide file giving all users a 
+standardized environment.
+</li></ul>
+
+<p>StumpWM includes a basic &lsquo;sample-stumpwm.lisp&rsquo; in its source
+directory. You can use this as a template when you&rsquo;re starting out: 
+copy it to the above name and location you prefer and edit it to 
+suit your preferences.
+</p>
+<p>It is possible to split your initialization among multiple files,
+if you call the additional files from within an init file matching
+the names and locations listed above.
+</p>
 <hr size="6">
 <a name="Contact-the-StumpWM-developers"></a>
 <table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Interacting-with-the-Lisp-process" title="Previous section in reading order"> &lt; </a>]</td>
+<tr><td valign="middle" align="left">[<a href="#Init-File" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="stumpwm-git_2.html#Key-Bindings" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left">[<a href="#Introduction" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
@@ -727,15 +780,15 @@ package.
 <td valign="middle" align="left">[<a href="stumpwm-git_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <a name="Contact-the-StumpWM-developers-1"></a>
-<h2 class="section">1.6 Contact the StumpWM developers</h2>
+<h2 class="section">1.7 Contact the StumpWM developers</h2>
 <p>The StumpWM home page is <a href="http://stumpwm.nongnu.org/">http://stumpwm.nongnu.org/</a>.
-</p>
-<p>You can reach Shawn Betts at <a href="mailto:sabetts at vcn.bc.ca">sabetts at vcn.bc.ca</a>. 
 </p>
 <p>The StumpWM mailing list is <a href="mailto:stumpwm-devel@nongnu.org">stumpwm-devel@nongnu.org</a> which
 you can subscribe to at
-<a href="http://mail.nongnu.org/mailman/listinfo/stumpwm-devel">http://mail.nongnu.org/mailman/listinfo/stumpwm-devel</a>. Posting
-is restricted to subscribers to keep spam out of the archives.
+<a href="https://lists.nongnu.org/mailman/listinfo/stumpwm-devel">https://lists.nongnu.org/mailman/listinfo/stumpwm-devel</a>. It is
+the preferred way of contacting developers for questions.  If you have
+a bug report or patch, please open an issue or pull request at
+<a href="https://github.com/stumpwm/stumpwm/issues">https://github.com/stumpwm/stumpwm/issues</a>. 
 </p>
 <p>The StumpWM IRC channel can be found on Freenode at
 <a href="irc://irc.freenode.net/#stumpwm"><code>#stumpwm</code></a>.
@@ -756,7 +809,7 @@ is restricted to subscribers to keep spam out of the archives.
 </tr></table>
 <p>
  <font size="-1">
-  This document was generated by <em>David Bjergaard</em> on <em>November 7, 2014</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
+  This document was generated by <em>David Bjergaard</em> on <em>April 8, 2015</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
  </font>
  <br>
 

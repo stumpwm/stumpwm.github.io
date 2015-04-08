@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
 <html>
-<!-- Created on November 7, 2014 by texi2html 1.82
+<!-- Created on April 8, 2015 by texi2html 1.82
 texi2html was written by: 
             Lionel Cons <Lionel.Cons@cern.ch> (original author)
             Karl Berry  <karl@freefriends.org>
@@ -408,7 +408,7 @@ will have no effect.
 
 
 <dl>
-<dt><a name="index-defprogram_002dshortcut"></a><u>Macro:</u> <b>defprogram-shortcut</b><i> name &amp;key (command (string-downcase (string name))) (props (backq-list (quote quote) (backq-list (quote class) (string-capitalize command)))) (map *top-map*) (key (kbd (concat H- (subseq command 0 1)))) (pullp nil) (pull-name (intern1 (concat (string name) -PULL))) (pull-key (kbd (concat H-M- (subseq command 0 1))))</i></dt>
+<dt><a name="index-defprogram_002dshortcut"></a><u>Macro:</u> <b>defprogram-shortcut</b><i> name &amp;key (command (string-downcase (string name))) (props (quasiquote (quote (class #S(sb-impl::comma :expr (string-capitalize command) :kind 0))))) (map (quote *top-map*)) (key (quasiquote (kbd #S(sb-impl::comma :expr (concat H- (subseq command 0 1)) :kind 0)))) (pullp nil) (pull-name (intern1 (concat (string name) -PULL))) (pull-key (quasiquote (kbd #S(sb-impl::comma :expr (concat H-M- (subseq command 0 1)) :kind 0))))</i></dt>
 <dd><p>Define a command and key binding to run or raise a program. If
 <var>pullp</var> is set, also define a command and key binding to run or
 pull the program.
@@ -430,9 +430,11 @@ loads the rc file.
 </td></tr>
 <tr><td align="left" valign="top"><a href="#Debugging-StumpWM">12.3 Debugging StumpWM</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top"><a href="#Timers">12.4 Timers</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top"><a href="#Sending-a-Bug-Report">12.4 Sending a Bug Report</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top"><a href="#Getting-Help">12.5 Getting Help</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top"><a href="#Timers">12.5 Timers</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Getting-Help">12.6 Getting Help</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
 </table>
 
@@ -528,7 +530,7 @@ of :error.
 <a name="Debugging-StumpWM"></a>
 <table cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#StumpWM_0027s-Data-Directory" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Timers" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Sending-a-Bug-Report" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left">[<a href="#Miscellaneous-Commands" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Miscellaneous-Commands" title="Up section"> Up </a>]</td>
@@ -569,9 +571,56 @@ do:
 
 
 <hr size="6">
-<a name="Timers"></a>
+<a name="Sending-a-Bug-Report"></a>
 <table cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#Debugging-StumpWM" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Timers" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Miscellaneous-Commands" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Miscellaneous-Commands" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-git_13.html#Colors" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-git.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="stumpwm-git_17.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-git_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Sending-a-Bug-Report-1"></a>
+<h2 class="section">12.4 Sending a Bug Report</h2>
+<p>While StumpWM&rsquo;s code-base is quite mature, it still contains some
+bugs. If you encounter one here are some guidelines for making sure
+the developers can fix it:
+</p><ul>
+<li>
+Include a procedure for reproducing the bug/bad behavior. Ideally this
+will include numbered steps starting with instructions on how you
+start stumpwm. Also include what the expected behavior was.
+</li><li> 
+Be as detailed as possible. Then add more detail!
+</li><li> 
+Make sure its not something you introduced by using an empty &lsquo;<tt>.xinitrc</tt>&rsquo;
+containing only &rsquo;exec /path/to/stumpwm&rsquo;. 
+</li><li>
+Make sure the bug is present even when &lsquo;<tt>.stumwmrc</tt>&rsquo; is empty.
+</li><li>
+If you are using the git version, include the hash of the master
+branch, or better include the commit when you started to notice the
+bug.
+</li><li> 
+If you have code that fixes the bug, then open a pull request at
+<a href="https://github.com/stumpwm/stumpwm/compare/">https://github.com/stumpwm/stumpwm/compare/</a>.
+</li><li>
+If you don&rsquo;t have code to fix the bug, then open an issue at
+<a href="https://github.com/stumpwm/stumpwm/issues/new">https://github.com/stumpwm/stumpwm/issues/new</a>.
+</li></ul>
+
+<hr size="6">
+<a name="Timers"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Sending-a-Bug-Report" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Getting-Help" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left">[<a href="#Miscellaneous-Commands" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
@@ -587,7 +636,7 @@ do:
 <td valign="middle" align="left">[<a href="stumpwm-git_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <a name="Timers-1"></a>
-<h2 class="section">12.4 Timers</h2>
+<h2 class="section">12.5 Timers</h2>
 <p>StumpWM has a timer system similar to that of <em>Emacs</em>.
 </p>
 <dl>
@@ -628,7 +677,7 @@ The action is to call FUNCTION with arguments ARGS.
 <td valign="middle" align="left">[<a href="stumpwm-git_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <a name="Getting-Help-1"></a>
-<h2 class="section">12.5 Getting Help</h2>
+<h2 class="section">12.6 Getting Help</h2>
 
 <dl>
 <dt><a name="index-describe_002dkey"></a><u>Command:</u> <b>describe-key</b><i> keys</i></dt>
@@ -673,7 +722,7 @@ command prints the command bound to the specified key sequence.
 </tr></table>
 <p>
  <font size="-1">
-  This document was generated by <em>David Bjergaard</em> on <em>November 7, 2014</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
+  This document was generated by <em>David Bjergaard</em> on <em>April 8, 2015</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
  </font>
  <br>
 
