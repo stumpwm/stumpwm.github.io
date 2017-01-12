@@ -15,6 +15,7 @@ the build process).  If you find something missing from the manual,
 please add it by editing the =stumpwm.texi.in= in the git repo, or
 open an issue on the issue tracker.
 - git :: [[./git/stumpwm-git.html][html]], [[./git/stumpwm-git.pdf][pdf]]
+- 1.0.0 :: [[./1.0.0/stumpwm-1.0.0.html][html]], [[./1.0.0/stumpwm-1.0.0.pdf][pdf]]
 - 0.9.9 :: [[./0.9.9/stumpwm-0.9.9.html][html]], [[./0.9.9/stumpwm-0.9.9.pdf][pdf]]
 - 0.9.8 :: [[./0.9.8/stumpwm-0.9.8.html][html]], [[./0.9.8/stumpwm-0.9.8.pdf][pdf]]
 - 0.9.7 :: [[./0.9.7/stumpwm-0.9.7.html][html]], [[./0.9.7/stumpwm-0.9.7.pdf][pdf]]
