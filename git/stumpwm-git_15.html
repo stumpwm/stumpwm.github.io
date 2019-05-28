@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
 <html>
-<!-- Created on January 12, 2017 by texi2html 1.82
+<!-- Created on May 28, 2019 by texi2html 1.82
 texi2html was written by: 
             Lionel Cons <Lionel.Cons@cern.ch> (original author)
             Karl Berry  <karl@freefriends.org>
@@ -10,10 +10,10 @@ Maintained by: Many creative people.
 Send bugs and suggestions to <texi2html-bug@nongnu.org>
 -->
 <head>
-<title>StumpWM Manual: 15. Modules</title>
+<title>StumpWM Manual: 15. Hooks</title>
 
-<meta name="description" content="StumpWM Manual: 15. Modules">
-<meta name="keywords" content="StumpWM Manual: 15. Modules">
+<meta name="description" content="StumpWM Manual: 15. Hooks">
+<meta name="keywords" content="StumpWM Manual: 15. Hooks">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
 <meta name="Generator" content="texi2html 1.82">
@@ -42,179 +42,247 @@ ul.toc {list-style: none}
 
 <body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
 
-<a name="Modules"></a>
+<a name="Hooks"></a>
 <table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="stumpwm-git_14.html#Hooks" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Writing-Modules" title="Next section in reading order"> &gt; </a>]</td>
+<tr><td valign="middle" align="left">[<a href="stumpwm-git_14.html#Behind-The-Scenes-Look-At-Colors" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-git_16.html#Modules" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="stumpwm-git_14.html#Hooks" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-git_14.html#Colors" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="stumpwm-git.html#Top" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="stumpwm-git_16.html#Hacking" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-git_16.html#Modules" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left">[<a href="stumpwm-git.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[Contents]</td>
-<td valign="middle" align="left">[<a href="stumpwm-git_17.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-git_18.html#Command-and-Function-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="stumpwm-git_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<a name="Modules-1"></a>
-<h1 class="chapter">15. Modules</h1>
-<p>A module is a ASDF system that adds additional functionality to
-StumpWM.  StumpWM searches for modules in the
-<var>*data-dir*</var>&lsquo;<tt>/modules</tt>&rsquo; directory.  By default this is
-&lsquo;<tt>~/.stumpwm.d/modules</tt>&rsquo;. 
+<a name="Hooks-1"></a>
+<h1 class="chapter">15. Hooks</h1>
+<p>StumpWM exports a number of hooks you can use to add customizations;
+like hooks in Emacs, you add to a hook with the <code>add-hook</code>
+function. For example:
 </p>
-<p>Officially supported modules exist in a separate repository within the
-StumpWM organization on github.  You can install the latest copy by
-issuing <code>make install-modules</code> from StumpWM&rsquo;s root source
-directory.  This will run:
-</p><table><tr><td>&nbsp;</td><td><pre class="example">git clone git@github.com:stumpwm/stumpwm-contrib.git ~/.stumpwm.d/modules
+<table><tr><td>&nbsp;</td><td><pre class="example">(stumpwm:add-hook 'stumpwm:*new-window-hook* 'my-new-window-custos)
 </pre></td></tr></table>
 
+<p>adds your <code>my-new-window-custos</code> function to the list of
+functions called when a new window appears.
+</p>
+<dl>
+<dt><a name="index-add_002dhook"></a><u>Macro:</u> <b>add-hook</b><i> hook fn</i></dt>
+<dd><p>Add <var>function</var> to the <var>hook-variable</var>. For example, to
+display a message whenever you switch frames:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">(defun my-rad-fn (to-frame from-frame)
+  (stumpwm:message &quot;Mustard!&quot;))
+
+(stumpwm:add-hook stumpwm:*focus-frame-hook* 'my-rad-fn)
+</pre></td></tr></table>
+</dd></dl>
 
 <dl>
-<dt><a name="index-load_002dmodule"></a><u>Command:</u> <b>load-module</b><i> name</i></dt>
-<dd><p>Loads the contributed module with the given NAME.
+<dt><a name="index-remove_002dhook"></a><u>Macro:</u> <b>remove-hook</b><i> hook fn</i></dt>
+<dd><p>Remove the specified function from the hook.
 </p></dd></dl>
 
 <dl>
-<dt><a name="index-list_002dmodules"></a><u>Function:</u> <b>list-modules</b></dt>
-<dd><p>Return a list of the available modules.
+<dt><a name="index-remove_002dall_002dhooks"></a><u>Macro:</u> <b>remove-all-hooks</b><i> hook</i></dt>
+<dd><p>Remove all functions from a hook
 </p></dd></dl>
 
 <dl>
-<dt><a name="index-_002aload_002dpath_002a"></a><u>Variable:</u> <b>*load-path*</b></dt>
-<dd><p>A list of paths in which modules can be found, by default it is
-  populated by any asdf systems found in &lsquo;*module-dir*&rsquo; set from the
-  configure script when StumpWM was built, or later by the user using
-  &lsquo;add-to-load-path&rsquo;
+<dt><a name="index-run_002dhook"></a><u>Function:</u> <b>run-hook</b><i> hook</i></dt>
+<dd><p>Call each function in HOOK.
 </p></dd></dl>
 
 <dl>
-<dt><a name="index-add_002dto_002dload_002dpath"></a><u>Command:</u> <b>add-to-load-path</b><i> path</i></dt>
-<dd><p>If &lsquo;PATH&rsquo; is not in &lsquo;*LOAD-PATH*&rsquo; add it, check if &lsquo;PATH&rsquo; contains
-an asdf system, and if so add it to the central registry
+<dt><a name="index-run_002dhook_002dwith_002dargs"></a><u>Function:</u> <b>run-hook-with-args</b><i> hook &amp;rest args</i></dt>
+<dd><p>Call each function in HOOK and pass args to it.
+</p></dd></dl>
+
+
+<p>The following hooks are available:
+</p>
+<dl>
+<dt><a name="index-_002anew_002dwindow_002dhook_002a"></a><u>Hook:</u> <b>*new-window-hook*</b></dt>
+<dd><p>A hook called whenever a window is added to the window list. This
+includes a genuinely new window as well as bringing a withdrawn window
+back into the window list.
 </p></dd></dl>
 
 <dl>
-<dt><a name="index-init_002dload_002dpath"></a><u>Function:</u> <b>init-load-path</b><i> path</i></dt>
-<dd><p>Recursively builds a list of paths that contain modules.  This is
-called each time StumpWM starts with the argument &lsquo;*module-dir&rsquo;
+<dt><a name="index-_002adestroy_002dwindow_002dhook_002a"></a><u>Hook:</u> <b>*destroy-window-hook*</b></dt>
+<dd><p>A hook called whenever a window is destroyed or withdrawn.
 </p></dd></dl>
 
 <dl>
-<dt><a name="index-find_002dmodule"></a><u>Function:</u> <b>find-module</b><i> name</i></dt>
-<dd><p>nil
+<dt><a name="index-_002afocus_002dwindow_002dhook_002a"></a><u>Hook:</u> <b>*focus-window-hook*</b></dt>
+<dd><p>A hook called when a window is given focus. It is called with 2
+arguments: the current window and the last window (could be nil).
 </p></dd></dl>
 
+<dl>
+<dt><a name="index-_002aplace_002dwindow_002dhook_002a"></a><u>Hook:</u> <b>*place-window-hook*</b></dt>
+<dd><p>A hook called whenever a window is placed by rule. Arguments are
+window group and frame
+</p></dd></dl>
 
-<table class="menu" border="0" cellspacing="0">
-<tr><td align="left" valign="top"><a href="#Writing-Modules">15.1 Writing Modules</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-</table>
+<dl>
+<dt><a name="index-_002astart_002dhook_002a"></a><u>Hook:</u> <b>*start-hook*</b></dt>
+<dd><p>A hook called when stumpwm starts.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-_002ainternal_002dloop_002dhook_002a"></a><u>Hook:</u> <b>*internal-loop-hook*</b></dt>
+<dd><p>A hook called inside stumpwm&rsquo;s inner loop.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-_002afocus_002dframe_002dhook_002a"></a><u>Hook:</u> <b>*focus-frame-hook*</b></dt>
+<dd><p>A hook called when a frame is given focus. The hook functions are
+called with 2 arguments: the current frame and the last frame.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-_002anew_002dframe_002dhook_002a"></a><u>Hook:</u> <b>*new-frame-hook*</b></dt>
+<dd><p>A hook called when a new frame is created. The hook is called with
+the frame as an argument.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-_002amessage_002dhook_002a"></a><u>Hook:</u> <b>*message-hook*</b></dt>
+<dd><p>A hook called whenever stumpwm displays a message. The hook
+function is passed any number of arguments. Each argument is a
+line of text.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-_002atop_002dlevel_002derror_002dhook_002a"></a><u>Hook:</u> <b>*top-level-error-hook*</b></dt>
+<dd><p>Called when a top level error occurs. Note that this hook is
+run before the error is dealt with according to
+*top-level-error-action*.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-_002afocus_002dgroup_002dhook_002a"></a><u>Hook:</u> <b>*focus-group-hook*</b></dt>
+<dd><p>A hook called whenever stumpwm switches groups. It is called with 2 arguments: the current group and the last group.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-_002akey_002dpress_002dhook_002a"></a><u>Hook:</u> <b>*key-press-hook*</b></dt>
+<dd><p>A hook called whenever a key under *top-map* is pressed.
+It is called with 3 argument: the key, the (possibly incomplete) key
+sequence it is a part of, and command value bound to the key.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-_002aroot_002dclick_002dhook_002a"></a><u>Hook:</u> <b>*root-click-hook*</b></dt>
+<dd><p>A hook called whenever there is a mouse click on the root
+window. Called with 4 arguments, the screen containing the root
+window, the button clicked, and the x and y of the pointer.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-_002amode_002dline_002dclick_002dhook_002a"></a><u>Hook:</u> <b>*mode-line-click-hook*</b></dt>
+<dd><p>Called whenever the mode-line is clicked. It is called with 4 arguments,
+the mode-line, the button clicked, and the x and y of the pointer.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-_002aurgent_002dwindow_002dhook_002a"></a><u>Hook:</u> <b>*urgent-window-hook*</b></dt>
+<dd><p>A hook called whenever a window sets the property indicating that
+  it demands the user&rsquo;s attention
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-_002aevent_002dprocessing_002dhook_002a"></a><u>Hook:</u> <b>*event-processing-hook*</b></dt>
+<dd><p>A hook called inside stumpwm&rsquo;s inner loop, before the default event
+  processing takes place. This hook is run inside (with-event-queue ...).
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-_002apre_002dcommand_002dhook_002a"></a><u>Hook:</u> <b>*pre-command-hook*</b></dt>
+<dd><p>Called before a command is called. It is called with 1 argument:
+the command as a symbol.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-_002apost_002dcommand_002dhook_002a"></a><u>Hook:</u> <b>*post-command-hook*</b></dt>
+<dd><p>Called after a command is called. It is called with 1 argument:
+the command as a symbol.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-_002amenu_002dselection_002dhook_002a"></a><u>Hook:</u> <b>*menu-selection-hook*</b></dt>
+<dd><p>Called after an item is selected in the windows menu. It is called
+with 1 argument: the menu.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-_002anew_002dhead_002dhook_002a"></a><u>Hook:</u> <b>*new-head-hook*</b></dt>
+<dd><p>A hook called whenever a head is added. It is called with 2 arguments: the
+ new head and the current screen.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-_002acommand_002dmode_002dend_002dhook_002a"></a><u>Hook:</u> <b>*command-mode-end-hook*</b></dt>
+<dd><p>A hook called whenever command mode is ended
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-_002acommand_002dmode_002dstart_002dhook_002a"></a><u>Hook:</u> <b>*command-mode-start-hook*</b></dt>
+<dd><p>A hook called whenever command mode is started
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-_002adestroy_002dmode_002dline_002dhook_002a"></a><u>Hook:</u> <b>*destroy-mode-line-hook*</b></dt>
+<dd><p>Called whenever the mode-line is destroyed. It is called with argument,
+the mode-line
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-_002aquit_002dhook_002a"></a><u>Hook:</u> <b>*quit-hook*</b></dt>
+<dd><p>A hook called when stumpwm quits.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-_002arestart_002dhook_002a"></a><u>Hook:</u> <b>*restart-hook*</b></dt>
+<dd><p>A hook called when stumpwm restarts.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-_002aselection_002dnotify_002dhook_002a"></a><u>Hook:</u> <b>*selection-notify-hook*</b></dt>
+<dd><p>Called after a :selection-notify event is processed. It is called
+with 1 argument: the selection as a string.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-_002asplit_002dframe_002dhook_002a"></a><u>Hook:</u> <b>*split-frame-hook*</b></dt>
+<dd><p>A hook called when a frame is split. the hook is called with
+the old frame (window is removed), and two new frames as arguments.
+</p></dd></dl>
+
 
 <hr size="6">
-<a name="Writing-Modules"></a>
 <table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Modules" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="stumpwm-git_16.html#Hacking" title="Next section in reading order"> &gt; </a>]</td>
+<tr><td valign="middle" align="left">[<a href="stumpwm-git_14.html#Colors" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-git_16.html#Modules" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#Modules" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Modules" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="stumpwm-git_16.html#Hacking" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left">[<a href="stumpwm-git.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[Contents]</td>
-<td valign="middle" align="left">[<a href="stumpwm-git_17.html#Command-and-Function-Index" title="Index">Index</a>]</td>
-<td valign="middle" align="left">[<a href="stumpwm-git_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
-</tr></table>
-<a name="Writing-Modules-1"></a>
-<h2 class="section">15.1 Writing Modules</h2>
-<p>Make sure to read <a href="stumpwm-git_16.html#Hacking">Hacking</a>. If you are familiar with writing lisp
-packages for ASDF then you can jump in and get started.  In either
-case, quicklisp ships a <code>quickproject</code> package that makes setting
-up a new module very easy.  After installing quicklisp (see the
-README.md for a link):
-</p>
-<p>We&rsquo;re going to put our new module in the &lsquo;<tt>modules/</tt>&rsquo; directory of
-<var>*data-dir*</var> so that it will be immediately loadable by stumpwm.
-</p>
-<p>First make the directory &lsquo;<tt>new-module</tt>&rsquo;, then from a REPL issue:
-</p><table><tr><td>&nbsp;</td><td><pre class="example">(ql:quickload &quot;quickproject&quot;)
-(quickproject:make-project #p&quot;~/.stumpwm.d/modules/new-module&quot; :depends-on '(stumpwm) :name &quot;new-module&quot;)
-</pre></td></tr></table>
-<p>This will create:
-</p><table><tr><td>&nbsp;</td><td><pre class="example">  -rw-rw-r--  1 dave dave   68 Apr  6 19:38 package.lisp
-  -rw-rw-r--  1 dave dave   53 Mar 16  2014 README.txt
-  -rw-rw-r--  1 dave dave  271 Mar 16  2014 new-module.asd
-  -rw-rw-r--  1 dave dave 1.8K Apr  6 17:51 new-module.lisp
-</pre></td></tr></table>
-
-<p>The file &lsquo;<tt>new-module.lisp</tt>&rsquo; will contain the actual implementation
-of your module.  ASDF requires two other files in order to understand
-how to load and compile your module.  They are &lsquo;<tt>new-module.asd</tt>&rsquo;
-and &lsquo;<tt>package.lisp</tt>&rsquo;.  In our example, &lsquo;<tt>new-module.asd</tt>&rsquo; should
-contain:
-</p><table><tr><td>&nbsp;</td><td><pre class="example">(asdf:defsystem #:new-module
-  :serial t
-  :description &quot;Describe new-module here&quot;
-  :author &quot;Anne N. O'Nymous&quot;
-  :license &quot;GPLv3&quot;
-  :depends-on (#:stumpwm)
-  :components ((:file &quot;package&quot;)
-               (:file &quot;new-module&quot;))) ; any other files you make go here
-</pre></td></tr></table>
-<p>The &lsquo;<tt>package.lisp</tt>&rsquo; will contain:
-</p><table><tr><td>&nbsp;</td><td><pre class="example">(defpackage #:new-module
-  (:use #:cl :stumpwm))
-</pre></td></tr></table>
-<p>With these two files defined, and the implementation written in
-&lsquo;<tt>new-module.lisp</tt>&rsquo;, you should be able to load your module.
-</p>
-<p>Before we load it, we have to add the path to our <var>*load-path*</var>.
-This can be accomplished by running the following from a REPL:
-</p><table><tr><td>&nbsp;</td><td><pre class="example">(stumpwm:add-to-load-path &quot;~/.stumpwm.d/modules/new-module&quot;)
-</pre></td></tr></table>
-<p>You can also run this interactively with <kbd>C-t ;</kbd>, which is bound
-to the <code>colon</code> command. 
-</p>
-<p>Because we&rsquo;ve put our module in a sub-directory of the default
-<var>*module-dir*</var>, it will automatically get added to the
-<var>*load-path*</var> the next time StumpWM starts.  If you choose to
-develop your module somewhere else (e.g.
-&lsquo;<tt>~/quicklisp/local-projects</tt>&rsquo;), then you&rsquo;ll have add 
-</p><table><tr><td>&nbsp;</td><td><pre class="example">(add-to-load-path &quot;~/quicklisp/local-projects/new-module&quot;)
-</pre></td></tr></table>
-<p>to your &lsquo;<tt>.stumpwmrc</tt>&rsquo;.  
-</p>
-<p>When you&rsquo;ve finished writing your module, you can distribute it
-however you see fit.  If it becomes very popular, or you would like
-the StumpWM devs to maintain it (and they agree), you can have your
-module merged with the stumpwm-contrib repository on github, just open
-a pull request to start the discussion.
-</p>
-<hr size="6">
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Modules" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="stumpwm-git_16.html#Hacking" title="Next chapter"> &gt;&gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="stumpwm-git.html#Top" title="Cover (top) of document">Top</a>]</td>
-<td valign="middle" align="left">[Contents]</td>
-<td valign="middle" align="left">[<a href="stumpwm-git_17.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-git_18.html#Command-and-Function-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="stumpwm-git_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <p>
  <font size="-1">
-  This document was generated by <em>David Bjergaard</em> on <em>January 12, 2017</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
+  This document was generated by <em>Raimon Grau</em> on <em>May 28, 2019</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
  </font>
  <br>
 

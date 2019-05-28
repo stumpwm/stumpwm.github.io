@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
 <html>
-<!-- Created on January 12, 2017 by texi2html 1.82
+<!-- Created on May 28, 2019 by texi2html 1.82
 texi2html was written by: 
             Lionel Cons <Lionel.Cons@cern.ch> (original author)
             Karl Berry  <karl@freefriends.org>
@@ -56,7 +56,7 @@ ul.toc {list-style: none}
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left">[<a href="stumpwm-git.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[Contents]</td>
-<td valign="middle" align="left">[<a href="stumpwm-git_17.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-git_18.html#Command-and-Function-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="stumpwm-git_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <a name="Frames-1"></a>
@@ -82,11 +82,19 @@ window pool, where windows and frames are not so tightly connected.
 </p></dd></dl>
 
 <dl>
-<dt><a name="index-remove_002dsplit"></a><u>Command:</u> <b>remove-split</b><i> &amp;optional (group (current-group)) (frame</i></dt>
-<dd><p>                                                                 (tile-group-current-frame
-                                                                  group))
-Remove the specified frame in the specified group (defaults to current
-group, current frame). Windows in the frame are migrated to the frame taking up its
+<dt><a name="index-hsplit_002dequally"></a><u>Command:</u> <b>hsplit-equally</b><i> amt</i></dt>
+<dd><p>Split current frame in n rows of equal size.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-vsplit_002dequally"></a><u>Command:</u> <b>vsplit-equally</b><i> amt</i></dt>
+<dd><p>Split current frame in n columns of equal size.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-remove_002dsplit"></a><u>Command:</u> <b>remove-split</b><i> &amp;optional (group (current-group)) (frame (tile-group-current-frame group))</i></dt>
+<dd><p>Remove the specified frame in the specified group (defaults to current group,
+current frame). Windows in the frame are migrated to the frame taking up its
 space.
 </p></dd></dl>
 
@@ -106,6 +114,11 @@ space.
 </p></dd></dl>
 
 <dl>
+<dt><a name="index-fprev"></a><u>Command:</u> <b>fprev</b></dt>
+<dd><p>Cycle through the frame tree to the previous frame.
+</p></dd></dl>
+
+<dl>
 <dt><a name="index-sibling"></a><u>Command:</u> <b>sibling</b></dt>
 <dd><p>Jump to the frame&rsquo;s sibling. If a frame is split into two frames,
 these two frames are siblings.
@@ -119,8 +132,8 @@ these two frames are siblings.
 <dl>
 <dt><a name="index-fselect"></a><u>Command:</u> <b>fselect</b><i> frame-number</i></dt>
 <dd><p>Display a number in the corner of each frame and let the user to
-select a frame by number. If <var>frame-number</var> is specified, just
-jump to that frame.
+select a frame by number or click. If <var>frame-number</var> is specified,
+just jump to that frame.
 </p></dd></dl>
 
 <dl>
@@ -129,7 +142,12 @@ jump to that frame.
 </p></dd></dl>
 
 <dl>
-<dt><a name="index-balance_002dframes"></a><u>Command:</u> <b>balance-frames</b></dt>
+<dt><a name="index-resize_002ddirection"></a><u>Command:</u> <b>resize-direction</b><i> d</i></dt>
+<dd><p>Resize frame to direction <var>d</var>
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-balance_002dframes"></a><u>Command:</u> <b>balance-frames</b><i> &amp;aux (group (current-group))</i></dt>
 <dd><p>Make frames the same height or width in the current frame&rsquo;s subtree.
 </p></dd></dl>
 
@@ -171,6 +189,18 @@ direction. The following are valid directions:
 </p></dd></dl>
 
 <dl>
+<dt><a name="index-next_002durgent"></a><u>Command:</u> <b>next-urgent</b></dt>
+<dd><p>Jump to the next urgent window
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-frame_002dwindowlist"></a><u>Command:</u> <b>frame-windowlist</b><i> &amp;optional (fmt *window-format*)</i></dt>
+<dd><p>Allow the user to select a window from the list of windows in the current
+frame and focus the selected window.  The optional argument <var>fmt</var> can be
+specified to override the default window formatting.
+</p></dd></dl>
+
+<dl>
 <dt><a name="index-echo_002dframe_002dwindows"></a><u>Command:</u> <b>echo-frame-windows</b><i> &amp;optional (fmt *window-format*)</i></dt>
 <dd><p>Display a list of all the windows in the current frame.
 </p></dd></dl>
@@ -185,6 +215,14 @@ direction. The following are valid directions:
 <dt> right</dt>
 </dl>
 </dd></dl>
+
+<dl>
+<dt><a name="index-expose"></a><u>Command:</u> <b>expose</b></dt>
+<dd><p>Automagically tile all windows and let the user select one, make
+that window the focus. Set the variable &lsquo;*expose-auto-tile-fn*&rsquo; to another
+tiling function if a different layout is desired. Set &lsquo;*expose-n-max*&rsquo; to the
+maximum number of windows to be displayed for choosing.
+</p></dd></dl>
 
 
 <dl>
@@ -218,6 +256,16 @@ frame. This is the default.
 </dl>
 </dd></dl>
 
+<dl>
+<dt><a name="index-_002aexpose_002dauto_002dtile_002dfn_002a"></a><u>Variable:</u> <b>*expose-auto-tile-fn*</b></dt>
+<dd><p>Function to call to tile current windows.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-_002aexpose_002dn_002dmax_002a"></a><u>Variable:</u> <b>*expose-n-max*</b></dt>
+<dd><p>Maximum number of windows to display in the expose
+</p></dd></dl>
+
 
 <table class="menu" border="0" cellspacing="0">
 <tr><td align="left" valign="top"><a href="#Interactively-Resizing-Frames">6.1 Interactively Resizing Frames</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
@@ -241,7 +289,7 @@ frame. This is the default.
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left">[<a href="stumpwm-git.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[Contents]</td>
-<td valign="middle" align="left">[<a href="stumpwm-git_17.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-git_18.html#Command-and-Function-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="stumpwm-git_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <a name="Interactively-Resizing-Frames-1"></a>
@@ -278,7 +326,7 @@ command or type &lt;C-t r&gt;.
 </dd>
 <dt> <kbd>C-g</kbd></dt>
 <dt> <kbd>ESC</kbd></dt>
-<dd><p>Abort the interactive resize. NOTE: This currently doesn&rsquo;t work.
+<dd><p>Abort the interactive resize.
 </p>
 </dd>
 <dt> <kbd>RET</kbd></dt>
@@ -289,19 +337,17 @@ command or type &lt;C-t r&gt;.
 
 <dl>
 <dt><a name="index-iresize"></a><u>Command:</u> <b>iresize</b></dt>
-<dd><p>Start the interactive resize mode. A new keymap specific to
-resizing the current frame is loaded. Hit &lt;C-g&gt;, &lt;RET&gt;, or
-&lt;ESC&gt; to exit.
+<dd><p>Starts interactive command &quot;IRESIZE&quot;
 </p></dd></dl>
 
 <dl>
-<dt><a name="index-abort_002diresize"></a><u>Command:</u> <b>abort-iresize</b></dt>
-<dd><p>Exit from the interactive resize mode.
+<dt><a name="index-setup_002diresize"></a><u>Function:</u> <b>setup-iresize</b></dt>
+<dd><p>Start the interactive resize mode.
 </p></dd></dl>
 
 <dl>
-<dt><a name="index-exit_002diresize"></a><u>Command:</u> <b>exit-iresize</b></dt>
-<dd><p>Exit from the interactive resize mode.
+<dt><a name="index-_002aresize_002dmap_002a"></a><u>Variable:</u> <b>*resize-map*</b></dt>
+<dd><p>The keymap used for resizing a window
 </p></dd></dl>
 
 
@@ -326,7 +372,7 @@ resizing the current frame is loaded. Hit &lt;C-g&gt;, &lt;RET&gt;, or
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left">[<a href="stumpwm-git.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[Contents]</td>
-<td valign="middle" align="left">[<a href="stumpwm-git_17.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-git_18.html#Command-and-Function-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="stumpwm-git_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <a name="Frame-Dumping-1"></a>
@@ -359,6 +405,11 @@ the following commands.
 <dd><p>Re-arrange existing windows according to placement rules.
 </p></dd></dl>
 
+<dl>
+<dt><a name="index-place_002dcurrent_002dwindow"></a><u>Command:</u> <b>place-current-window</b></dt>
+<dd><p>Re-arrange current window according to placement rules.
+</p></dd></dl>
+
 
 <hr size="6">
 <table cellpadding="1" cellspacing="1" border="0">
@@ -371,12 +422,12 @@ the following commands.
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left">[<a href="stumpwm-git.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[Contents]</td>
-<td valign="middle" align="left">[<a href="stumpwm-git_17.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-git_18.html#Command-and-Function-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="stumpwm-git_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <p>
  <font size="-1">
-  This document was generated by <em>David Bjergaard</em> on <em>January 12, 2017</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
+  This document was generated by <em>Raimon Grau</em> on <em>May 28, 2019</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
  </font>
  <br>
 
