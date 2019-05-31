@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
 <html>
-<!-- Created on January 12, 2017 by texi2html 1.82
+<!-- Created on May 28, 2019 by texi2html 1.82
 texi2html was written by: 
             Lionel Cons <Lionel.Cons@cern.ch> (original author)
             Karl Berry  <karl@freefriends.org>
@@ -56,7 +56,7 @@ ul.toc {list-style: none}
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left">[<a href="stumpwm-git.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[Contents]</td>
-<td valign="middle" align="left">[<a href="stumpwm-git_17.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-git_18.html#Command-and-Function-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="stumpwm-git_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <a name="Key-Bindings-1"></a>
@@ -71,6 +71,8 @@ mimics GNU Screen&rsquo;s keyboard handling. StumpWM&rsquo;s default prefix key 
 <tr><td align="left" valign="top"><a href="#Binding-Keys">2.2 Binding Keys</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
 <tr><td align="left" valign="top"><a href="#Modifiers">2.3 Modifiers</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Remapped-Keys">2.4 Remapped Keys</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
 </table>
 
@@ -89,7 +91,7 @@ mimics GNU Screen&rsquo;s keyboard handling. StumpWM&rsquo;s default prefix key 
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left">[<a href="stumpwm-git.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[Contents]</td>
-<td valign="middle" align="left">[<a href="stumpwm-git_17.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-git_18.html#Command-and-Function-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="stumpwm-git_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <a name="List-of-Default-Keybindings-1"></a>
@@ -126,10 +128,6 @@ mimics GNU Screen&rsquo;s keyboard handling. StumpWM&rsquo;s default prefix key 
 </dd>
 <dt> <kbd>C-t C-g</kbd></dt>
 <dd><p>Abort the current command. This is useful if you accidentally hit <kbd>C-t</kbd>
-</p>
-</dd>
-<dt> <kbd>C-t w</kbd></dt>
-<dd><p>List all the windows
 </p>
 </dd>
 <dt> <kbd>C-t i</kbd></dt>
@@ -175,7 +173,7 @@ tab). This is similar to how GNU screen uses <kbd>C-a a</kbd>.
 </dd>
 <dt> <kbd>C-t w</kbd></dt>
 <dt> <kbd>C-t C-w</kbd></dt>
-<dd><p>Prints out a list of the windows, their number, and their name.
+<dd><p>Prints out a list of all the windows, their number, and their name.
 </p>
 </dd>
 <dt> <kbd>C-t b</kbd></dt>
@@ -219,7 +217,7 @@ input history moved through.
 </dd>
 <dt> <kbd>C-t :</kbd></dt>
 <dd><p>Opens the input box, but all things typed in here will be sent to the
-Common Lisp interpreter where they will be ran as Lisp programs; thus,
+Common Lisp interpreter where they will be run as Lisp programs; thus,
 input should be valid Common Lisp.
 </p>
 </dd>
@@ -364,7 +362,7 @@ message before that, and so on.
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left">[<a href="stumpwm-git.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[Contents]</td>
-<td valign="middle" align="left">[<a href="stumpwm-git_17.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-git_18.html#Command-and-Function-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="stumpwm-git_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <a name="Binding-Keys-1"></a>
@@ -426,7 +424,9 @@ related bindings off <kbd>C-t C-f</kbd> one might use the following code:
 
 <dl>
 <dt><a name="index-_002aroot_002dmap_002a"></a><u>Variable:</u> <b>*root-map*</b></dt>
-<dd><p>This is the keymap by default bound to <kbd>C-t</kbd>. It is known as the <em>prefix map</em>.
+<dd><p>This is the keymap by default bound to <kbd>C-t</kbd> (along with 
+ *group-root-map* and either *tile-group-root-map* or 
+ *float-group-root-map*). It is known as the <em>prefix map</em>.
 </p></dd></dl>
 
 <dl>
@@ -451,12 +451,33 @@ related bindings off <kbd>C-t C-f</kbd> one might use the following code:
 <dd><p>Hang a key binding off the escape key.
 </p></dd></dl>
 
+<dl>
+<dt><a name="index-send_002descape"></a><u>Command:</u> <b>send-escape</b></dt>
+<dd><p>Send the escape key to the current window.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-grab_002dpointer"></a><u>Function:</u> <b>grab-pointer</b><i> screen</i></dt>
+<dd><p>Grab the pointer and set the pointer shape.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-ungrab_002dpointer"></a><u>Function:</u> <b>ungrab-pointer</b></dt>
+<dd><p>Remove the grab on the cursor and restore the cursor shape.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-_002abanish_002dpointer_002dto_002a"></a><u>Variable:</u> <b>*banish-pointer-to*</b></dt>
+<dd><p>Where to put the pointer when no argument is given to (banish-pointer) or the banish
+  command. May be one of :screen :head :frame or :window
+</p></dd></dl>
+
 
 <hr size="6">
 <a name="Modifiers"></a>
 <table cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#Binding-Keys" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="stumpwm-git_3.html#Commands" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Remapped-Keys" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left">[<a href="#Key-Bindings" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Key-Bindings" title="Up section"> Up </a>]</td>
@@ -467,7 +488,7 @@ related bindings off <kbd>C-t C-f</kbd> one might use the following code:
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left">[<a href="stumpwm-git.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[Contents]</td>
-<td valign="middle" align="left">[<a href="stumpwm-git_17.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-git_18.html#Command-and-Function-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="stumpwm-git_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <a name="Modifiers-1"></a>
@@ -598,6 +619,147 @@ automate setting the Hyper key when you start X.
 commands to the <var>*top-map*</var>.
 </p>
 </li></ul>
+<dl>
+<dt><a name="index-_002aall_002dmodifiers_002a"></a><u>Variable:</u> <b>*all-modifiers*</b></dt>
+<dd><p>A list of all keycodes that are considered modifiers
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-_002amodifiers_002a"></a><u>Variable:</u> <b>*modifiers*</b></dt>
+<dd><p>A mapping from modifier type to x11 modifier.
+</p></dd></dl>
+
+
+<hr size="6">
+<a name="Remapped-Keys"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Modifiers" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Circumventing-Remapped-Keys" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Key-Bindings" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Key-Bindings" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-git_3.html#Commands" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-git.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="stumpwm-git_18.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-git_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Remapped-Keys-1"></a>
+<h2 class="section">2.4 Remapped Keys</h2>
+
+<p>StumpWM may be configured to translate certain familiar top level
+keybindings to alternative key sequences that are understood by
+specific applications. For example, Emacs users are very familiar with
+<kbd>C-n</kbd> and <kbd>C-p</kbd> as keybindings for scrolling down and up one
+line at a time. However, most applications use these specific
+keybindings for other actions. The <code>stumpwm:define-remapped-keys</code>
+function may be used to define such application specific remapping of
+keybindings.
+</p>
+<dl>
+<dt><a name="index-define_002dremapped_002dkeys"></a><u>Function:</u> <b>define-remapped-keys</b><i> specs</i></dt>
+<dd><p>Define the keys to be remapped and their mappings. The SPECS
+argument needs to be of the following structure:
+</p>
+<p>  (regexp-or-function . ((&quot;key-to-remap&quot; . &lt;new-keycodes&gt;) ...))
+</p>
+<p>EXAMPLE:
+  (define-remapped-keys
+    &rsquo;((&quot;Firefox&quot;
+       (&quot;C-n&quot;   . &quot;Down&quot;)
+       (&quot;C-p&quot;   . &quot;Up&quot;)
+       (&quot;C-k&quot;   . (&quot;C-S-End&quot; &quot;C-x&quot;)))))
+</p>
+<p>  The above form remaps Ctrl-n to Down arrow, and Ctrl-p to Up arrow
+  keys.  The Ctrl-k key is remapped to the sequence of keys
+  Ctrl-Shift-End followed by Ctrl-x.
+</p></dd></dl>
+
+
+<table><tr><td>&nbsp;</td><td><pre class="example">(define-remapped-keys
+    '((&quot;(Firefox|Chrome)&quot;
+       (&quot;C-n&quot;   . &quot;Down&quot;)
+       (&quot;C-p&quot;   . &quot;Up&quot;)
+       (&quot;C-f&quot;   . &quot;Right&quot;)
+       (&quot;C-b&quot;   . &quot;Left&quot;)
+       (&quot;C-v&quot;   . &quot;Next&quot;)
+       (&quot;M-v&quot;   . &quot;Prior&quot;)
+       (&quot;M-w&quot;   . &quot;C-c&quot;)
+       (&quot;C-w&quot;   . &quot;C-x&quot;)
+       (&quot;C-y&quot;   . &quot;C-v&quot;)
+       (&quot;M-&lt;&quot;   . &quot;Home&quot;)
+       (&quot;M-&gt;&quot;   . &quot;End&quot;)
+       (&quot;C-M-b&quot; . &quot;M-Left&quot;)
+       (&quot;C-M-f&quot; . &quot;M-Right&quot;)
+       (&quot;C-k&quot;   . (&quot;C-S-End&quot; &quot;C-x&quot;)))))
+</pre></td></tr></table>
+
+<p>The above form adds Emacs like keybindings to windows whose <var>window-class</var> matches &ldquo;Firefox&rdquo; or &ldquo;Chrome&rdquo;. Additional application specific bindings may be included by using the specific X <var>window-class</var> values.
+</p>
+<p>The window matching pattern can also be specified as a function which returns <code>T</code> if the focused window matches.
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">;; Match any window with a window-class matching &quot;Firefox&quot;
+(define-remapped-keys
+    `((,(lambda (win)
+          (string-equal &quot;Firefox&quot; (window-class win)))
+       (&quot;C-n&quot;   . &quot;Down&quot;)
+       (&quot;C-p&quot;   . &quot;Up&quot;)
+       (&quot;C-f&quot;   . &quot;Right&quot;)
+       (&quot;C-b&quot;   . &quot;Left&quot;)
+       (&quot;C-v&quot;   . &quot;Next&quot;)
+       (&quot;M-v&quot;   . &quot;Prior&quot;)
+       (&quot;M-w&quot;   . &quot;C-c&quot;)
+       (&quot;C-w&quot;   . &quot;C-x&quot;)
+       (&quot;C-y&quot;   . &quot;C-v&quot;)
+       (&quot;M-&lt;&quot;   . &quot;Home&quot;)
+       (&quot;M-&gt;&quot;   . &quot;End&quot;)
+       (&quot;C-M-b&quot; . &quot;M-Left&quot;)
+       (&quot;C-M-f&quot; . &quot;M-Right&quot;)
+       (&quot;C-k&quot;   . (&quot;C-S-End&quot; &quot;C-x&quot;)))))
+</pre></td></tr></table>
+
+<hr size="6">
+<a name="Circumventing-Remapped-Keys"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Remapped-Keys" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-git_3.html#Commands" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Key-Bindings" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Remapped-Keys" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-git_3.html#Commands" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-git.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="stumpwm-git_18.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-git_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h3 class="subsection">2.4.1 Circumventing Remapped Keys</h3>
+
+<p>However, if the original key binding needs to be explictly applied the
+<code>send-raw-key</code> command may be used. It will prompt for a key
+which will be passed to the application as-is. For example, if the
+<code>send-raw-key</code> command were bound to <kbd>C-t C-q</kbd> as follows:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">(define-key *root-map* (kbd &quot;C-q&quot;) &quot;send-raw-key&quot;)
+</pre></td></tr></table>
+
+<p>Then, pressing <kbd>C-t C-q</kbd>, while the Firefox window has focus,
+would prompt asking for &ldquo;Press a key to send&rdquo;. Pressing <kbd>C-n</kbd> at
+the prompt will send the keystroke as-is to Firefox, causing it to
+open a new window.
+</p>
+<dl>
+<dt><a name="index-send_002draw_002dkey"></a><u>Command:</u> <b>send-raw-key</b></dt>
+<dd><p>Prompts for a key and forwards it to the CURRENT-WINDOW.
+</p></dd></dl>
+
 
 <hr size="6">
 <table cellpadding="1" cellspacing="1" border="0">
@@ -610,12 +772,12 @@ commands to the <var>*top-map*</var>.
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left">[<a href="stumpwm-git.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[Contents]</td>
-<td valign="middle" align="left">[<a href="stumpwm-git_17.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-git_18.html#Command-and-Function-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="stumpwm-git_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <p>
  <font size="-1">
-  This document was generated by <em>David Bjergaard</em> on <em>January 12, 2017</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
+  This document was generated by <em>Raimon Grau</em> on <em>May 28, 2019</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
  </font>
  <br>
 

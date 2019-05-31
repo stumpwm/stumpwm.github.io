@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
 <html>
-<!-- Created on January 12, 2017 by texi2html 1.82
+<!-- Created on May 28, 2019 by texi2html 1.82
 texi2html was written by: 
             Lionel Cons <Lionel.Cons@cern.ch> (original author)
             Karl Berry  <karl@freefriends.org>
@@ -56,7 +56,7 @@ ul.toc {list-style: none}
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left">[<a href="stumpwm-git.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[Contents]</td>
-<td valign="middle" align="left">[<a href="stumpwm-git_17.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-git_18.html#Command-and-Function-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="stumpwm-git_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <a name="The-Mode-Line"></a>
@@ -165,9 +165,61 @@ fmt-highlight. Any non-visible windows are colored the
 formatting strings.  See their documentation for details.
 </p></dd></dl>
 
+<dl>
+<dt><a name="index-_002atime_002dformat_002dstring_002ddefault_002a"></a><u>Variable:</u> <b>*time-format-string-default*</b></dt>
+<dd><p>The default value for &lsquo;echo-date&rsquo;, (e.g, Thu Mar  3 2005 23:05:25).
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-_002atime_002dmodeline_002dstring_002a"></a><u>Variable:</u> <b>*time-modeline-string*</b></dt>
+<dd><p>The default time value to pass to the modeline.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-_002anew_002dmode_002dline_002dhook_002a"></a><u>Hook:</u> <b>*new-mode-line-hook*</b></dt>
+<dd><p>Called whenever the mode-line is created. It is called with argument,
+the mode-line
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-_002ascreen_002dmode_002dline_002dformatters_002a"></a><u>Variable:</u> <b>*screen-mode-line-formatters*</b></dt>
+<dd><p>An alist containing format character format function pairs for
+formatting screen mode-lines. functions are passed the mode line.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-_002awindow_002dformatters_002a"></a><u>Variable:</u> <b>*window-formatters*</b></dt>
+<dd><p>an alist containing format character format function pairs for formatting window lists.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-bar"></a><u>Function:</u> <b>bar</b><i> percent width full empty</i></dt>
+<dd><p>Return a progress bar string of WIDTH characters composed of characters FULL
+  and EMPTY at PERCENT complete.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-bar_002dzone_002dcolor"></a><u>Function:</u> <b>bar-zone-color</b><i> amount &amp;optional (med 20) (hi 50) (crit 90) reverse</i></dt>
+<dd><p>Return a color command based on the magnitude of the argument. If
+the limits for the levels aren&rsquo;t specified, they default to sensible
+values for a percentage. With reverse, lower numbers are more
+critical.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-add_002dscreen_002dmode_002dline_002dformatter"></a><u>Function:</u> <b>add-screen-mode-line-formatter</b><i> character fmt-fun</i></dt>
+<dd><p>Add a format function to a format character (or overwrite an existing one).
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-enable_002dmode_002dline"></a><u>Function:</u> <b>enable-mode-line</b><i> screen head state &amp;optional format</i></dt>
+<dd><p>Set the state of SCREEN&rsquo;s HEAD&rsquo;s mode-line. If STATE is T and FORMAT is
+  specified, then the mode-line&rsquo;s format is updated.
+</p></dd></dl>
+
 
 <p>The following variables control the color, position, and size of the
-mode line. See <a href="stumpwm-git_13.html#Colors">Colors</a> for an explanation of how to set these
+mode line. See <a href="stumpwm-git_14.html#Colors">Colors</a> for an explanation of how to set these
 color variables.
 </p>
 <dl>
@@ -176,33 +228,38 @@ color variables.
 </p></dd></dl>
 
 <dl>
-<dt><a name="index-_002amode_002dline_002dborder_002dwidth_002a"></a><u>Variable:</u> <b>*mode-line-border-width*</b><i> 1</i></dt>
-<dd><p>nil
+<dt><a name="index-_002amode_002dline_002dborder_002dwidth_002a"></a><u>Variable:</u> <b>*mode-line-border-width*</b></dt>
+<dd><p>Specifies how thick the mode line&rsquo;s border will be. Integer value.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-_002amode_002dline_002dhighlight_002dtemplate_002a"></a><u>Variable:</u> <b>*mode-line-highlight-template*</b></dt>
+<dd><p>The string passed to FORMAT to highlight things in the mode line.
 </p></dd></dl>
 
 <dl>
 <dt><a name="index-_002amode_002dline_002dpad_002dx_002a"></a><u>Variable:</u> <b>*mode-line-pad-x*</b></dt>
-<dd><p>nil
+<dd><p>Specifies the number of padding pixels between the text and the side of the mode line. Integer value.
 </p></dd></dl>
 
 <dl>
 <dt><a name="index-_002amode_002dline_002dpad_002dy_002a"></a><u>Variable:</u> <b>*mode-line-pad-y*</b></dt>
-<dd><p>nil
+<dd><p>The number of padding pixels between the modeline text and the top/bottom of the modeline. Integer value.
 </p></dd></dl>
 
 <dl>
 <dt><a name="index-_002amode_002dline_002dbackground_002dcolor_002a"></a><u>Variable:</u> <b>*mode-line-background-color*</b></dt>
-<dd><p>nil
+<dd><p>The mode line background color.
 </p></dd></dl>
 
 <dl>
 <dt><a name="index-_002amode_002dline_002dforeground_002dcolor_002a"></a><u>Variable:</u> <b>*mode-line-foreground-color*</b></dt>
-<dd><p>nil
+<dd><p>The mode line foreground color.
 </p></dd></dl>
 
 <dl>
 <dt><a name="index-_002amode_002dline_002dborder_002dcolor_002a"></a><u>Variable:</u> <b>*mode-line-border-color*</b></dt>
-<dd><p>nil
+<dd><p>The mode line border color.
 </p></dd></dl>
 
 <dl>
@@ -226,12 +283,12 @@ timer.
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left">[<a href="stumpwm-git.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[Contents]</td>
-<td valign="middle" align="left">[<a href="stumpwm-git_17.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-git_18.html#Command-and-Function-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="stumpwm-git_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <p>
  <font size="-1">
-  This document was generated by <em>David Bjergaard</em> on <em>January 12, 2017</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
+  This document was generated by <em>Raimon Grau</em> on <em>May 28, 2019</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
  </font>
  <br>
 

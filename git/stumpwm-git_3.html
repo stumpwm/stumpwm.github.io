@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
 <html>
-<!-- Created on January 12, 2017 by texi2html 1.82
+<!-- Created on May 28, 2019 by texi2html 1.82
 texi2html was written by: 
             Lionel Cons <Lionel.Cons@cern.ch> (original author)
             Karl Berry  <karl@freefriends.org>
@@ -44,7 +44,7 @@ ul.toc {list-style: none}
 
 <a name="Commands"></a>
 <table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="stumpwm-git_2.html#Modifiers" title="Previous section in reading order"> &lt; </a>]</td>
+<tr><td valign="middle" align="left">[<a href="stumpwm-git_2.html#Circumventing-Remapped-Keys" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Writing-Commands" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left">[<a href="stumpwm-git_2.html#Key-Bindings" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
@@ -56,7 +56,7 @@ ul.toc {list-style: none}
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left">[<a href="stumpwm-git.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[Contents]</td>
-<td valign="middle" align="left">[<a href="stumpwm-git_17.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-git_18.html#Command-and-Function-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="stumpwm-git_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <a name="Commands-1"></a>
@@ -66,7 +66,8 @@ commands and functions familiar. Commands are simply functions that
 can be bound to keys and executed interactively from StumpWM&rsquo;s input
 bar. Whereas, in Emacs, the special &quot;(interactive)&quot; declaration is
 used to turn a function into a command, in StumpWM commands are made
-with a separate <code>defcommand</code> macro.
+with a separate <code>defcommand</code> or
+<code>define-interactive-keymap</code> macro.
 </p>
 <p>Once a command is defined, you can call it by invoking the
 <code>colon</code> command (<kbd>C-t ;</kbd>), and typing the name
@@ -109,7 +110,7 @@ as strings, but StumpWM will do its best to convert types.
 <table class="menu" border="0" cellspacing="0">
 <tr><td align="left" valign="top"><a href="#Writing-Commands">3.1 Writing Commands</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top"><a href="#StumpWM-Types">3.2 StumpWM Types</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top"><a href="#StumpWM-Types">3.3 StumpWM Types</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
 </table>
 
@@ -117,7 +118,7 @@ as strings, but StumpWM will do its best to convert types.
 <a name="Writing-Commands"></a>
 <table cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#Commands" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#StumpWM-Types" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Interactive-Keymaps" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left">[<a href="#Commands" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Commands" title="Up section"> Up </a>]</td>
@@ -128,7 +129,7 @@ as strings, but StumpWM will do its best to convert types.
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left">[<a href="stumpwm-git.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[Contents]</td>
-<td valign="middle" align="left">[<a href="stumpwm-git_17.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-git_18.html#Command-and-Function-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="stumpwm-git_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <a name="Writing-Commands-1"></a>
@@ -171,7 +172,7 @@ considered optional. It can be provided via a key-binding invocation, as
 above, but if it isn&rsquo;t, the user will not be prompted, and the argument
 will be bound to nil.
 </p>
-<p>Lastly, it is possible to limit the scope under which the command will
+<p>It is possible to limit the scope under which the command will
 be usable: a command can be defined to work only in tile groups, or only
 in floating groups (the only two types of groups that currently exist).
 This is done by replacing the name of the command with a two-element
@@ -183,9 +184,74 @@ which only functions in tile groups, is defined this way:
 </pre></td></tr></table>
 
 <hr size="6">
-<a name="StumpWM-Types"></a>
+<a name="Interactive-Keymaps"></a>
 <table cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#Writing-Commands" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#StumpWM-Types" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Commands" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Commands" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-git_4.html#Message-and-Input-Bar" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-git.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="stumpwm-git_18.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-git_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h2 class="section">3.2 Interactive Keymaps</h2>
+
+<p>Interactive keymaps are a special type of command that basically
+pushes another keymap on top of the current one. The new keymap will
+only be removed after an exit command is run. An example is
+<code>iresize</code>.
+</p>
+<p>The macro <code>define-interactive-keymap</code> is used to define an
+interactive keymap. The first argument is the same as
+<code>defcommand</code>. The second argument is a list of extra
+configurations that can be used for controlling the command and the
+rest are the key bindings for the new command.
+</p>
+<p>For instance, a simple interactive keymap:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">(define-interactive-keymap my-new-command nil
+  ((kbd &quot;a&quot;) &quot;execute-a-command&quot;)
+  ((kbd &quot;b&quot;) &quot;execute-b-command&quot;))
+</pre></td></tr></table>
+
+<p>This creates a command called <code>my-new-command</code> that, when called,
+will activate the interactive keymap mode. In this mode, the user can
+press &ldquo;a&rdquo; or &ldquo;b&rdquo; repeatedly, omitting any prefix. The default exit
+commands are <code>RET</code>, <code>C-g</code> and <code>ESC</code>.
+</p>
+<p>The available configuration is <code>on-enter</code>, <code>on-exit</code> and
+<code>abort-if</code>:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">(defun before-foo () (message &quot;start foo&quot;))
+(defun after-foo () (message &quot;end foo&quot;))
+(defun foo-p () (and *bar* *baz*))
+(defparameter *custom-exit-keys* '((kbd &quot;RET&quot;) (kbd &quot;SPC&quot;)
+                                   (kbd &quot;C-g&quot;) (kbd &quot;ESC&quot;)))
+
+(define-interactive-keymap foo (:on-enter #'before-foo
+                                :on-exit #'after-foo
+                                :abort-if #'foo-p
+                                :exit-on *custom-exit-keys*))
+</pre></td></tr></table>
+
+<p>In the above example, the message &ldquo;start foo&rdquo; will appear before
+starting the interactive keymap, &ldquo;end foo&rdquo; will appear right after
+the command exits; We&rsquo;ve added SPC as an exit key with custom exit 
+keys. Also, the command executes only if the variables <code>*bar*</code>
+and <code>*baz*</code> are true.
+</p>
+
+<hr size="6">
+<a name="StumpWM-Types"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Interactive-Keymaps" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="stumpwm-git_4.html#Message-and-Input-Bar" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left">[<a href="#Commands" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
@@ -197,11 +263,11 @@ which only functions in tile groups, is defined this way:
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left">[<a href="stumpwm-git.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[Contents]</td>
-<td valign="middle" align="left">[<a href="stumpwm-git_17.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-git_18.html#Command-and-Function-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="stumpwm-git_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <a name="StumpWM-Types-1"></a>
-<h2 class="section">3.2 StumpWM Types</h2>
+<h2 class="section">3.3 StumpWM Types</h2>
 <p>All command arguments must be of a defined &ldquo;StumpWM type&rdquo;. The
 following types are pre-defined:
 </p>
@@ -217,7 +283,7 @@ following types are pre-defined:
 <dd><p>A lisp function
 </p></dd>
 <dt> <var>:command</var></dt>
-<dd><p>A stumpwm command as a string.
+<dd><p>A StumpWM command as a string.
 </p></dd>
 <dt> <var>:key-seq</var></dt>
 <dd><p>A key sequence starting from *TOP-MAP*
@@ -253,10 +319,10 @@ following types are pre-defined:
 <dd><p>A shell command
 </p></dd>
 <dt> <var>:rest</var></dt>
-<dd><p>The rest of the input yes to be parsed.
+<dd><p>The rest of the input yet to be parsed.
 </p></dd>
 <dt> <var>:module</var></dt>
-<dd><p>An existing stumpwm module
+<dd><p>An existing StumpWM module
 </p></dd>
 </dl>
 
@@ -266,9 +332,9 @@ more complicated interactive declarations using &quot;(interactive (list
 &hellip;))&quot; forms will find that similar logic can be put into StumpWM
 type definitions. The macro is called like this:
 </p>
-<p>(define-stumpwm-type :type-name (input prompt)
-  body)
-</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">(define-stumpwm-type :type-name (input prompt) body)
+</pre></td></tr></table>
+
 <p>The keyword :type-name will then be available for use in
 <code>defcommand</code> macros. When commands are called, the bodies
 of these type definitions are called in turn to produce actual
@@ -289,8 +355,10 @@ of &ldquo;input&rdquo;:
 </p>
 <ul>
 <li>
-<code>argument-pop</code> (input) pop the next space-delimited
-argument from the argument line.
+<code>argument-pop</code> (input) pop the next space-delimited word or a
+double quote delimited string argument from the argument
+line. Backslashes may be used to escape double quotes or backslashes
+inside double quoted strings.
 
 </li><li>
 <code>argument-pop-rest</code> (input) return the remainder of the
@@ -365,12 +433,12 @@ return a &ldquo;nil&rdquo; value in those cases, and let the command handle that
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left">[<a href="stumpwm-git.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[Contents]</td>
-<td valign="middle" align="left">[<a href="stumpwm-git_17.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-git_18.html#Command-and-Function-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="stumpwm-git_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <p>
  <font size="-1">
-  This document was generated by <em>David Bjergaard</em> on <em>January 12, 2017</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
+  This document was generated by <em>Raimon Grau</em> on <em>May 28, 2019</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
  </font>
  <br>
 

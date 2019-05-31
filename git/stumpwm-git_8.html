@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
 <html>
-<!-- Created on January 12, 2017 by texi2html 1.82
+<!-- Created on May 28, 2019 by texi2html 1.82
 texi2html was written by: 
             Lionel Cons <Lionel.Cons@cern.ch> (original author)
             Karl Berry  <karl@freefriends.org>
@@ -56,7 +56,7 @@ ul.toc {list-style: none}
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left">[<a href="stumpwm-git.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[Contents]</td>
-<td valign="middle" align="left">[<a href="stumpwm-git_17.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-git_18.html#Command-and-Function-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="stumpwm-git_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <a name="Groups-1"></a>
@@ -148,9 +148,25 @@ the default group formatting and window formatting, respectively.
 </p></dd></dl>
 
 <dl>
+<dt><a name="index-gmove_002dand_002dfollow"></a><u>Command:</u> <b>gmove-and-follow</b><i> to-group</i></dt>
+<dd><p>Move the current window to the specified group, and switch to it.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-gmove_002dmarked"></a><u>Command:</u> <b>gmove-marked</b><i> to-group</i></dt>
+<dd><p>move the marked windows to the specified group.
+</p></dd></dl>
+
+<dl>
 <dt><a name="index-gkill"></a><u>Command:</u> <b>gkill</b></dt>
 <dd><p>Kill the current group. All windows in the current group are migrated
 to the next group.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-gkill_002dother"></a><u>Command:</u> <b>gkill-other</b></dt>
+<dd><p>Kill other groups. All windows in other groups are migrated
+to the current group.
 </p></dd></dl>
 
 <dl>
@@ -163,6 +179,147 @@ to the next group.
 <dd><p>Allow the user to select a group from a list, like windowlist but
   for groups
 </p></dd></dl>
+
+
+<dl>
+<dt><a name="index-_002alist_002dhidden_002dgroups_002a"></a><u>Variable:</u> <b>*list-hidden-groups*</b></dt>
+<dd><p>nil
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-_002agroup_002dtop_002dmaps_002a"></a><u>Variable:</u> <b>*group-top-maps*</b></dt>
+<dd><p>nil
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-_002adefault_002dgroup_002dname_002a"></a><u>Variable:</u> <b>*default-group-name*</b></dt>
+<dd><p>nil
+</p></dd></dl>
+
+
+<dl>
+<dt><a name="index-add_002dgroup"></a><u>Function:</u> <b>add-group</b><i> screen name &amp;key background (type *default-group-type*)</i></dt>
+<dd><p>Create a new group in SCREEN with the supplied name. group names
+    starting with a . are considered hidden groups. Hidden groups are
+    skipped by gprev and gnext and do not show up in the group
+    listings (unless *list-hidden-groups* is T). They also use negative
+    numbers.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-group_002dadd_002dhead"></a><u>Function:</u> <b>group-add-head</b><i> group head</i></dt>
+<dd><p>A head is being added to this group&rsquo;s screen.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-group_002dadd_002dwindow"></a><u>Function:</u> <b>group-add-window</b><i> group window &amp;key frame raise &amp;allow-other-keys</i></dt>
+<dd><p>Called when a window is added to the group. All
+house keeping is already taken care of. Only the group&rsquo;s specific
+window managing housekeeping need be done.  This function accepts keys
+to inform the group on how to place the window.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-group_002dbutton_002dpress"></a><u>Function:</u> <b>group-button-press</b><i> group x y child</i></dt>
+<dd><p>The user clicked somewhere in the group.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-group_002dcurrent_002dhead"></a><u>Function:</u> <b>group-current-head</b><i> group</i></dt>
+<dd><p>The group is asked to return its current head.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-group_002dcurrent_002dwindow"></a><u>Function:</u> <b>group-current-window</b><i> group</i></dt>
+<dd><p>The group is asked to return its focused window.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-group_002ddelete_002dwindow"></a><u>Function:</u> <b>group-delete-window</b><i> group window</i></dt>
+<dd><p>Called when a window is removed from thegroup. All
+house keeping is already taken care of. Only the group&rsquo;s specific
+window managing housekeeping need be done.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-group_002dfocus_002dwindow"></a><u>Function:</u> <b>group-focus-window</b><i> group win</i></dt>
+<dd><p>The group is asked to focus the specified window wherever it is.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-group_002dindicate_002dfocus"></a><u>Function:</u> <b>group-indicate-focus</b><i> group</i></dt>
+<dd><p>The group is asked to in some way show the user where the keyboard focus is.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-group_002dlost_002dfocus"></a><u>Function:</u> <b>group-lost-focus</b><i> group</i></dt>
+<dd><p>The current window was hidden or destroyed or
+something happened to it. So the group is asked to do something smart
+about it.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-group_002dmove_002drequest"></a><u>Function:</u> <b>group-move-request</b><i> group window x y relative-to</i></dt>
+<dd><p>The window requested a position change.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-group_002draise_002drequest"></a><u>Function:</u> <b>group-raise-request</b><i> group window type</i></dt>
+<dd><p>A request has been made to raise the window. TYPE
+is the type of raise request being made. :MAP means the window has
+made requested to be mapped. :above means the window has requested to
+to be placed above its siblings.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-group_002dremove_002dhead"></a><u>Function:</u> <b>group-remove-head</b><i> group head</i></dt>
+<dd><p>A head is being removed from this group&rsquo;s screen.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-group_002dresize_002dhead"></a><u>Function:</u> <b>group-resize-head</b><i> group oh nh</i></dt>
+<dd><p>A head is being resized on this group&rsquo;s screen.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-group_002dresize_002drequest"></a><u>Function:</u> <b>group-resize-request</b><i> group window width height</i></dt>
+<dd><p>The window requested a width and/or height change.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-group_002droot_002dexposure"></a><u>Function:</u> <b>group-root-exposure</b><i> group</i></dt>
+<dd><p>The root window got an exposure event. If the group
+needs to redraw anything on it, this is where it should do it.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-group_002dstartup"></a><u>Function:</u> <b>group-startup</b><i> group</i></dt>
+<dd><p>Called on all groups while stumpwm is starting up.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-group_002dsuspend"></a><u>Function:</u> <b>group-suspend</b><i> group</i></dt>
+<dd><p>When the group is no longer the current group, this
+function is called.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-group_002dsync_002dall_002dheads"></a><u>Function:</u> <b>group-sync-all-heads</b><i> group</i></dt>
+<dd><p>Called when the head configuration for the group changes.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-group_002dsync_002dhead"></a><u>Function:</u> <b>group-sync-head</b><i> group head</i></dt>
+<dd><p>When a head or its usable area is resized, this is
+called. When the modeline size changes, this is called.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-group_002dwake_002dup"></a><u>Function:</u> <b>group-wake-up</b><i> group</i></dt>
+<dd><p>When the group becomes the current group, this
+function is called. This call is expected to set the focus.
+</p></dd></dl>
+
 
 
 <table class="menu" border="0" cellspacing="0">
@@ -185,7 +342,7 @@ to the next group.
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left">[<a href="stumpwm-git.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[Contents]</td>
-<td valign="middle" align="left">[<a href="stumpwm-git_17.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-git_18.html#Command-and-Function-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="stumpwm-git_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <a name="Customizing-Groups-1"></a>
@@ -241,12 +398,12 @@ otherwise specified.
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left">[<a href="stumpwm-git.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[Contents]</td>
-<td valign="middle" align="left">[<a href="stumpwm-git_17.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-git_18.html#Command-and-Function-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="stumpwm-git_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <p>
  <font size="-1">
-  This document was generated by <em>David Bjergaard</em> on <em>January 12, 2017</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
+  This document was generated by <em>Raimon Grau</em> on <em>May 28, 2019</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
  </font>
  <br>
 
