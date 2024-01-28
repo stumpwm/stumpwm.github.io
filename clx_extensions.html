@@ -6,7 +6,7 @@
 <!-- 01/28/2024 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>&lrm;</title>
+<title> X11, Common Lisp, CLX and international input</title>
 <meta name="author" content="David Bjergaard" />
 <meta name="generator" content="Org Mode" />
 <style>
@@ -197,12 +197,13 @@
 </head>
 <body>
 <div id="content" class="content">
+<h1 class="title"> X11, Common Lisp, CLX and international input</h1>
 
-<div id="orgbe37206" class="figure">
+<div id="org2eeeead" class="figure">
 <p><img src="./images/stumpwm-logo-stripe.png" alt="stumpwm-logo-stripe.png" width="600px" />
 </p>
 </div>
-<div class="org" id="orga54ebb2">
+<div class="org" id="orgfb0a370">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -231,6 +232,170 @@
 </tbody>
 </table>
 
+</div>
+<ul class="org-ul">
+<li>Started writing: <span class="timestamp-wrapper"><span class="timestamp">&lt;2018-05-10 Thu&gt; </span></span></li>
+<li>Posted: <span class="timestamp-wrapper"><span class="timestamp">&lt;2018-05-11 Fri&gt;</span></span></li>
+<li>Estimated time to read: 8 min</li>
+</ul>
+<div id="outline-container-org1ddb4b7" class="outline-2">
+<h2 id="org1ddb4b7">TLDR;</h2>
+<div class="outline-text-2" id="text-org1ddb4b7">
+<p>
+Common Lisp applications that use the X11 protocol are missing
+important X11 extensions that would allow them to support
+internationalized input. Specifically, the xkeyboard protocol must be
+fully implemented to rectify these problems for any application
+utlizing CLX.
+</p>
+</div>
+</div>
+<div id="outline-container-org33739c2" class="outline-2">
+<h2 id="org33739c2">Introduction</h2>
+<div class="outline-text-2" id="text-org33739c2">
+<p>
+In 1987, the X11 standard was formalized. It is the de-facto standard
+for graphics primitives on the *nix desktop. X11 is a client-server
+protocol that abstracts away direct calls to hardware rendering. It
+allows <a href="https://en.wikipedia.org/wiki/X_Window_System">graphical desktops</a> to be rendered in mainframe environments
+where the server is physically separated from the client. If you've
+ever forwarded X11 over ssh, you've interacted with a remote X11
+server. Most of the time the X11 server is resident on the local
+machine, and the client-server connection is over a Unix socket.
+</p>
+
+<p>
+It is important to understand that almost all user facing applications
+are clients to the server (all the way down to your window manager).
+This means that if you write an X11 client with a library that doesn't
+support the modern features of your server, that application will not
+take full advantage of the server. Other applications written with
+different X11 client libraries which support modern features will have
+no trouble responding to the new extensions in the appropriate manner.
+</p>
+
+<p>
+It may sound like I'm harping on a subtle distinction that would never
+come up in the real world. However it has in the case of
+internationalization and localization support in the Common Lisp X
+interface (CLX). Further, there seems to be no resources out there for
+eager contributors to read and understand the problem from end to end.
+This article aims to rectify that.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgbce6969" class="outline-2">
+<h2 id="orgbce6969">CLX, Xlib and XCB</h2>
+<div class="outline-text-2" id="text-orgbce6969">
+<p>
+For many years the standard library implementing X11 client protocols
+in C was <a href="https://en.wikipedia.org/wiki/Xlib">Xlib</a>. In fact it is still widely used by higher level
+tool-kits that provide further GUI abstractions. Xlib has its own set
+of problems and cruft associated with its long shelf-life. In <a href="https://en.wikipedia.org/wiki/XCB">2001 XCB
+(X C Bindings)</a> was developed to address these problems. XCB is unique
+in that it defines the X protocol (and its extensions) in XML format
+and then generates the C bindings dynamically. If you write an X11
+client application in C, in 2018, you should be using XCB.
+</p>
+
+<p>
+Most non-C languages interface with Xlib through some sort of foreign
+function interface. This has the advantage that features added to Xlib
+are carried over to languages which interface from it. The situation
+for Common Lisp is different. The Common Lisp X interface (CLX) does
+not interface with Xlib, instead it implements the protocol directly.
+I'm speculating, but I expect that this exists because of the <a href="https://en.wikipedia.org/wiki/Lisp_machine">Lisp
+Machines</a> of the 70s and 80s. They were entirely different animals from
+Unix, and had Lisp baked into their hardware. In that environment, X11
+would have been a protocol to allow a lisp machine to accept clients
+from Unix mainframes. It makes sense then that the library would be
+written in Common Lisp from the ground up.
+</p>
+
+<p>
+What would happen next is still causing echos today in modern lisp
+applications. In the time period of 1987-1993 the Lisp Machine market
+collapsed in the wake of the <a href="https://en.wikipedia.org/wiki/AI_winter">AI winter</a>. The CLX manual, dated 1988,
+came at the end of the Lisp Machine's relevance in computing research.
+In <a href="https://en.wikipedia.org/wiki/History_of_Linux">1991 Linus Torvalds released</a> the first version of Linux, and
+ushered in an era of unix-like desktops. The ubiquity of a free
+version of unix-like operating system and the explosion of the
+internet created market pressures which lead to internationalization
+support in Xlib that didn't exist in the Common Lisp ecosystem.
+Extensions such as xkeyboard (XKB) have never been fully implemented,
+and it is difficult as a sole developer to fully implement a protocol
+standard as complicated as XKB. This is further complicated by the
+fact that end users typically want to be able to type non-english
+letters and it is not clear how to communicate this in a way that
+points developers to the XKB extension.
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-org93cfee8" class="outline-2">
+<h2 id="org93cfee8">The state of the art</h2>
+<div class="outline-text-2" id="text-org93cfee8">
+<p>
+There has been significant progress. SBCL supports unicode characters,
+and <a href="https://filonenko-mikhail.github.io/clx-truetype/">rendering</a> toolkits can <a href="https://github.com/dbjergaard/clx-ft2-renderer">render</a> the glyphs appropriately. The
+missing secret sauce is a implementation of XKB. A few people have
+ventured deep enough into this problem to identify the missing piece,
+but a full solution has not made it into <a href="https://github.com/sharplispers/clx">sharplispers/clx</a>, the
+community's source for CLX.
+</p>
+
+<p>
+McClim (a major graphics toolkit) has placed a significant bounty on
+this <a href="https://github.com/McCLIM/McCLIM/issues/35">very issue</a>. The success condition for that bounty has been that
+"input [is obeyed by a] keyboard layout set with <code>setxkbmap</code>
+asynchronusly at runtime by the user from another process (i.e
+terminal)." Another more <a href="https://github.com/filonenko-mikhail/clx-xkeyboard">promising effort</a> is available as a standalone
+extension in quicklisp. I have just discovered this code, and I have
+no idea how close it is to solving the issue.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgffbff53" class="outline-2">
+<h2 id="orgffbff53">Contributing</h2>
+<div class="outline-text-2" id="text-orgffbff53">
+<p>
+If you've made it this far, you're probably eagerly consuming any
+information on this topic and want to contribute. My nominal plan is
+to host a fork of <a href="https://github.com/sharplispers/clx">sharplispers/clx</a>.  I will contact Mikhail Filonenko
+about taking over his copy of xkeyboard and I will add stubs of
+function definitions for xkeyboard.  Contributing will be a matter of
+opening a PR with an implementation of a missing function.  Once we
+have the majority of the protocol implemented we can contribute it
+back to sharplispers/clx and the whole Lisp community will profit.
+</p>
+
+<p>
+Even if you are not affected by internationalized input, having XKB
+available will be useful as it makes it possible to do things that are
+impossible with the core implementation of keyboards. Specifically, it
+becomes possible to have multiple keys trigger the same key event
+which makes it possible to have multiple prefix keys in StumpWM. It
+also makes it possible to support weird keyboard layouts that have
+different modifiers than what a generic keyboard can handle.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orge8e7e53" class="outline-2">
+<h2 id="orge8e7e53">Conclusion</h2>
+<div class="outline-text-2" id="text-orge8e7e53">
+<p>
+Hopefully this will serve as a roadmap of how and why Common Lisp has
+poor support for international input and will help dispel some of the
+confusion around the topic. If you are new to Common Lisp and affected
+by this issue, take a look at my fork of CLX. There may be something
+you can contribute to which will help us solve the problem once and
+for all. 
+</p>
+</div>
 </div>
 </div>
 </body>

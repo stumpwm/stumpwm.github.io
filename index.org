@@ -1,4 +1,4 @@
-#+TITLE: 
+#+TITLE: Stump Window Manager
 #+INCLUDE: frontmatter.org
 * Welcome!
 StumpWM is a tiling, keyboard driven X11 Window Manager written
