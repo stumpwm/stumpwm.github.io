@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- Created on January 28, 2024 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>StumpWM Manual: 14.6 Timers</title>
+
+<meta name="description" content="StumpWM Manual: 14.6 Timers">
+<meta name="keywords" content="StumpWM Manual: 14.6 Timers">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="../style.css">
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="Timers"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="stumpwm-22.11_68.html#Sending-a-Bug-Report" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-22.11_70.html#Getting-Help" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-22.11_61.html#Miscellaneous-Commands" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-22.11_61.html#Miscellaneous-Commands" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-22.11_71.html#Colors" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-22.11.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="stumpwm-22.11_82.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-22.11_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<hr size="1">
+<a name="Timers-1"></a>
+<h2 class="section">14.6 Timers</h2>
+<p>StumpWM has a timer system similar to that of <em>Emacs</em>.
+</p>
+<dl>
+<dt><a name="index-idle_002dtime"></a><u>Function:</u> <b>idle-time</b><i> screen</i></dt>
+<dd><p>Returns the time in seconds since idle according to the root window
+of the &lsquo;screen&rsquo;.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-run_002dwith_002dtimer"></a><u>Function:</u> <b>run-with-timer</b><i> secs repeat function &amp;rest args</i></dt>
+<dd><p>Perform an action after a delay of SECS seconds.
+Repeat the action every REPEAT seconds, if repeat is non-nil.
+SECS and REPEAT may be reals.
+The action is to call FUNCTION with arguments ARGS.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-cancel_002dtimer"></a><u>Function:</u> <b>cancel-timer</b><i> timer</i></dt>
+<dd><p>Remove TIMER from the list of active timers.
+</p></dd></dl>
+
+
+<dl>
+<dt><a name="index-timer_002dp"></a><u>Function:</u> <b>timer-p</b><i> <var>timer</var></i></dt>
+<dd><p>Return T if TIMER is a timer structure.
+</p></dd></dl>
+
+<hr size="1">
+<p>
+ <font size="-1">
+  This document was generated on <i>January 28, 2024</i> using <a href="http://www.nongnu.org/texi2html/"><i>texi2html 1.82</i></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

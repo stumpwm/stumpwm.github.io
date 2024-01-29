@@ -1,0 +1,199 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- Created on January 28, 2024 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>StumpWM Manual: 8. Groups</title>
+
+<meta name="description" content="StumpWM Manual: 8. Groups">
+<meta name="keywords" content="StumpWM Manual: 8. Groups">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="../style.css">
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="Groups"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="stumpwm-0.9.8-rc_25.html#Mode_002dline" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.8-rc_27.html#Customizing-Groups" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.8-rc_25.html#Mode_002dline" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.8-rc.html#Top" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.8-rc_28.html#Screens" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.8-rc.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.8-rc_47.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.8-rc_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<hr size="1">
+<a name="Groups-1"></a>
+<h1 class="chapter">8. Groups</h1>
+<p>Groups in StumpWM are more commonly known as <em>virtual desktops</em> or
+<em>workspaces</em>. Why not create a new term for it?
+</p>
+<dl>
+<dt><a name="index-gnew"></a><u>Command:</u> <b>gnew</b><i> name</i></dt>
+<dd><p>Create a new group with the specified name. The new group becomes the
+current group. If <var>name</var> begins with a dot (&ldquo;.&rdquo;) the group new
+group will be created in the hidden state. Hidden groups have group
+numbers less than one and are invisible to from gprev, gnext, and, optionally,
+groups and vgroups commands.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-gnew_002dfloat"></a><u>Command:</u> <b>gnew-float</b><i> name</i></dt>
+<dd><p>Create a floating window group with the specified name and switch to it.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-gnewbg"></a><u>Command:</u> <b>gnewbg</b><i> name</i></dt>
+<dd><p>Create a new group but do not switch to it.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-gnewbg_002dfloat"></a><u>Command:</u> <b>gnewbg-float</b><i> name</i></dt>
+<dd><p>Create a floating window group with the specified name, but do not switch to it.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-gnext"></a><u>Command:</u> <b>gnext</b></dt>
+<dd><p>Cycle to the next group in the group list.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-gprev"></a><u>Command:</u> <b>gprev</b></dt>
+<dd><p>Cycle to the previous group in the group list.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-gnext_002dwith_002dwindow"></a><u>Command:</u> <b>gnext-with-window</b></dt>
+<dd><p>Cycle to the next group in the group list, taking the current
+window along.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-gprev_002dwith_002dwindow"></a><u>Command:</u> <b>gprev-with-window</b></dt>
+<dd><p>Cycle to the previous group in the group list, taking the current
+window along.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-gother"></a><u>Command:</u> <b>gother</b></dt>
+<dd><p>Go back to the last group.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-gmerge"></a><u>Command:</u> <b>gmerge</b><i> from</i></dt>
+<dd><p>Merge <var>from</var> into the current group. <var>from</var> is not deleted.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-groups"></a><u>Command:</u> <b>groups</b><i> &amp;optional (fmt *group-format*)</i></dt>
+<dd><p>Display the list of groups with their number and
+name. <var>*group-format*</var> controls the formatting. The optional
+argument <var>fmt</var> can be used to override the default group
+formatting.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-vgroups"></a><u>Command:</u> <b>vgroups</b><i> &amp;optional gfmt wfmt</i></dt>
+<dd><p>Like <code>groups</code> but also display the windows in each group. The
+optional arguments <var>gfmt</var> and <var>wfmt</var> can be used to override
+the default group formatting and window formatting, respectively.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-gselect"></a><u>Command:</u> <b>gselect</b><i> to-group</i></dt>
+<dd><p>Select the first group that starts with
+<var>substring</var>. <var>substring</var> can also be a number, in which case
+<code>gselect</code> selects the group with that number.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-gmove"></a><u>Command:</u> <b>gmove</b><i> to-group</i></dt>
+<dd><p>Move the current window to the specified group.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-gkill"></a><u>Command:</u> <b>gkill</b></dt>
+<dd><p>Kill the current group. All windows in the current group are migrated
+to the next group.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-grename"></a><u>Command:</u> <b>grename</b><i> name</i></dt>
+<dd><p>Rename the current group.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-grouplist"></a><u>Command:</u> <b>grouplist</b><i> &amp;optional (fmt *group-format*)</i></dt>
+<dd><p>Allow the user to select a group from a list, like windowlist but
+  for groups
+</p></dd></dl>
+
+
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="stumpwm-0.9.8-rc_27.html#Customizing-Groups">8.1 Customizing Groups</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">          
+</td></tr>
+</table>
+
+<hr size="1">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="stumpwm-0.9.8-rc_25.html#Mode_002dline" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.8-rc_27.html#Customizing-Groups" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.8-rc_25.html#Mode_002dline" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.8-rc.html#Top" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.8-rc_28.html#Screens" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.8-rc.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.8-rc_47.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.8-rc_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated on <i>January 28, 2024</i> using <a href="http://www.nongnu.org/texi2html/"><i>texi2html 1.82</i></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

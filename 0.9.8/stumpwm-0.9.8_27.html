@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- Created on January 28, 2024 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>StumpWM Manual: 8.1 Customizing Groups</title>
+
+<meta name="description" content="StumpWM Manual: 8.1 Customizing Groups">
+<meta name="keywords" content="StumpWM Manual: 8.1 Customizing Groups">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="../style.css">
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="Customizing-Groups"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="stumpwm-0.9.8_26.html#Groups" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.8_28.html#Screens" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.8_26.html#Groups" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.8_26.html#Groups" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.8_28.html#Screens" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.8.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.8_47.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.8_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<hr size="1">
+<a name="Customizing-Groups-1"></a>
+<h2 class="section">8.1 Customizing Groups</h2>
+
+<dl>
+<dt><a name="index-_002agroup_002dformatters_002a"></a><u>Variable:</u> <b>*group-formatters*</b></dt>
+<dd><p>An alist of characters and formatter functions. The character can be
+used as a format character in <var>*group-format*</var>. When the character
+is encountered in the string, the corresponding function is called
+with a group as an argument. The functions return value is inserted
+into the string. If the return value isn&rsquo;t a string it is converted to
+one using <code>prin1-to-string</code>.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-_002agroup_002dformat_002a"></a><u>Variable:</u> <b>*group-format*</b></dt>
+<dd><p>The format string that decides what information will show up in the
+group listing. The following format options are available:
+</p>
+<dl compact="compact">
+<dt> %n</dt>
+<dd><p>Substitutes the group number translated via *group-number-map*, if there
+are more windows than *group-number-map* then will use the group-number.
+</p>
+</dd>
+<dt> %s</dt>
+<dd><p>The group&rsquo;s status. Similar to a window&rsquo;s status.
+</p>
+</dd>
+<dt> %t</dt>
+<dd><p>The group&rsquo;s name.
+</p></dd>
+</dl>
+</dd></dl>
+
+
+<dl>
+<dt><a name="index-current_002dgroup"></a><u>Function:</u> <b>current-group</b><i> &amp;optional (screen (current-screen))</i></dt>
+<dd><p>Return the current group for the current screen, unless
+otherwise specified.
+</p></dd></dl>
+
+
+<hr size="1">
+<p>
+ <font size="-1">
+  This document was generated on <i>January 28, 2024</i> using <a href="http://www.nongnu.org/texi2html/"><i>texi2html 1.82</i></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

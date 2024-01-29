@@ -1,0 +1,364 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- Created on January 28, 2024 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>StumpWM Manual: 5. Windows</title>
+
+<meta name="description" content="StumpWM Manual: 5. Windows">
+<meta name="keywords" content="StumpWM Manual: 5. Windows">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="../style.css">
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="Windows"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="stumpwm-18.05_29.html#Programming-the-Input-Bar" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-18.05_31.html#Window-Marks" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-18.05_25.html#Message-and-Input-Bar" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-18.05.html#Top" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-18.05_37.html#Frames" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-18.05.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="stumpwm-18.05_64.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-18.05_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<hr size="1">
+<a name="Windows-1"></a>
+<h1 class="chapter">5. Windows</h1>
+
+<dl>
+<dt><a name="index-next"></a><u>Command:</u> <b>next</b></dt>
+<dd><p>Go to the next window in the window list.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-prev"></a><u>Command:</u> <b>prev</b></dt>
+<dd><p>Go to the previous window in the window list.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-delete_002dwindow"></a><u>Command:</u> <b>delete-window</b><i> &amp;optional (window (current-window))</i></dt>
+<dd><p>Delete a window. By default delete the current window. This is a
+request sent to the window. The window&rsquo;s client may decide not to
+grant the request or may not be able to if it is unresponsive.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-kill_002dwindow"></a><u>Command:</u> <b>kill-window</b><i> &amp;optional (window (current-window))</i></dt>
+<dd><p>Tell X to disconnect the client that owns the specified
+window. Default to the current window. if
+<code>delete-window</code> didn&rsquo;t work, try this.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-kill_002dwindows_002dcurrent_002dgroup"></a><u>Command:</u> <b>kill-windows-current-group</b></dt>
+<dd><p>Kill all windows in the current group.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-kill_002dwindows_002dother"></a><u>Command:</u> <b>kill-windows-other</b></dt>
+<dd><p>Kill all windows in current group except the current-window
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-echo_002dwindows"></a><u>Command:</u> <b>echo-windows</b><i> &amp;optional (fmt *window-format*) (group (current-group)) (windows (group-windows group))</i></dt>
+<dd><p>Display a list of managed windows. The optional argument <var>fmt</var> can
+be used to override the default window formatting.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-other_002dwindow"></a><u>Command:</u> <b>other-window</b><i> &amp;optional (group (current-group))</i></dt>
+<dd><p>Switch to the window last focused.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-pull_002dhidden_002dnext"></a><u>Command:</u> <b>pull-hidden-next</b></dt>
+<dd><p>Pull the next hidden window into the current frame.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-pull_002dhidden_002dprevious"></a><u>Command:</u> <b>pull-hidden-previous</b></dt>
+<dd><p>Pull the next hidden window into the current frame.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-pull_002dhidden_002dother"></a><u>Command:</u> <b>pull-hidden-other</b></dt>
+<dd><p>Pull the last focused, hidden window into the current frame.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-pull_002dfrom_002dwindowlist"></a><u>Command:</u> <b>pull-from-windowlist</b></dt>
+<dd><p>Pulls a window selected from the list of windows.
+This allows a behavior similar to Emacs&rsquo; switch-to-buffer
+when selecting another window.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-renumber"></a><u>Command:</u> <b>renumber</b><i> nt &amp;optional (group (current-group))</i></dt>
+<dd><p>Change the current window&rsquo;s number to the specified number. If another window
+is using the number, then the windows swap numbers. Defaults to current group.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-meta"></a><u>Command:</u> <b>meta</b><i> key</i></dt>
+<dd><p>Send a fake key to the current window. <var>key</var> is a typical StumpWM key, like <kbd>C-M-o</kbd>.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-select_002dwindow"></a><u>Command:</u> <b>select-window</b><i> query</i></dt>
+<dd><p>Switch to the first window that starts with <var>query</var>.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-select_002dwindow_002dby_002dnumber"></a><u>Command:</u> <b>select-window-by-number</b><i> num &amp;optional (group (current-group))</i></dt>
+<dd><p>Find the window with the given number and focus it in its frame.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-select_002dwindow_002dby_002dname"></a><u>Command:</u> <b>select-window-by-name</b><i> name</i></dt>
+<dd><p>Switch to the first window whose name is exactly <var>name</var>.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-repack_002dwindow_002dnumbers"></a><u>Command:</u> <b>repack-window-numbers</b><i> &amp;optional preserved</i></dt>
+<dd><p>Ensure that used window numbers do not have gaps; ignore PRESERVED window numbers.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-title"></a><u>Command:</u> <b>title</b><i> title</i></dt>
+<dd><p>Override the current window&rsquo;s title.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-windowlist"></a><u>Command:</u> <b>windowlist</b><i> &amp;optional (fmt *window-format*) window-list</i></dt>
+<dd><p>Allow the user to select a window from the list of windows and focus the
+selected window. For information of menu bindings see <a href="stumpwm-18.05_49.html#Menus">Menus</a>. The optional
+ argument <var>fmt</var> can be specified to override the default window formatting.
+The optional argument <var>window-list</var> can be provided to show a custom window
+list (see <code>windowlist-by-class</code>). The default window list is the list of
+all window in the current group. Also note that the default window list is sorted
+by number and if the <var>windows-list</var> is provided, it is shown unsorted (as-is).
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-windowlist_002dby_002dclass"></a><u>Command:</u> <b>windowlist-by-class</b><i> &amp;optional (fmt *window-format-by-class*)</i></dt>
+<dd><p>Allow the user to select a window from the list of windows (sorted by class)
+ and focus the selected window. For information of menu bindings see <a href="stumpwm-18.05_49.html#Menus">Menus</a>.
+The optional argument <var>fmt</var> can be specified to override the default window
+formatting. This is a simple wrapper around the command <code>windowlist</code>.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-fullscreen"></a><u>Command:</u> <b>fullscreen</b></dt>
+<dd><p>Toggle the fullscreen mode of the current widnow. Use this for clients
+with broken (non-NETWM) fullscreen implementations, such as any program
+using SDL.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-info"></a><u>Command:</u> <b>info</b><i> &amp;optional (fmt *window-info-format*)</i></dt>
+<dd><p>Display information about the current window.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-refresh"></a><u>Command:</u> <b>refresh</b></dt>
+<dd><p>Refresh current window without changing its size.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-redisplay"></a><u>Command:</u> <b>redisplay</b></dt>
+<dd><p>Refresh current window by a pair of resizes, also make it occupy entire frame.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-float_002dthis"></a><u>Command:</u> <b>float-this</b></dt>
+<dd><p>Transforms a tile-window into a float-window
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-unfloat_002dthis"></a><u>Command:</u> <b>unfloat-this</b></dt>
+<dd><p>Transforms a float-window into a tile-window
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-unmaximize"></a><u>Command:</u> <b>unmaximize</b></dt>
+<dd><p>Use the size the program requested for current window (if any) instead of maximizing it.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-toggle_002dalways_002don_002dtop"></a><u>Command:</u> <b>toggle-always-on-top</b></dt>
+<dd><p>Toggle whether the current window always appears over other windows.
+The order windows are added to this list determines priority.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-toggle_002dalways_002dshow"></a><u>Command:</u> <b>toggle-always-show</b></dt>
+<dd><p>Toggle whether the current window is shown in all groups.
+</p></dd></dl>
+
+
+<dl>
+<dt><a name="index-_002awindow_002dformat_002a"></a><u>Variable:</u> <b>*window-format*</b></dt>
+<dd><p>This variable decides how the window list is formatted. It is a string
+with the following formatting options:
+</p>
+<dl compact="compact">
+<dt> %n</dt>
+<dd><p>Substitutes the window&rsquo;s number translated via *window-number-map*, if there
+are more windows than *window-number-map* then will use the window-number.
+</p></dd>
+<dt> %s</dt>
+<dd><p>Substitute the window&rsquo;s status. * means current window, + means last
+window, and - means any other window.
+</p></dd>
+<dt> %t</dt>
+<dd><p>Substitute the window&rsquo;s name.
+</p></dd>
+<dt> %c</dt>
+<dd><p>Substitute the window&rsquo;s class.
+</p></dd>
+<dt> %i</dt>
+<dd><p>Substitute the window&rsquo;s resource ID.
+</p></dd>
+<dt> %m</dt>
+<dd><p>Draw a # if the window is marked.
+</p></dd>
+</dl>
+
+<p>Note, a prefix number can be used to crop the argument to a specified
+size. For instance, &lsquo;<samp>%20t</samp>&rsquo; crops the window&rsquo;s title to 20
+characters.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-_002awindow_002dinfo_002dformat_002a"></a><u>Variable:</u> <b>*window-info-format*</b></dt>
+<dd><p>The format used in the info command. See
+  <var>*window-format*</var> for formatting details.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-_002awindow_002dname_002dsource_002a"></a><u>Variable:</u> <b>*window-name-source*</b></dt>
+<dd><p>This variable controls what is used for the window&rsquo;s name. The default is <code>:title</code>.
+</p>
+<dl compact="compact">
+<dt> <code>:title</code></dt>
+<dd><p>Use the window&rsquo;s title given to it by its owner.
+</p>
+</dd>
+<dt> <code>:class</code></dt>
+<dd><p>Use the window&rsquo;s resource class.
+</p>
+</dd>
+<dt> <code>:resource-name</code></dt>
+<dd><p>Use the window&rsquo;s resource name.
+</p></dd>
+</dl>
+</dd></dl>
+
+<dl>
+<dt><a name="index-_002anew_002dwindow_002dpreferred_002dframe_002a"></a><u>Variable:</u> <b>*new-window-preferred-frame*</b></dt>
+<dd><p>This variable controls what frame a new window appears in. It is a
+list of preferences. The first preference that is satisfied is
+used. Valid list elements are as follows:
+</p>
+<dl compact="compact">
+<dt> <code>:focused</code></dt>
+<dd><p>Choose the focused frame.
+</p>
+</dd>
+<dt> <code>:last</code></dt>
+<dd><p>Choose the last focused frame.
+</p>
+</dd>
+<dt> <code>:empty</code></dt>
+<dd><p>Choose any empty frame.
+</p>
+</dd>
+<dt> <code>:unfocused</code></dt>
+<dd><p>Choose any unfocused frame.
+</p></dd>
+</dl>
+
+<p>Alternatively, it can be set to a function that takes one argument, the new
+window, and returns the preferred frame or a list of the above preferences.
+</p></dd></dl>
+
+
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="stumpwm-18.05_31.html#Window-Marks">5.1 Window Marks</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="stumpwm-18.05_32.html#Customizing-Window-Appearance">5.2 Customizing Window Appearance</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="stumpwm-18.05_33.html#Controlling-Raise-And-Map-Requests">5.3 Controlling Raise And Map Requests</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="stumpwm-18.05_34.html#Programming-With-Windows">5.4 Programming With Windows</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="stumpwm-18.05_35.html#Rule-Based-Window-Placement">5.5 Rule Based Window Placement</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="stumpwm-18.05_36.html#Window-Selection-Expressions">5.6 Window Selection Expressions</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+<hr size="1">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="stumpwm-18.05_29.html#Programming-the-Input-Bar" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-18.05_31.html#Window-Marks" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-18.05_25.html#Message-and-Input-Bar" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-18.05.html#Top" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-18.05_37.html#Frames" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-18.05.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="stumpwm-18.05_64.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-18.05_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated on <i>January 28, 2024</i> using <a href="http://www.nongnu.org/texi2html/"><i>texi2html 1.82</i></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

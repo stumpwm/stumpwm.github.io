@@ -1,0 +1,202 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- Created on January 28, 2024 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>StumpWM Manual: 4.1 Customizing The Bar</title>
+
+<meta name="description" content="StumpWM Manual: 4.1 Customizing The Bar">
+<meta name="keywords" content="StumpWM Manual: 4.1 Customizing The Bar">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="../style.css">
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="Customizing-The-Bar"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="stumpwm-22.11_30.html#Message-and-Input-Bar" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-22.11_32.html#Using-The-Input-Bar" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-22.11_30.html#Message-and-Input-Bar" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-22.11_30.html#Message-and-Input-Bar" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-22.11_35.html#Windows" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-22.11.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="stumpwm-22.11_82.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-22.11_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<hr size="1">
+<a name="Customizing-The-Bar-1"></a>
+<h2 class="section">4.1 Customizing The Bar</h2>
+<p>The bar&rsquo;s appearance and behavior can be modified with the following
+functions and variables. See <a href="stumpwm-22.11_71.html#Colors">Colors</a> for an explanation of how to
+set these color variables.
+</p>
+<dl>
+<dt><a name="index-set_002dfg_002dcolor"></a><u>Function:</u> <b>set-fg-color</b><i> color</i></dt>
+<dd><p>Set the foreground color for the message bar and input
+bar. <var>color</var> can be any color recognized by X.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-set_002dbg_002dcolor"></a><u>Function:</u> <b>set-bg-color</b><i> color</i></dt>
+<dd><p>Set the background color for the message bar and input
+bar. <var>color</var> can be any color recognized by X.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-set_002dborder_002dcolor"></a><u>Function:</u> <b>set-border-color</b><i> color</i></dt>
+<dd><p>Set the border color for the message bar and input
+bar. <var>color</var> can be any color recognized by X.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-set_002dmsg_002dborder_002dwidth"></a><u>Function:</u> <b>set-msg-border-width</b><i> width</i></dt>
+<dd><p>Set the border width for the message bar, input bar and frame indicator.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-set_002dfont"></a><u>Function:</u> <b>set-font</b><i> font</i></dt>
+<dd><p>Set the font(s) for the message bar and input bar.
+</p></dd></dl>
+
+
+<dl>
+<dt><a name="index-_002amessage_002dwindow_002dpadding_002a"></a><u>Variable:</u> <b>*message-window-padding*</b></dt>
+<dd><p>The number of pixels that pad the text in the message window.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-_002amessage_002dwindow_002dy_002dpadding_002a"></a><u>Variable:</u> <b>*message-window-y-padding*</b></dt>
+<dd><p>The number of pixels that pad the text in the message window vertically.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-_002amessage_002dwindow_002dgravity_002a"></a><u>Variable:</u> <b>*message-window-gravity*</b></dt>
+<dd><p>This variable controls where the message window appears. The following
+are valid values.
+</p><dl compact="compact">
+<dt> :top-left</dt>
+<dt> :top-right</dt>
+<dt> :bottom-left</dt>
+<dt> :bottom-right</dt>
+<dt> :center</dt>
+<dt> :top</dt>
+<dt> :left</dt>
+<dt> :right</dt>
+<dt> :bottom</dt>
+</dl>
+</dd></dl>
+
+<dl>
+<dt><a name="index-_002amessage_002dwindow_002dinput_002dgravity_002a"></a><u>Variable:</u> <b>*message-window-input-gravity*</b></dt>
+<dd><p>This variable controls where the message window appears
+when the input window is being displayed. The following are valid values.
+</p><dl compact="compact">
+<dt> :top-left</dt>
+<dt> :top-right</dt>
+<dt> :bottom-left</dt>
+<dt> :bottom-right</dt>
+<dt> :center</dt>
+<dt> :top</dt>
+<dt> :left</dt>
+<dt> :right</dt>
+<dt> :bottom</dt>
+</dl>
+</dd></dl>
+
+<dl>
+<dt><a name="index-_002amessage_002dwindow_002dtimer_002a"></a><u>Variable:</u> <b>*message-window-timer*</b></dt>
+<dd><p>Keep track of the timer that hides the message window.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-_002atimeout_002dwait_002a"></a><u>Variable:</u> <b>*timeout-wait*</b></dt>
+<dd><p>Specifies, in seconds, how long a message will appear for. This must
+be an integer.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-_002atimeout_002dwait_002dmultiline_002a"></a><u>Variable:</u> <b>*timeout-wait-multiline*</b></dt>
+<dd><p>Specifies, in seconds, how long a message will more than one line will
+appear for. This must be an integer. If falsy, default to *timeout-wait*.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-_002ainput_002dwindow_002dgravity_002a"></a><u>Variable:</u> <b>*input-window-gravity*</b></dt>
+<dd><p>This variable controls where the input window appears. The following
+are valid values.
+</p><dl compact="compact">
+<dt> :top-left</dt>
+<dt> :top-right</dt>
+<dt> :bottom-left</dt>
+<dt> :bottom-right</dt>
+<dt> :center</dt>
+<dt> :top</dt>
+<dt> :left</dt>
+<dt> :right</dt>
+<dt> :bottom</dt>
+</dl>
+</dd></dl>
+
+
+<hr size="1">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="stumpwm-22.11_30.html#Message-and-Input-Bar" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-22.11_32.html#Using-The-Input-Bar" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-22.11_30.html#Message-and-Input-Bar" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-22.11_30.html#Message-and-Input-Bar" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-22.11_35.html#Windows" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-22.11.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="stumpwm-22.11_82.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-22.11_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated on <i>January 28, 2024</i> using <a href="http://www.nongnu.org/texi2html/"><i>texi2html 1.82</i></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

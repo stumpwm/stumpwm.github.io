@@ -1,0 +1,139 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- Created on January 28, 2024 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>StumpWM Manual: 3.1 Writing Commands</title>
+
+<meta name="description" content="StumpWM Manual: 3.1 Writing Commands">
+<meta name="keywords" content="StumpWM Manual: 3.1 Writing Commands">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="../style.css">
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="Writing-Commands"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="stumpwm-1.0.0_21.html#Commands" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-1.0.0_23.html#StumpWM-Types" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-1.0.0_21.html#Commands" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-1.0.0_21.html#Commands" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-1.0.0_24.html#Message-and-Input-Bar" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-1.0.0.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="stumpwm-1.0.0_63.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-1.0.0_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<hr size="1">
+<a name="Writing-Commands-1"></a>
+<h2 class="section">3.1 Writing Commands</h2>
+<p>StumpWM commands are written much like any Lisp function. The main
+difference is in the way command arguments are specified. The
+<code>defcommand</code> macro takes a list of arguments as its first
+form (similar to the <code>defun</code> macro), and a corresponding
+list of types as its second form. All arguments must belong to a
+&ldquo;type&rdquo;. Each type specification has two parts: a keyword specifying
+the argument type, and a string prompt that will be displayed when
+asking the user to enter the argument value. A typical
+<code>defcommand</code> might look like this:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">(defcommand now-we-are-six (name age)
+    ((:string &quot;Enter your name: &quot;)
+     (:number &quot;Enter your age: &quot;))
+  (message &quot;~a, in six years you will be ~a&quot; name (+ 6 age)))
+</pre></td></tr></table>
+
+<p>If <code>now-we-are-six</code> is called interactively via the
+<code>colon</code> command, the user will be prompted for a string
+and a number, which will then be bound to &ldquo;name&rdquo; and &ldquo;age&rdquo;,
+respectively, in the body of the command.
+</p>
+<p>When invoking the command via a key-binding, it is possible to provide
+some or all of the arguments directly:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">(define-key *root-map* (kbd &quot;L&quot;) &quot;now-we-are-six John&quot;)
+</pre></td></tr></table>
+
+<p>In this case, hitting <kbd>C-t L</kbd> will only prompt for an age (the first
+string argument is already bound to &ldquo;John&rdquo;). Argument values provided
+this way always bind to the earliest arguments defined: ie, it is not
+possible to specify an age, but prompt the user for a name.
+</p>
+<p>If the type declaration does not include a prompt (ie, it looks like
+&ldquo;(:type nil)&rdquo;, or &ldquo;(:type)&rdquo; or just &ldquo;:type&rdquo;), the argument is
+considered optional. It can be provided via a key-binding invocation, as
+above, but if it isn&rsquo;t, the user will not be prompted, and the argument
+will be bound to nil.
+</p>
+<p>Lastly, it is possible to limit the scope under which the command will
+be usable: a command can be defined to work only in tile groups, or only
+in floating groups (the only two types of groups that currently exist).
+This is done by replacing the name of the command with a two-element
+list: the name of the command as a symbol, and either the symbol
+tile-group or floating-group. For instance, the <code>next</code> command,
+which only functions in tile groups, is defined this way:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">(defcommand (next tile-group) &hellip;)
+</pre></td></tr></table>
+
+<hr size="1">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="stumpwm-1.0.0_21.html#Commands" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-1.0.0_23.html#StumpWM-Types" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-1.0.0_21.html#Commands" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-1.0.0_21.html#Commands" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-1.0.0_24.html#Message-and-Input-Bar" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-1.0.0.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="stumpwm-1.0.0_63.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-1.0.0_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated on <i>January 28, 2024</i> using <a href="http://www.nongnu.org/texi2html/"><i>texi2html 1.82</i></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

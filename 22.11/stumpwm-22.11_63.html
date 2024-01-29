@@ -1,0 +1,226 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- Created on January 28, 2024 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>StumpWM Manual: 14.2 Menus</title>
+
+<meta name="description" content="StumpWM Manual: 14.2 Menus">
+<meta name="keywords" content="StumpWM Manual: 14.2 Menus">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="../style.css">
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="Menus-1"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="stumpwm-22.11_62.html#Menus" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-22.11_64.html#Single-Selection-Menus" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-22.11_61.html#Miscellaneous-Commands" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-22.11_61.html#Miscellaneous-Commands" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-22.11_71.html#Colors" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-22.11.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="stumpwm-22.11_82.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-22.11_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<hr size="1">
+<h2 class="section">14.2 Menus</h2>
+<p>There are three different types of menus in StumpWM; single selection
+menus; interactive menus; and batch menus. Single-selection menus, as
+the name suggests, are used to pick a single item from a list.
+Interactive menus are used for marking multiple selections. Batch
+menus are used for performing actions on multiple menu items. Both
+batch and interactive menus share the same navigational keybindings,
+which are found in the table below. These can be customized by
+modifying the <var>*menu-map*</var> variable. Commands specific to each
+menu type can be modified by <var>*single-menu-map*</var> and
+<var>*batch-menu-map*</var>.
+</p>
+<dl compact="compact">
+<dt> <kbd>C-p</kbd></dt>
+<dt> <kbd>Up</kbd></dt>
+<dt> <kbd>k</kbd></dt>
+<dd><p>Highlight the previous menu option.
+</p>
+</dd>
+<dt> <kbd>C-n</kbd></dt>
+<dt> <kbd>Down</kbd></dt>
+<dt> <kbd>j</kbd></dt>
+<dd><p>Highlight the next menu option.
+</p>
+</dd>
+<dt> <kbd>S-Down</kbd></dt>
+<dd><p>Scroll the entire page down one entry.
+</p>
+</dd>
+<dt> <kbd>S-Up</kbd></dt>
+<dd><p>Scroll the entire page up one entry.
+</p>
+</dd>
+<dt> <kbd>PageUp</kbd></dt>
+<dd><p>Scroll up one page.
+</p>
+</dd>
+<dt> <kbd>PageDown</kbd></dt>
+<dd><p>Scroll down one page.
+</p>
+</dd>
+<dt> <kbd>C-g</kbd></dt>
+<dt> <kbd>ESC</kbd></dt>
+<dd><p>Abort the menu.
+</p>
+</dd>
+</dl>
+
+<p>In addition, you can customize the number of items shown at a time (a
+page) with the <var>*menu-maximum-height*</var> variable. The default
+value, <code>50</code>, limits the menu size to 50 items. Setting it to
+<code>nil</code> will remove the limit on how many menu entries are shown
+(be careful, this can crash X11 when attempting to display a large
+amount of items).
+</p>
+<dl>
+<dt><a name="index-_002amenu_002dmap_002a"></a><u>Variable:</u> <b>*menu-map*</b></dt>
+<dd><p>The keymap used by the interactive menu.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-menu_002dpage_002dup"></a><u>Function:</u> <b>menu-page-up</b><i> menu</i></dt>
+<dd><p>Move a whole page down in the menu
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-menu_002dpage_002ddown"></a><u>Function:</u> <b>menu-page-down</b><i> menu</i></dt>
+<dd><p>Move a whole page up in the menu
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-menu_002dup"></a><u>Function:</u> <b>menu-up</b><i> menu</i></dt>
+<dd><p>Move menu cursor up
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-menu_002ddown"></a><u>Function:</u> <b>menu-down</b><i> menu</i></dt>
+<dd><p>Move menu cursor down
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-menu_002dscroll_002dup"></a><u>Function:</u> <b>menu-scroll-up</b><i> menu</i></dt>
+<dd><p>Scroll the menu up
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-menu_002dscroll_002ddown"></a><u>Function:</u> <b>menu-scroll-down</b><i> menu</i></dt>
+<dd><p>Scroll the menu down
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-menu_002dabort"></a><u>Function:</u> <b>menu-abort</b><i> menu</i></dt>
+<dd><p>What to do when exiting the menu without results.
+Must signal :menu-quit with the result.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-menu_002dbackspace"></a><u>Function:</u> <b>menu-backspace</b><i> menu</i></dt>
+<dd><p>What occurs when backspace is pressed in a menu
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-menu_002dentry_002dapply"></a><u>Function:</u> <b>menu-entry-apply</b><i> menu-entry function</i></dt>
+<dd><p>Apply FUNCTION to the data portion of the menu entry.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-menu_002dentry_002ddisplay"></a><u>Function:</u> <b>menu-entry-display</b><i> menu-entry</i></dt>
+<dd><p>Generates a string suitable for displaying in a menu
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-menu_002dfinish"></a><u>Function:</u> <b>menu-finish</b><i> menu</i></dt>
+<dd><p>What to do when exiting the menu with results.
+Must signal :menu-quit with the result.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-command_002dmenu"></a><u>Function:</u> <b>command-menu</b><i> screen items command-list &amp;key (prompt Select:) (initial-selection 0) extra-keymap</i></dt>
+<dd><p>Use batch-menu to make selections and run commands specified in command-list.
+</p>
+<p>SCREEN: The screen to display the menu on.
+</p>
+<p>ITEMS: The items to be shown in the list. This is expected to be a list of <code>menu-item</code>s.
+</p>
+<p>COMMAND-LIST: A list of entries defining the commands associated with each mark.
+              Only marks that are defined are allowed in the menu. The format
+              for these entries is (mark-character function calling-options).
+</p>
+<p>              Available calling-options:
+                 :single   (Default) Each value is passed separately to the supplied function.
+                 :all      all values selected with this mark are passed to the function in a list.
+</p>
+<p>              Example:
+                 &rsquo;((#d &rsquo;delete-window) (#m &rsquo;move-multiple-windows :all))
+</p></dd></dl>
+
+
+<hr size="1">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="stumpwm-22.11_62.html#Menus" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-22.11_64.html#Single-Selection-Menus" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-22.11_61.html#Miscellaneous-Commands" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-22.11_61.html#Miscellaneous-Commands" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-22.11_71.html#Colors" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-22.11.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="stumpwm-22.11_82.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-22.11_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated on <i>January 28, 2024</i> using <a href="http://www.nongnu.org/texi2html/"><i>texi2html 1.82</i></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

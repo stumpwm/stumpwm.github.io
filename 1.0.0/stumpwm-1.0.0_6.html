@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
 <html>
-<!-- Created on January 12, 2017 by texi2html 1.82
+<!-- Created on January 28, 2024 by texi2html 1.82
 texi2html was written by: 
             Lionel Cons <Lionel.Cons@cern.ch> (original author)
             Karl Berry  <karl@freefriends.org>
@@ -10,10 +10,10 @@ Maintained by: Many creative people.
 Send bugs and suggestions to <texi2html-bug@nongnu.org>
 -->
 <head>
-<title>StumpWM Manual: 6. Frames</title>
+<title>StumpWM Manual: 1.3.2 Group Basics</title>
 
-<meta name="description" content="StumpWM Manual: 6. Frames">
-<meta name="keywords" content="StumpWM Manual: 6. Frames">
+<meta name="description" content="StumpWM Manual: 1.3.2 Group Basics">
+<meta name="keywords" content="StumpWM Manual: 1.3.2 Group Basics">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
 <meta name="Generator" content="texi2html 1.82">
@@ -42,341 +42,39 @@ ul.toc {list-style: none}
 
 <body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
 
-<a name="Frames"></a>
+<a name="Group-Basics"></a>
 <table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="stumpwm-1.0.0_5.html#Window-Selection-Expressions" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Interactively-Resizing-Frames" title="Next section in reading order"> &gt; </a>]</td>
+<tr><td valign="middle" align="left">[<a href="stumpwm-1.0.0_5.html#Screens-and-Heads" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-1.0.0_7.html#Floating-Group-Basics" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="stumpwm-1.0.0_5.html#Windows" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="stumpwm-1.0.0.html#Top" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="stumpwm-1.0.0_7.html#Mode_002dline" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-1.0.0_1.html#Introduction" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-1.0.0_4.html#Basic-Concepts" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-1.0.0_17.html#Key-Bindings" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left">[<a href="stumpwm-1.0.0.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[Contents]</td>
-<td valign="middle" align="left">[<a href="stumpwm-1.0.0_17.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-1.0.0_63.html#Command-and-Function-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="stumpwm-1.0.0_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<a name="Frames-1"></a>
-<h1 class="chapter">6. Frames</h1>
-<p>Frames contain windows. All windows exist within a frame.
+<hr size="1">
+<a name="Group-Basics-1"></a>
+<h3 class="subsection">1.3.2 Group Basics</h3>
+<p>A group is usually referred to as a &ldquo;desktop&rdquo; or &ldquo;workspace&rdquo; in other
+window managers. StumpWM starts with a single group, called &ldquo;Default&rdquo;.
+Each group has its own configuration of frames and windows that is
+separate from and independent of other groups. You can&rsquo;t have
+different groups display in different monitors: when you switch
+groups, all monitors switch to that group.
 </p>
-<p>Those used to ratpoison will notice that this differs from ratpoison&rsquo;s
-window pool, where windows and frames are not so tightly connected.
+<p>Each group contains an ordered list of frames.
 </p>
-<dl>
-<dt><a name="index-pull_002dwindow_002dby_002dnumber"></a><u>Command:</u> <b>pull-window-by-number</b><i> n &amp;optional (group (current-group))</i></dt>
-<dd><p>Pull window N from another frame into the current frame and focus it.
-</p></dd></dl>
-
-<dl>
-<dt><a name="index-hsplit"></a><u>Command:</u> <b>hsplit</b><i> &amp;optional (ratio 1/2)</i></dt>
-<dd><p>Split the current frame into 2 side-by-side frames.
-</p></dd></dl>
-
-<dl>
-<dt><a name="index-vsplit"></a><u>Command:</u> <b>vsplit</b><i> &amp;optional (ratio 1/2)</i></dt>
-<dd><p>Split the current frame into 2 frames, one on top of the other.
-</p></dd></dl>
-
-<dl>
-<dt><a name="index-remove_002dsplit"></a><u>Command:</u> <b>remove-split</b><i> &amp;optional (group (current-group)) (frame</i></dt>
-<dd><p>                                                                 (tile-group-current-frame
-                                                                  group))
-Remove the specified frame in the specified group (defaults to current
-group, current frame). Windows in the frame are migrated to the frame taking up its
-space.
-</p></dd></dl>
-
-<dl>
-<dt><a name="index-only"></a><u>Command:</u> <b>only</b></dt>
-<dd><p>Delete all the frames but the current one and grow it to take up the entire head.
-</p></dd></dl>
-
-<dl>
-<dt><a name="index-curframe"></a><u>Command:</u> <b>curframe</b></dt>
-<dd><p>Display a window indicating which frame is focused.
-</p></dd></dl>
-
-<dl>
-<dt><a name="index-fnext"></a><u>Command:</u> <b>fnext</b></dt>
-<dd><p>Cycle through the frame tree to the next frame.
-</p></dd></dl>
-
-<dl>
-<dt><a name="index-sibling"></a><u>Command:</u> <b>sibling</b></dt>
-<dd><p>Jump to the frame&rsquo;s sibling. If a frame is split into two frames,
-these two frames are siblings.
-</p></dd></dl>
-
-<dl>
-<dt><a name="index-fother"></a><u>Command:</u> <b>fother</b></dt>
-<dd><p>Jump to the last frame that had focus.
-</p></dd></dl>
-
-<dl>
-<dt><a name="index-fselect"></a><u>Command:</u> <b>fselect</b><i> frame-number</i></dt>
-<dd><p>Display a number in the corner of each frame and let the user to
-select a frame by number. If <var>frame-number</var> is specified, just
-jump to that frame.
-</p></dd></dl>
-
-<dl>
-<dt><a name="index-resize"></a><u>Command:</u> <b>resize</b><i> width height</i></dt>
-<dd><p>Resize the current frame by <var>width</var> and <var>height</var> pixels
-</p></dd></dl>
-
-<dl>
-<dt><a name="index-balance_002dframes"></a><u>Command:</u> <b>balance-frames</b></dt>
-<dd><p>Make frames the same height or width in the current frame&rsquo;s subtree.
-</p></dd></dl>
-
-<dl>
-<dt><a name="index-fclear"></a><u>Command:</u> <b>fclear</b></dt>
-<dd><p>Clear the current frame.
-</p></dd></dl>
-
-<dl>
-<dt><a name="index-move_002dfocus"></a><u>Command:</u> <b>move-focus</b><i> dir</i></dt>
-<dd><p>Focus the frame adjacent to the current one in the specified
-direction. The following are valid directions:
-</p><dl compact="compact">
-<dt> up</dt>
-<dt> down</dt>
-<dt> left</dt>
-<dt> right</dt>
-</dl>
-</dd></dl>
-
-<dl>
-<dt><a name="index-move_002dwindow"></a><u>Command:</u> <b>move-window</b><i> dir</i></dt>
-<dd><p>Just like move-focus except that the current is pulled along.
-</p></dd></dl>
-
-<dl>
-<dt><a name="index-next_002din_002dframe"></a><u>Command:</u> <b>next-in-frame</b></dt>
-<dd><p>Go to the next window in the current frame.
-</p></dd></dl>
-
-<dl>
-<dt><a name="index-prev_002din_002dframe"></a><u>Command:</u> <b>prev-in-frame</b></dt>
-<dd><p>Go to the previous window in the current frame.
-</p></dd></dl>
-
-<dl>
-<dt><a name="index-other_002din_002dframe"></a><u>Command:</u> <b>other-in-frame</b></dt>
-<dd><p>Go to the last accessed window in the current frame.
-</p></dd></dl>
-
-<dl>
-<dt><a name="index-echo_002dframe_002dwindows"></a><u>Command:</u> <b>echo-frame-windows</b><i> &amp;optional (fmt *window-format*)</i></dt>
-<dd><p>Display a list of all the windows in the current frame.
-</p></dd></dl>
-
-<dl>
-<dt><a name="index-exchange_002ddirection"></a><u>Command:</u> <b>exchange-direction</b><i> dir &amp;optional (win (current-window))</i></dt>
-<dd><p>Exchange the current window (by default) with the top window of the frame in specified direction. (bound to <kbd>C-t x</kbd> by default)
-</p><dl compact="compact">
-<dt> up</dt>
-<dt> down</dt>
-<dt> left</dt>
-<dt> right</dt>
-</dl>
-</dd></dl>
-
-
-<dl>
-<dt><a name="index-_002amin_002dframe_002dwidth_002a"></a><u>Variable:</u> <b>*min-frame-width*</b></dt>
-<dd><p>The minimum width a frame can be. A frame will not shrink below this
-width. Splitting will not affect frames if the new frame widths are
-less than this value.
-</p></dd></dl>
-
-<dl>
-<dt><a name="index-_002amin_002dframe_002dheight_002a"></a><u>Variable:</u> <b>*min-frame-height*</b></dt>
-<dd><p>The minimum height a frame can be. A frame will not shrink below this
-height. Splitting will not affect frames if the new frame heights are
-less than this value.
-</p></dd></dl>
-
-<dl>
-<dt><a name="index-_002anew_002dframe_002daction_002a"></a><u>Variable:</u> <b>*new-frame-action*</b></dt>
-<dd><p>When a new frame is created, this variable controls what is put in the
-new frame. Valid values are
-</p>
-<dl compact="compact">
-<dt> <code>:empty</code></dt>
-<dd><p>The frame is left empty
-</p>
-</dd>
-<dt> <code>:last-window</code></dt>
-<dd><p>The last focused window that is not currently visible is placed in the
-frame. This is the default.
-</p></dd>
-</dl>
-</dd></dl>
-
-
-<table class="menu" border="0" cellspacing="0">
-<tr><td align="left" valign="top"><a href="#Interactively-Resizing-Frames">6.1 Interactively Resizing Frames</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top"><a href="#Frame-Dumping">6.2 Frame Dumping</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-</table>
-
-<hr size="6">
-<a name="Interactively-Resizing-Frames"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Frames" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Frame-Dumping" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#Frames" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Frames" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="stumpwm-1.0.0_7.html#Mode_002dline" title="Next chapter"> &gt;&gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="stumpwm-1.0.0.html#Top" title="Cover (top) of document">Top</a>]</td>
-<td valign="middle" align="left">[Contents]</td>
-<td valign="middle" align="left">[<a href="stumpwm-1.0.0_17.html#Command-and-Function-Index" title="Index">Index</a>]</td>
-<td valign="middle" align="left">[<a href="stumpwm-1.0.0_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
-</tr></table>
-<a name="Interactively-Resizing-Frames-1"></a>
-<h2 class="section">6.1 Interactively Resizing Frames</h2>
-<p>There is a mode called <code>iresize</code> that lets you interactively
-resize the current frame. To enter the mode use the <code>iresize</code>
-command or type &lt;C-t r&gt;.
-</p>
-<p>The following keybindings apply to the mode:
-</p><dl compact="compact">
-<dt> <kbd>C-p</kbd></dt>
-<dt> <kbd>Up</kbd></dt>
-<dt> <kbd>k</kbd></dt>
-<dd><p>Shrink the frame vertically.
-</p>
-</dd>
-<dt> <kbd>C-n</kbd></dt>
-<dt> <kbd>Down</kbd></dt>
-<dt> <kbd>j</kbd></dt>
-<dd><p>Expand the frame vertically.
-</p>
-</dd>
-<dt> <kbd>C-f</kbd></dt>
-<dt> <kbd>Right</kbd></dt>
-<dt> <kbd>l</kbd></dt>
-<dd><p>Expand the frame horizontally.
-</p>
-</dd>
-<dt> <kbd>C-b</kbd></dt>
-<dt> <kbd>Left</kbd></dt>
-<dt> <kbd>h</kbd></dt>
-<dd><p>Shrink the frame horizontally.
-</p>
-</dd>
-<dt> <kbd>C-g</kbd></dt>
-<dt> <kbd>ESC</kbd></dt>
-<dd><p>Abort the interactive resize. NOTE: This currently doesn&rsquo;t work.
-</p>
-</dd>
-<dt> <kbd>RET</kbd></dt>
-<dd><p>Select the highlighted option.
-</p>
-</dd>
-</dl>
-
-<dl>
-<dt><a name="index-iresize"></a><u>Command:</u> <b>iresize</b></dt>
-<dd><p>Start the interactive resize mode. A new keymap specific to
-resizing the current frame is loaded. Hit &lt;C-g&gt;, &lt;RET&gt;, or
-&lt;ESC&gt; to exit.
-</p></dd></dl>
-
-<dl>
-<dt><a name="index-abort_002diresize"></a><u>Command:</u> <b>abort-iresize</b></dt>
-<dd><p>Exit from the interactive resize mode.
-</p></dd></dl>
-
-<dl>
-<dt><a name="index-exit_002diresize"></a><u>Command:</u> <b>exit-iresize</b></dt>
-<dd><p>Exit from the interactive resize mode.
-</p></dd></dl>
-
-
-<dl>
-<dt><a name="index-_002aresize_002dincrement_002a"></a><u>Variable:</u> <b>*resize-increment*</b></dt>
-<dd><p>Number of pixels to increment by when interactively resizing frames.
-</p></dd></dl>
-
-
-<hr size="6">
-<a name="Frame-Dumping"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Interactively-Resizing-Frames" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="stumpwm-1.0.0_7.html#Mode_002dline" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#Frames" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Frames" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="stumpwm-1.0.0_7.html#Mode_002dline" title="Next chapter"> &gt;&gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="stumpwm-1.0.0.html#Top" title="Cover (top) of document">Top</a>]</td>
-<td valign="middle" align="left">[Contents]</td>
-<td valign="middle" align="left">[<a href="stumpwm-1.0.0_17.html#Command-and-Function-Index" title="Index">Index</a>]</td>
-<td valign="middle" align="left">[<a href="stumpwm-1.0.0_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
-</tr></table>
-<a name="Frame-Dumping-1"></a>
-<h2 class="section">6.2 Frame Dumping</h2>
-<p>The configuration of frames and groups can be saved and restored using
-the following commands.
-</p>
-<dl>
-<dt><a name="index-dump_002ddesktop_002dto_002dfile"></a><u>Command:</u> <b>dump-desktop-to-file</b><i> file</i></dt>
-<dd><p>Dumps the frames of all groups of all screens to the named file
-</p></dd></dl>
-
-<dl>
-<dt><a name="index-dump_002dgroup_002dto_002dfile"></a><u>Command:</u> <b>dump-group-to-file</b><i> file</i></dt>
-<dd><p>Dumps the frames of the current group of the current screen to the named file.
-</p></dd></dl>
-
-<dl>
-<dt><a name="index-dump_002dscreen_002dto_002dfile"></a><u>Command:</u> <b>dump-screen-to-file</b><i> file</i></dt>
-<dd><p>Dumps the frames of all groups of the current screen to the named file
-</p></dd></dl>
-
-<dl>
-<dt><a name="index-restore_002dfrom_002dfile"></a><u>Command:</u> <b>restore-from-file</b><i> file</i></dt>
-<dd><p>Restores screen, groups, or frames from named file, depending on file&rsquo;s contents.
-</p></dd></dl>
-
-<dl>
-<dt><a name="index-place_002dexisting_002dwindows"></a><u>Command:</u> <b>place-existing-windows</b></dt>
-<dd><p>Re-arrange existing windows according to placement rules.
-</p></dd></dl>
-
-
-<hr size="6">
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Frames" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="stumpwm-1.0.0_7.html#Mode_002dline" title="Next chapter"> &gt;&gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="stumpwm-1.0.0.html#Top" title="Cover (top) of document">Top</a>]</td>
-<td valign="middle" align="left">[Contents]</td>
-<td valign="middle" align="left">[<a href="stumpwm-1.0.0_17.html#Command-and-Function-Index" title="Index">Index</a>]</td>
-<td valign="middle" align="left">[<a href="stumpwm-1.0.0_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
-</tr></table>
+<hr size="1">
 <p>
  <font size="-1">
-  This document was generated by <em>David Bjergaard</em> on <em>January 12, 2017</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
+  This document was generated on <i>January 28, 2024</i> using <a href="http://www.nongnu.org/texi2html/"><i>texi2html 1.82</i></a>.
  </font>
  <br>
 

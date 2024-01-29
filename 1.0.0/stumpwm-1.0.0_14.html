@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
 <html>
-<!-- Created on January 12, 2017 by texi2html 1.82
+<!-- Created on January 28, 2024 by texi2html 1.82
 texi2html was written by: 
             Lionel Cons <Lionel.Cons@cern.ch> (original author)
             Karl Berry  <karl@freefriends.org>
@@ -10,10 +10,10 @@ Maintained by: Many creative people.
 Send bugs and suggestions to <texi2html-bug@nongnu.org>
 -->
 <head>
-<title>StumpWM Manual: 14. Hooks</title>
+<title>StumpWM Manual: 1.5 Interacting with the Lisp process</title>
 
-<meta name="description" content="StumpWM Manual: 14. Hooks">
-<meta name="keywords" content="StumpWM Manual: 14. Hooks">
+<meta name="description" content="StumpWM Manual: 1.5 Interacting with the Lisp process">
+<meta name="keywords" content="StumpWM Manual: 1.5 Interacting with the Lisp process">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
 <meta name="Generator" content="texi2html 1.82">
@@ -42,182 +42,54 @@ ul.toc {list-style: none}
 
 <body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
 
-<a name="Hooks"></a>
+<a name="Interacting-with-the-Lisp-process"></a>
 <table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="stumpwm-1.0.0_13.html#Behind-The-Scenes-Look-At-Colors" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="stumpwm-1.0.0_15.html#Modules" title="Next section in reading order"> &gt; </a>]</td>
+<tr><td valign="middle" align="left">[<a href="stumpwm-1.0.0_13.html#Manipulating-Windows" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-1.0.0_15.html#Init-File" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="stumpwm-1.0.0_13.html#Colors" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="stumpwm-1.0.0.html#Top" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="stumpwm-1.0.0_15.html#Modules" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-1.0.0_1.html#Introduction" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-1.0.0_1.html#Introduction" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-1.0.0_17.html#Key-Bindings" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left">[<a href="stumpwm-1.0.0.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[Contents]</td>
-<td valign="middle" align="left">[<a href="stumpwm-1.0.0_17.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-1.0.0_63.html#Command-and-Function-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="stumpwm-1.0.0_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<a name="Hooks-1"></a>
-<h1 class="chapter">14. Hooks</h1>
-<p>StumpWM exports a number of hooks you can use to add customizations;
-like hooks in Emacs, you add to a hook with the <code>add-hook</code>
-function. for example:
+<hr size="1">
+<a name="Interacting-with-the-Lisp-process-1"></a>
+<h2 class="section">1.5 Interacting with the Lisp process</h2>
+
+<p>Since StumpWM is a Lisp program, there is a way for you to evaluate
+Lisp code directly, on the same Lisp process that StumpWM is running on.
+Type <kbd>C-t :</kbd> and an input box will appear. Then type some Lisp
+expression.
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example">(stumpwm:add-hook 'stumpwm:*new-window-hook* 'my-new-window-custos)
-</pre></td></tr></table>
-
-<p>adds your <code>my-new-window-custos</code> function to the list of
-functions called when a new window appears.
+<p>When you call <code>eval</code> this way, you will be in the STUMPWM-USER
+package, which imports all the exported symbols from the main STUMPWM
+package.
 </p>
-<dl>
-<dt><a name="index-add_002dhook"></a><u>Macro:</u> <b>add-hook</b><i> hook fn</i></dt>
-<dd><p>Add <var>function</var> to the hook <var>hook-variable</var>. For example, to
-display a message whenever you switch frames:
+<dl compact="compact">
+<dt> <code>*mode-line-border-width*</code></dt>
+<dd><p>Reads the value of <var>*mode-line-border-width*</var>.
 </p>
-<table><tr><td>&nbsp;</td><td><pre class="example">(defun my-rad-fn (to-frame from-frame)
-  (stumpwm:message &quot;Mustard!&quot;))
-
-(stumpwm:add-hook stumpwm:*focus-frame-hook* 'my-rad-fn)
-</pre></td></tr></table>
-</dd></dl>
-
-<dl>
-<dt><a name="index-remove_002dhook"></a><u>Macro:</u> <b>remove-hook</b><i> hook fn</i></dt>
-<dd><p>Remove the specified function from the hook.
-</p></dd></dl>
-
-
-<p>The following hooks are available:
+</dd>
+<dt> <code>(setf *mode-line-border-width* 3)</code></dt>
+<dd><p>Sets the variable <var>*mode-line-border-width*</var> to 3.
 </p>
-<dl>
-<dt><a name="index-_002anew_002dwindow_002dhook_002a"></a><u>Hook:</u> <b>*new-window-hook*</b></dt>
-<dd><p>A hook called whenever a window is added to the window list. This
-includes a genuinely new window as well as bringing a withdrawn window
-back into the window list.
-</p></dd></dl>
+</dd>
+<dt> <code>(set-prefix-key (kbd &quot;C-M-H-s-z&quot;))</code></dt>
+<dd><p>Calls the <code>set-prefix-key</code> function (and sets a new keyboard prefix)
+</p></dd>
+</dl>
 
-<dl>
-<dt><a name="index-_002adestroy_002dwindow_002dhook_002a"></a><u>Hook:</u> <b>*destroy-window-hook*</b></dt>
-<dd><p>A hook called whenever a window is destroyed or withdrawn.
-</p></dd></dl>
-
-<dl>
-<dt><a name="index-_002afocus_002dwindow_002dhook_002a"></a><u>Hook:</u> <b>*focus-window-hook*</b></dt>
-<dd><p>A hook called when a window is given focus. It is called with 2
-arguments: the current window and the last window (could be nil).
-</p></dd></dl>
-
-<dl>
-<dt><a name="index-_002aplace_002dwindow_002dhook_002a"></a><u>Hook:</u> <b>*place-window-hook*</b></dt>
-<dd><p>A hook called whenever a window is placed by rule. Arguments are
-window group and frame
-</p></dd></dl>
-
-<dl>
-<dt><a name="index-_002astart_002dhook_002a"></a><u>Hook:</u> <b>*start-hook*</b></dt>
-<dd><p>A hook called when stumpwm starts.
-</p></dd></dl>
-
-<dl>
-<dt><a name="index-_002ainternal_002dloop_002dhook_002a"></a><u>Hook:</u> <b>*internal-loop-hook*</b></dt>
-<dd><p>A hook called inside stumpwm&rsquo;s inner loop.
-</p></dd></dl>
-
-<dl>
-<dt><a name="index-_002afocus_002dframe_002dhook_002a"></a><u>Hook:</u> <b>*focus-frame-hook*</b></dt>
-<dd><p>A hook called when a frame is given focus. The hook functions are
-called with 2 arguments: the current frame and the last frame.
-</p></dd></dl>
-
-<dl>
-<dt><a name="index-_002anew_002dframe_002dhook_002a"></a><u>Hook:</u> <b>*new-frame-hook*</b></dt>
-<dd><p>A hook called when a new frame is created. the hook is called with
-the frame as an argument.
-</p></dd></dl>
-
-<dl>
-<dt><a name="index-_002amessage_002dhook_002a"></a><u>Hook:</u> <b>*message-hook*</b></dt>
-<dd><p>A hook called whenever stumpwm displays a message. The hook
-function is passed any number of arguments. Each argument is a
-line of text.
-</p></dd></dl>
-
-<dl>
-<dt><a name="index-_002atop_002dlevel_002derror_002dhook_002a"></a><u>Hook:</u> <b>*top-level-error-hook*</b></dt>
-<dd><p>Called when a top level error occurs. Note that this hook is
-run before the error is dealt with according to
-*top-level-error-action*.
-</p></dd></dl>
-
-<dl>
-<dt><a name="index-_002afocus_002dgroup_002dhook_002a"></a><u>Hook:</u> <b>*focus-group-hook*</b></dt>
-<dd><p>A hook called whenever stumpwm switches groups. It is called with 2 arguments: the current group and the last group.
-</p></dd></dl>
-
-<dl>
-<dt><a name="index-_002akey_002dpress_002dhook_002a"></a><u>Hook:</u> <b>*key-press-hook*</b></dt>
-<dd><p>A hook called whenever a key under *top-map* is pressed.
-It is called with 3 argument: the key, the (possibly incomplete) key
-sequence it is a part of, and command value bound to the key.
-</p></dd></dl>
-
-<dl>
-<dt><a name="index-_002aroot_002dclick_002dhook_002a"></a><u>Hook:</u> <b>*root-click-hook*</b></dt>
-<dd><p>A hook called whenever there is a mouse click on the root
-window. Called with 4 arguments, the screen containing the root
-window, the button clicked, and the x and y of the pointer.
-</p></dd></dl>
-
-<dl>
-<dt><a name="index-_002amode_002dline_002dclick_002dhook_002a"></a><u>Hook:</u> <b>*mode-line-click-hook*</b></dt>
-<dd><p>Called whenever the mode-line is clicked. It is called with 4 arguments,
-the mode-line, the button clicked, and the x and y of the pointer.
-</p></dd></dl>
-
-<dl>
-<dt><a name="index-_002aurgent_002dwindow_002dhook_002a"></a><u>Hook:</u> <b>*urgent-window-hook*</b></dt>
-<dd><p>A hook called whenever a window sets the property indicating that
-  it demands the user&rsquo;s attention
-</p></dd></dl>
-
-<dl>
-<dt><a name="index-_002aevent_002dprocessing_002dhook_002a"></a><u>Hook:</u> <b>*event-processing-hook*</b></dt>
-<dd><p>A hook called inside stumpwm&rsquo;s inner loop, before the default event
-  processing takes place. This hook is run inside (with-event-queue ...).
-</p></dd></dl>
-
-<dl>
-<dt><a name="index-_002apre_002dcommand_002dhook_002a"></a><u>Hook:</u> <b>*pre-command-hook*</b></dt>
-<dd><p>Called before a command is called. It is called with 1 argument:
-the command as a symbol.
-</p></dd></dl>
-
-<dl>
-<dt><a name="index-_002apost_002dcommand_002dhook_002a"></a><u>Hook:</u> <b>*post-command-hook*</b></dt>
-<dd><p>Called after a command is called. It is called with 1 argument:
-the command as a symbol.
-</p></dd></dl>
-
-
-<hr size="6">
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="stumpwm-1.0.0_13.html#Colors" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="stumpwm-1.0.0_15.html#Modules" title="Next chapter"> &gt;&gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="stumpwm-1.0.0.html#Top" title="Cover (top) of document">Top</a>]</td>
-<td valign="middle" align="left">[Contents]</td>
-<td valign="middle" align="left">[<a href="stumpwm-1.0.0_17.html#Command-and-Function-Index" title="Index">Index</a>]</td>
-<td valign="middle" align="left">[<a href="stumpwm-1.0.0_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
-</tr></table>
+<hr size="1">
 <p>
  <font size="-1">
-  This document was generated by <em>David Bjergaard</em> on <em>January 12, 2017</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
+  This document was generated on <i>January 28, 2024</i> using <a href="http://www.nongnu.org/texi2html/"><i>texi2html 1.82</i></a>.
  </font>
  <br>
 

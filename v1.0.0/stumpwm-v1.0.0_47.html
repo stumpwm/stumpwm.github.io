@@ -1,0 +1,467 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- Created on January 28, 2024 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>StumpWM Manual: 12. Miscellaneous Commands</title>
+
+<meta name="description" content="StumpWM Manual: 12. Miscellaneous Commands">
+<meta name="keywords" content="StumpWM Manual: 12. Miscellaneous Commands">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="../style.css">
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="Miscellaneous-Commands"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="stumpwm-v1.0.0_46.html#Interacting-With-X11" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-v1.0.0_48.html#Menus" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-v1.0.0_46.html#Interacting-With-X11" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-v1.0.0.html#Top" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-v1.0.0_54.html#Colors" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-v1.0.0.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="stumpwm-v1.0.0_63.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-v1.0.0_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<hr size="1">
+<a name="Miscellaneous-Commands-1"></a>
+<h1 class="chapter">12. Miscellaneous Commands</h1>
+<p>The following is a list of commands that don&rsquo;t really fit in any other
+section.
+</p>
+<dl>
+<dt><a name="index-emacs"></a><u>Command:</u> <b>emacs</b></dt>
+<dd><p>Start emacs unless it is already running, in which case focus it.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-banish"></a><u>Command:</u> <b>banish</b><i> &amp;optional where</i></dt>
+<dd><p>Warp the mouse the lower right corner of the current head.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-ratwarp"></a><u>Command:</u> <b>ratwarp</b><i> x y</i></dt>
+<dd><p>Warp the mouse to the specified location.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-ratrelwarp"></a><u>Command:</u> <b>ratrelwarp</b><i> dx dy</i></dt>
+<dd><p>Warp the mouse by the specified amount from its current position.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-ratclick"></a><u>Command:</u> <b>ratclick</b><i> &amp;optional (button 1)</i></dt>
+<dd><p>Simulate a pointer button event at the current pointer
+location. Note: this function is unlikely to work unless
+your X server and CLX implementation support XTEST.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-echo_002ddate"></a><u>Command:</u> <b>echo-date</b></dt>
+<dd><p>Display the date and time.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-eval_002dline"></a><u>Command:</u> <b>eval-line</b><i> cmd</i></dt>
+<dd><p>Evaluate the s-expression and display the result(s).
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-window_002dsend_002dstring-1"></a><u>Command:</u> <b>window-send-string</b><i> string &amp;optional (window (current-window))</i></dt>
+<dd><p>Send the string of characters to the current window as if they&rsquo;d been typed.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-reload"></a><u>Command:</u> <b>reload</b></dt>
+<dd><p>Reload StumpWM using <code>asdf</code>.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-loadrc"></a><u>Command:</u> <b>loadrc</b></dt>
+<dd><p>Reload the &lsquo;<tt>~/.stumpwmrc</tt>&rsquo; file.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-keyboard_002dquit"></a><u>Command:</u> <b>keyboard-quit</b></dt>
+</dl>
+
+<dl>
+<dt><a name="index-quit"></a><u>Command:</u> <b>quit</b></dt>
+<dd><p>Quit StumpWM.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-restart_002dhard"></a><u>Command:</u> <b>restart-hard</b></dt>
+<dd><p>Restart stumpwm. This is handy if a new stumpwm executable has been
+made and you wish to replace the existing process with it.
+</p>
+<p>Any run-time customizations will be lost after the restart.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-restart_002dsoft"></a><u>Command:</u> <b>restart-soft</b></dt>
+<dd><p>Soft Restart StumpWM. The lisp process isn&rsquo;t restarted. Instead,
+control jumps to the very beginning of the stumpwm program. This
+differs from RESTART, which restarts the unix process.
+</p>
+<p>Since the process isn&rsquo;t restarted, existing customizations remain
+after the restart.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-getsel"></a><u>Command:</u> <b>getsel</b></dt>
+<dd><p>Echo the X selection.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-putsel"></a><u>Command:</u> <b>putsel</b><i> string</i></dt>
+<dd><p>Stuff the string <var>string</var> into the X selection.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-command_002dmode"></a><u>Command:</u> <b>command-mode</b></dt>
+<dd><p>Command mode allows you to type ratpoison commands without needing the
+&lt;C-t&gt; prefix. Keys not bound in StumpWM will still get sent to the
+current window. To exit command mode, type &lt;C-g&gt;.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-copy_002dunhandled_002derror"></a><u>Command:</u> <b>copy-unhandled-error</b></dt>
+<dd><p>When an unhandled error occurs, StumpWM restarts and attempts to
+continue. Unhandled errors should be reported to the mailing list so
+they can be fixed. Use this command to copy the unhandled error and
+backtrace to the X11 selection so you can paste in your email when
+submitting the bug report.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-commands"></a><u>Command:</u> <b>commands</b></dt>
+<dd><p>List all available commands.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-lastmsg"></a><u>Command:</u> <b>lastmsg</b></dt>
+<dd><p>Display the last message. If the previous command was lastmsg, then
+continue cycling back through the message history.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-list_002dwindow_002dproperties"></a><u>Command:</u> <b>list-window-properties</b></dt>
+<dd><p>List all the properties of the current window and their values,
+like xprop.
+</p></dd></dl>
+
+
+<dl>
+<dt><a name="index-run_002dcommands"></a><u>Function:</u> <b>run-commands</b><i> &amp;rest commands</i></dt>
+<dd><p>Run each stumpwm command in sequence. This could be used if you&rsquo;re
+used to ratpoison&rsquo;s rc file and you just want to run commands or don&rsquo;t
+know lisp very well. One might put the following in one&rsquo;s rc file:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">(stumpwm:run-commands
+  &quot;escape C-z&quot;
+  &quot;exec firefox&quot;
+  &quot;split&quot;)
+</pre></td></tr></table>
+</dd></dl>
+
+
+<dl>
+<dt><a name="index-defcommand"></a><u>Macro:</u> <b>defcommand</b><i> name (&amp;rest args) (&amp;rest interactive-args) &amp;body body</i></dt>
+<dd><p>Create a command function and store its interactive hints in
+*command-hash*. The local variable %interactivep% can be used to check
+if the command was called interactively. If it is non-NIL then it was
+called from a keybinding or from the colon command.
+</p>
+<p>The NAME argument can be a string, or a list of two symbols. If the
+latter, the first symbol names the command, and the second indicates
+the type of group under which this command will be usable. Currently,
+tile-group and floating-group are the two possible values.
+</p>
+<p>INTERACTIVE-ARGS is a list of the following form: ((TYPE PROMPT) (TYPE PROMPT) ...)
+</p>
+<p>each element in INTERACTIVE-ARGS declares the type and prompt for the
+command&rsquo;s arguments.
+</p>
+<p>TYPE can be one of the following:
+</p>
+<dl compact="compact">
+<dt> <var>:y-or-n</var></dt>
+<dd><p>A yes or no question returning T or NIL.
+</p></dd>
+<dt> <var>:variable</var></dt>
+<dd><p>A lisp variable
+</p></dd>
+<dt> <var>:function</var></dt>
+<dd><p>A lisp function
+</p></dd>
+<dt> <var>:command</var></dt>
+<dd><p>A stumpwm command as a string.
+</p></dd>
+<dt> <var>:key-seq</var></dt>
+<dd><p>A key sequence starting from *TOP-MAP*
+</p></dd>
+<dt> <var>:window-number</var></dt>
+<dd><p>An existing window number
+</p></dd>
+<dt> <var>:number</var></dt>
+<dd><p>An integer number
+</p></dd>
+<dt> <var>:string</var></dt>
+<dd><p>A string
+</p></dd>
+<dt> <var>:key</var></dt>
+<dd><p>A single key chord
+</p></dd>
+<dt> <var>:window-name</var></dt>
+<dd><p>An existing window&rsquo;s name
+</p></dd>
+<dt> <var>:direction</var></dt>
+<dd><p>A direction symbol. One of :UP :DOWN :LEFT :RIGHT
+</p></dd>
+<dt> <var>:gravity</var></dt>
+<dd><p>A gravity symbol. One of :center :top :right :bottom :left :top-right :top-left :bottom-right :bottom-left
+</p></dd>
+<dt> <var>:group</var></dt>
+<dd><p>An existing group
+</p></dd>
+<dt> <var>:frame</var></dt>
+<dd><p>A frame
+</p></dd>
+<dt> <var>:shell</var></dt>
+<dd><p>A shell command
+</p></dd>
+<dt> <var>:rest</var></dt>
+<dd><p>The rest of the input yes to be parsed.
+</p></dd>
+<dt> <var>:module</var></dt>
+<dd><p>An existing stumpwm module
+</p></dd>
+</dl>
+
+<p>Note that new argument types can be created with DEFINE-STUMPWM-TYPE.
+</p>
+<p>PROMPT can be string. In this case, if the corresponding argument is
+missing from an interactive call, stumpwm will use prompt for its
+value using PROMPT. If PROMPT is missing or nil, then the argument is
+considered an optional interactive argument and is not prompted for
+when missing.
+</p>
+<p>Alternatively, instead of specifying nil for PROMPT or leaving it
+out, an element can just be the argument type.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-define_002dstumpwm_002dtype"></a><u>Macro:</u> <b>define-stumpwm-type</b><i> type (input prompt) &amp;body body</i></dt>
+<dd><p>Create a new type that can be used for command arguments. <var>type</var> can be any symbol. 
+</p>
+<p>When <var>body</var> is evaluated <var>input</var> is bound to the
+argument-line. It is passed to <code>argument-pop</code>,
+<code>argument-pop-rest</code>, etc. <var>prompt</var> is the prompt that should
+be used when prompting the user for the argument.
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">(define-stumpwm-type :symbol (input prompt)
+ (or (find-symbol (string-upcase
+		     (or (argument-pop input)
+                         ;; Whitespace messes up find-symbol.
+		         (string-trim &quot; &quot;
+		           (completing-read (current-screen)
+					  prompt
+					  ;; find all symbols in the
+					  ;;  stumpwm package.
+					  (let (acc)
+					    (do-symbols (s (find-package &quot;STUMPWM&quot;))
+					      (push (string-downcase (symbol-name s)) acc))
+					    acc)))
+                      (throw 'error &quot;Abort.&quot;)))
+                  &quot;STUMPWM&quot;)
+     (throw 'error &quot;Symbol not in STUMPWM package&quot;)))
+
+(defcommand &quot;symbol&quot; (sym) ((:symbol &quot;Pick a symbol: &quot;))
+  (message &quot;~a&quot; (with-output-to-string (s)
+	          (describe sym s))))
+</pre></td></tr></table>
+
+<p>This code creates a new type called <code>:symbol</code> which finds the
+symbol in the stumpwm package. The command <code>symbol</code> uses it and
+then describes the symbol.
+</p></dd></dl>
+
+
+<dl>
+<dt><a name="index-run_002dor_002draise"></a><u>Function:</u> <b>run-or-raise</b><i> cmd props &amp;optional (all-groups *run-or-raise-all-groups*) (all-screens *run-or-raise-all-screens*)</i></dt>
+<dd><p>Run the shell command, <var>cmd</var>, unless an existing window
+matches <var>props</var>. <var>props</var> is a property list with the following keys:
+</p>
+<dl compact="compact">
+<dt> <code>:class</code></dt>
+<dd><p>Match the window&rsquo;s class.
+</p></dd>
+<dt> <code>:instance</code></dt>
+<dd><p>Match the window&rsquo;s instance or resource-name.
+</p></dd>
+<dt> <code>:role</code></dt>
+<dd><p>Match the window&rsquo;s <code>WM_WINDOW_ROLE</code>.
+</p></dd>
+<dt> <code>:title</code></dt>
+<dd><p>Match the window&rsquo;s title.
+</p></dd>
+</dl>
+
+<p>By default, the global <var>*run-or-raise-all-groups*</var> decides whether
+to search all groups or the current one for a running
+instance. <var>all-groups</var> overrides this default. Similarily for
+<var>*run-or-raise-all-screens*</var> and <var>all-screens</var>.
+</p></dd></dl>
+
+
+<dl>
+<dt><a name="index-run_002dor_002dpull"></a><u>Function:</u> <b>run-or-pull</b><i> cmd props &amp;optional (all-groups *run-or-raise-all-groups*) (all-screens *run-or-raise-all-screens*)</i></dt>
+<dd><p>Similar to run-or-raise, but move the matching window to the
+current frame instead of switching to the window.
+</p></dd></dl>
+
+
+<dl>
+<dt><a name="index-_002arun_002dor_002draise_002dall_002dgroups_002a"></a><u>Variable:</u> <b>*run-or-raise-all-groups*</b></dt>
+<dd><p>When this is <code>T</code> the <code>run-or-raise</code> function searches all groups for a
+running instance. Set it to NIL to search only the current group.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-_002arun_002dor_002draise_002dall_002dscreens_002a"></a><u>Variable:</u> <b>*run-or-raise-all-screens*</b></dt>
+<dd><p>When this is <code>T</code> the <code>run-or-raise</code> function searches all screens for a
+running instance. Set it to <code>NIL</code> to search only the current screen. If
+<var>*run-or-raise-all-groups*</var> is <code>NIL</code> this variable has no effect.
+</p></dd></dl>
+
+
+<dl>
+<dt><a name="index-restarts_002dmenu"></a><u>Function:</u> <b>restarts-menu</b><i> err</i></dt>
+<dd><p>Display a menu with the active restarts and let the user pick
+one. Error is the error being recovered from. If the user aborts the
+menu, the error is re-signalled.
+</p></dd></dl>
+
+
+<dl>
+<dt><a name="index-with_002drestarts_002dmenu"></a><u>Macro:</u> <b>with-restarts-menu</b><i> &amp;body body</i></dt>
+<dd><p>Execute BODY. If an error occurs allow the user to pick a
+restart from a menu of possible restarts. If a restart is not
+chosen, resignal the error.
+</p></dd></dl>
+
+
+<dl>
+<dt><a name="index-_002astartup_002dmessage_002a"></a><u>Variable:</u> <b>*startup-message*</b></dt>
+<dd><p>This is the message StumpWM displays when it starts. Set it to NIL to
+suppress.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-_002asuppress_002dabort_002dmessages_002a"></a><u>Variable:</u> <b>*suppress-abort-messages*</b></dt>
+<dd><p>Suppress abort message when non-nil.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-_002adefault_002dpackage_002a"></a><u>Variable:</u> <b>*default-package*</b></dt>
+<dd><p>This is the package eval reads and executes in. You might want to set
+this to <code>:stumpwm</code> if you find yourself using a lot of internal
+stumpwm symbols. Setting this variable anywhere but in your rc file
+will have no effect.
+</p></dd></dl>
+
+
+<dl>
+<dt><a name="index-defprogram_002dshortcut"></a><u>Macro:</u> <b>defprogram-shortcut</b><i> name &amp;key (command (string-downcase (string name))) (props (quasiquote (quote (class #S(comma :expr (string-capitalize command) :kind 0))))) (map (quote *top-map*)) (key (quasiquote (kbd #S(comma :expr (concat H- (subseq command 0 1)) :kind 0)))) (pullp nil) (pull-name (intern1 (concat (string name) -PULL))) (pull-key (quasiquote (kbd #S(comma :expr (concat H-M- (subseq command 0 1)) :kind 0))))</i></dt>
+<dd><p>Define a command and key binding to run or raise a program. If
+<var>pullp</var> is set, also define a command and key binding to run or
+pull the program.
+</p></dd></dl>
+
+
+<dl>
+<dt><a name="index-_002ainitializing_002a"></a><u>Variable:</u> <b>*initializing*</b></dt>
+<dd><p>True when starting stumpwm. Use this variable in your rc file to
+run code that should only be executed once, when stumpwm starts up and
+loads the rc file.
+</p></dd></dl>
+
+
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="stumpwm-v1.0.0_48.html#Menus">12.1 Menus</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="stumpwm-v1.0.0_49.html#StumpWM_0027s-Data-Directory">12.2 StumpWM&rsquo;s Data Directory</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="stumpwm-v1.0.0_50.html#Debugging-StumpWM">12.3 Debugging StumpWM</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="stumpwm-v1.0.0_51.html#Sending-a-Bug-Report">12.4 Sending a Bug Report</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="stumpwm-v1.0.0_52.html#Timers">12.5 Timers</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="stumpwm-v1.0.0_53.html#Getting-Help">12.6 Getting Help</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+<hr size="1">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="stumpwm-v1.0.0_46.html#Interacting-With-X11" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-v1.0.0_48.html#Menus" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-v1.0.0_46.html#Interacting-With-X11" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-v1.0.0.html#Top" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-v1.0.0_54.html#Colors" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-v1.0.0.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="stumpwm-v1.0.0_63.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-v1.0.0_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated on <i>January 28, 2024</i> using <a href="http://www.nongnu.org/texi2html/"><i>texi2html 1.82</i></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

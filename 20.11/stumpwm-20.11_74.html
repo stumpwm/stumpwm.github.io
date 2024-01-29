@@ -1,0 +1,226 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- Created on January 28, 2024 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>StumpWM Manual: 18. Advanced Configuration</title>
+
+<meta name="description" content="StumpWM Manual: 18. Advanced Configuration">
+<meta name="keywords" content="StumpWM Manual: 18. Advanced Configuration">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="../style.css">
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="Advanced-Configuration"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="stumpwm-20.11_73.html#Sending-Patches" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-20.11_75.html#Command-and-Function-Index" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-20.11_69.html#Hacking" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-20.11.html#Top" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-20.11_75.html#Command-and-Function-Index" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-20.11.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="stumpwm-20.11_75.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-20.11_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<hr size="1">
+<a name="Advanced-Configuration-1"></a>
+<h1 class="chapter">18. Advanced Configuration</h1>
+
+<dl>
+<dt><a name="index-_002adefault_002dpackage_002a"></a><u>Variable:</u> <b>*default-package*</b></dt>
+<dd><p>This is the package eval reads and executes in. You might want to set
+this to <code>:stumpwm</code> if you find yourself using a lot of internal
+stumpwm symbols. Setting this variable anywhere but in your rc file
+will have no effect.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-_002adefault_002dbg_002dcolor_002a"></a><u>Variable:</u> <b>*default-bg-color*</b></dt>
+<dd><p>Default color for the desktop background.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-run_002dcommands"></a><u>Function:</u> <b>run-commands</b><i> &amp;rest commands</i></dt>
+<dd><p>Run each stumpwm command in sequence. This could be used if you&rsquo;re
+used to ratpoison&rsquo;s rc file and you just want to run commands or don&rsquo;t
+know lisp very well. One might put the following in one&rsquo;s rc file:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">(stumpwm:run-commands
+  &quot;escape C-z&quot;
+  &quot;exec firefox&quot;
+  &quot;split&quot;)
+</pre></td></tr></table>
+</dd></dl>
+
+<p>@&nbsp;run-commands
+</p><dl>
+<dt><a name="index-_002astartup_002dmessage_002a"></a><u>Variable:</u> <b>*startup-message*</b></dt>
+<dd><p>This is the message StumpWM displays when it starts. Set it to NIL to
+suppress.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-_002alist_002dhidden_002dgroups_002a-1"></a><u>Variable:</u> <b>*list-hidden-groups*</b></dt>
+<dd><p>Controls whether hidden groups are displayed by &rsquo;groups&rsquo; and &rsquo;vgroups&rsquo; commands
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-defprogram_002dshortcut"></a><u>Macro:</u> <b>defprogram-shortcut</b><i> name &amp;key (command (string-downcase (string name))) (props (quasiquote (quote (class #S(comma :expr (string-capitalize command) :kind 0))))) (map (quote *top-map*)) (key (quasiquote (kbd #S(comma :expr (concat H- (subseq command 0 1)) :kind 0)))) (pullp nil) (pull-name (intern1 (concat (string name) -PULL))) (pull-key (quasiquote (kbd #S(comma :expr (concat H-M- (subseq command 0 1)) :kind 0))))</i></dt>
+<dd><p>Define a command and key binding to run or raise a program. If
+<var>pullp</var> is set, also define a command and key binding to run or
+pull the program.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-_002ainitializing_002a"></a><u>Variable:</u> <b>*initializing*</b></dt>
+<dd><p>True when starting stumpwm. Use this variable in your rc file to
+run code that should only be executed once, when stumpwm starts up and
+loads the rc file.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-loadrc"></a><u>Command:</u> <b>loadrc</b></dt>
+<dd><p>Reload the &lsquo;<tt>~/.stumpwmrc</tt>&rsquo; file.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-_002aignore_002dwm_002dinc_002dhints_002a"></a><u>Variable:</u> <b>*ignore-wm-inc-hints*</b></dt>
+<dd><p>Set this to T if you never want windows to resize based on incremental WM_HINTs,
+like xterm and emacs.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-_002amax_002dlast_002dmessage_002dsize_002a"></a><u>Variable:</u> <b>*max-last-message-size*</b></dt>
+<dd><p>how many previous messages to keep.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-_002amodule_002ddir_002a"></a><u>Variable:</u> <b>*module-dir*</b></dt>
+<dd><p>The location of the contrib modules on your system.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-set_002dmodule_002ddir"></a><u>Function:</u> <b>set-module-dir</b><i> dir</i></dt>
+<dd><p>Sets the location of the for StumpWM to find modules
+</p></dd></dl>
+
+<p>@&nbsp;set-module-dir
+</p><dl>
+<dt><a name="index-_002amouse_002dfocus_002dpolicy_002a"></a><u>Variable:</u> <b>*mouse-focus-policy*</b></dt>
+<dd><p>The mouse focus policy decides how the mouse affects input
+focus. Possible values are :ignore, :sloppy, and :click. :ignore means
+stumpwm ignores the mouse. :sloppy means input focus follows the
+mouse; the window that the mouse is in gets the focus. :click means
+input focus is transfered to the window you click on.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-_002aresize_002dhides_002dwindows_002a"></a><u>Variable:</u> <b>*resize-hides-windows*</b></dt>
+<dd><p>Set to T to hide windows during interactive resize
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-_002aroot_002dclick_002dfocuses_002dframe_002a"></a><u>Variable:</u> <b>*root-click-focuses-frame*</b></dt>
+<dd><p>Set to NIL if you don&rsquo;t want clicking the root window to focus the frame
+  containing the pointer.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-_002asuppress_002dframe_002dindicator_002a"></a><u>Variable:</u> <b>*suppress-frame-indicator*</b></dt>
+<dd><p>Set this to T if you never want to see the frame indicator.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-_002asuppress_002dwindow_002dplacement_002dindicator_002a"></a><u>Variable:</u> <b>*suppress-window-placement-indicator*</b></dt>
+<dd><p>Set to T if you never want to see messages that windows were placed
+  according to rules.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-_002atext_002dcolor_002a"></a><u>Variable:</u> <b>*text-color*</b></dt>
+<dd><p>The color of message text.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-_002atimeout_002dframe_002dindicator_002dwait_002a"></a><u>Variable:</u> <b>*timeout-frame-indicator-wait*</b></dt>
+<dd><p>The amount of time a frame indicator timeout takes.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-_002atop_002dlevel_002derror_002daction_002a"></a><u>Variable:</u> <b>*top-level-error-action*</b></dt>
+<dd><p>If an error is encountered at the top level, in
+STUMPWM-INTERNAL-LOOP, then this variable decides what action
+shall be taken. By default it will print a message to the screen
+and to *standard-output*.
+</p>
+<p>Valid values are :message, :break, :abort. :break will break to the
+debugger. This can be problematic because if the user hit&rsquo;s a
+mapped key the ENTIRE keyboard will be frozen and you will have
+to login remotely to regain control. :abort quits stumpwm.
+</p></dd></dl>
+
+
+
+<hr size="1">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="stumpwm-20.11_73.html#Sending-Patches" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-20.11_75.html#Command-and-Function-Index" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-20.11_69.html#Hacking" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-20.11.html#Top" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-20.11_75.html#Command-and-Function-Index" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-20.11.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="stumpwm-20.11_75.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-20.11_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated on <i>January 28, 2024</i> using <a href="http://www.nongnu.org/texi2html/"><i>texi2html 1.82</i></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

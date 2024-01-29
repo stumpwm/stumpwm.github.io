@@ -1,0 +1,339 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- Created on January 28, 2024 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>StumpWM Manual: 10.1 Programming With Minor Modes</title>
+
+<meta name="description" content="StumpWM Manual: 10.1 Programming With Minor Modes">
+<meta name="keywords" content="StumpWM Manual: 10.1 Programming With Minor Modes">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="../style.css">
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="Programming-With-Minor-Modes"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="stumpwm-23.11_53.html#Minor-Modes" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-23.11_55.html#Minor-Mode-Scopes" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-23.11_53.html#Minor-Modes" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-23.11_53.html#Minor-Modes" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-23.11_57.html#Internals" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-23.11.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="stumpwm-23.11_83.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-23.11_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<hr size="1">
+<a name="Programming-With-Minor-Modes-1"></a>
+<h2 class="section">10.1 Programming With Minor Modes</h2>
+
+<p>Minor modes get their power from their ability to override and augment
+generic functions which are called with the minor mode&rsquo;s scope object as
+an argument. If you find a function whose behavior you wish to augment
+or override in the process of writing a minor mode, open an issue or
+submit a PR to generify the function. Generification is easily done like
+so:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">(defun somefun (a b)
+  &quot;docstring&quot;
+  (otherfun (+ a b)))
+;; the above becomes
+(defgeneric somefun (a b)
+  (:documentation &quot;docstring&quot;)
+  (:method (a b)
+    (otherfun (+ a b))))
+</pre></td></tr></table>
+
+<p>When defining a minor mode, the programmer may desire to perform setup
+for the minor mode. This is can be done in three ways. The first is to
+hang a function upon the minor modes enable hook. However this runs the
+risk of users potentially clobbering the initialization function, or
+modifying the hook such that the initialization function is not the
+first function run. The second way is to define a method for the generic
+function <code>update-instance-for-different-class</code>. This function
+should specialize upon the minor mode as the second argument. As a final
+option, one can define before, after, and around methods for the generic
+function <code>autoenable-minor-mode</code> if and only if the method does not
+access any slots within the object.
+</p>
+<p>One of the pitfalls of minor modes is that they are ultimately enabled
+by calling <code>change-class</code>, which places some restrictions upon
+where they can be enabled. Specifically, it is implied to be undefined
+behavior if a minor mode is enabled in an object from within a method
+which accesses slots of that object. While in practice this has not
+proven to be an issue at the time of writing, this is undefined behavior
+and future versions of SBCL may break if this is done.
+</p>
+<p>When writing a minor mode, it is often useful to separate out the
+desired functionality into its own mixin classes and use those in the
+superclass list of the minor mode. For example:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">(define-minor-mode my-mode (my-mixin minor-mode) ())
+</pre></td></tr></table>
+
+<p>This prevents issues with inheritance and dynamic mixins from cropping
+up. Since minor modes are just classes, a minor mode can descend from
+another minor mode. However after enabling the subclass minor mode, the
+superclass minor mode cannot be enabled. However if the superclass minor
+mode is enabled first, then the subclass minor mode can be enabled. The
+easiest way around this is the aforementioned approach of mixins.
+As an example of the inheritance issue, take the following minor mode
+definitions:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">(define-minor-mode x () ())
+(define-minor-mode y (x) ())
+
+(enable-minor-mode 'x)
+(enable-minor-mode 'y) ; both modes are enabled
+;; As opposed to
+(enable-minor-mode 'y)
+(enable-minor-mode 'x) ; signals an error
+</pre></td></tr></table>
+
+
+<p>When enabling and disabling minor modes theres a set of generic
+functions in charge of determining what object to mix the minor mode in
+to and whether or not to mix it.
+</p>
+<dl>
+<dt><a name="index-autoenable_002dminor_002dmode"></a><u>Function:</u> <b>autoenable-minor-mode</b><i>  mode object</i></dt>
+<dd><p>The core of enabling minor modes within an object. Mixes the minor mode in to
+the object
+</p></dd></dl>
+
+
+<p>Defining a minor mode defines a main method for this generic function
+which will mix the minor mode into the scope object when called and
+returns T. This method specializes upon the minor mode symbol and the
+scope type. The minor mode will only be enabled and the hooks run when
+the function <code>ENABLE-WHEN</code> returns T. Any before after or around
+methods for this function must not access any slots. 
+</p>
+<dl>
+<dt><a name="index-autodisable_002dminor_002dmode"></a><u>Function:</u> <b>autodisable-minor-mode</b><i>  mode object</i></dt>
+<dd><p>The core of disabling minor modes within an object. Calls the minor modes
+on-disable function.
+</p></dd></dl>
+
+
+<p>Defining a minor mode defines a main method for this generic function
+which specializes upon the mode symbol and the mode, and removes the
+minor mode from the object. Any methods for this function must not
+access any slots.
+</p>
+<dl>
+<dt><a name="index-enable_002dwhen"></a><u>Function:</u> <b>enable-when</b><i>  mode object</i></dt>
+<dd><p>Define methods for this generic function to control when the minor mode should
+be enabled.
+</p></dd></dl>
+
+
+<p>Outside of autoenabling and autodisabling minor modes, there are several
+generic functions which dispatch upon minor modes and their names.
+</p>
+<dl>
+<dt><a name="index-minor_002dmode_002dglobal_002dp"></a><u>Function:</u> <b>minor-mode-global-p</b><i>  minor-mode-symbol</i></dt>
+<dd><p>Return T when MINOR-MODE-SYMBOL denotes a global minor mode
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-minor_002dmode_002dscope"></a><u>Function:</u> <b>minor-mode-scope</b><i>  minor-mode-symbol</i></dt>
+<dd><p>Return as a keyword the scope of the minor mode
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-minor_002dmode_002denable_002dhook"></a><u>Function:</u> <b>minor-mode-enable-hook</b><i>  minor-mode-symbol</i></dt>
+<dd><p>Returns the minor mode enable hook for a given minor mode symbol. This hook is
+run whenever the minor mode is enabled via autoenable.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-minor_002dmode_002ddisable_002dhook"></a><u>Function:</u> <b>minor-mode-disable-hook</b><i>  minor-mode-symbol</i></dt>
+<dd><p>Returns the minor mode disable hook for a given minor mode symbol.  This hook
+is run whenever the minor mode is disabled via autodisable.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-minor_002dmode_002dhook"></a><u>Function:</u> <b>minor-mode-hook</b><i>  minor-mode-symbol</i></dt>
+<dd><p>Returns the minor mode hook for a given minor mode symbol. This hook is run
+whenever the minor mode is explicitly enabled.
+</p></dd></dl>
+
+
+<dl>
+<dt><a name="index-minor_002dmode_002dkeymap"></a><u>Function:</u> <b>minor-mode-keymap</b><i>  minor-mode</i></dt>
+<dd><p>Return the top map for the minor mode
+</p></dd></dl>
+
+
+<p>This function has a set of main methods defined which all call the next
+method to obtain a list of top maps for every minor mode. Any extra
+keymaps one wishes to add to the minor mode may be added by defining a
+main method which calls <code>call-next-method</code> and returns a flat
+list. Similarly, an around method may be used which abides by the same
+rules.
+</p>
+<dl>
+<dt><a name="index-minor_002dmode_002dlighter"></a><u>Function:</u> <b>minor-mode-lighter</b><i>  mode</i></dt>
+<dd><p>Return a string of minor mode lighters.
+</p></dd></dl>
+
+
+<p>This function operates similarly to <code>minor-mode-keymap</code>, with a
+main method defined for every minor mode which calls
+<code>call-next-method</code> and returns a flat list. In addition there is a
+single around method defined which concatenates all these strings
+together.
+</p>
+<p>There are also a set of regular functions and special variables which
+which may be of use when working with minor modes.
+</p>
+<dl>
+<dt><a name="index-enable_002dminor_002dmode"></a><u>Function:</u> <b>enable-minor-mode</b><i>  minor-mode &amp;optional scope-object</i></dt>
+<dd><p>Default Values:
+</p><pre class="verbatim">  scope-object  nil
+</pre><p>Enable MINOR-MODE. If MINOR-MODE is global, then enable it in all relevant
+objects. Otherwise enable it in the current object. If SCOPE-OBJECT is provided,
+use SCOPE-OBJECT instead of the current object, or include it in the list of
+current objects if MINOR-MODE is global
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-disable_002dminor_002dmode"></a><u>Function:</u> <b>disable-minor-mode</b><i>  minor-mode &amp;optional scope-object</i></dt>
+<dd><p>Default Values:
+</p><pre class="verbatim">  scope-object  nil
+</pre><p>Disable MINOR-MODE in the relevant objects.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-list_002dmodes"></a><u>Function:</u> <b>list-modes</b><i>  object</i></dt>
+<dd><p>List all minor modes followed by the major mode for OBJECT.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-list_002dminor_002dmodes"></a><u>Function:</u> <b>list-minor-modes</b><i>  object</i></dt>
+<dd><p>List all minor modes active in OBJECT
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-current_002dminor_002dmodes"></a><u>Function:</u> <b>current-minor-modes</b><i>  &amp;optional screen</i></dt>
+<dd><p>Default Values:
+</p><pre class="verbatim">  screen  (stumpwm:current-screen)
+</pre><p>Return all currently active minor modes.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-minor_002dmode_002denabled_002dp"></a><u>Function:</u> <b>minor-mode-enabled-p</b><i>  minor-mode &amp;optional screen</i></dt>
+<dd><p>Default Values:
+</p><pre class="verbatim">  screen  (stumpwm:current-screen)
+</pre><p>Return T if MINOR-MODE is active
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-find_002dminor_002dmode"></a><u>Function:</u> <b>find-minor-mode</b><i>  minor-mode &amp;optional screen</i></dt>
+<dd><p>Default Values:
+</p><pre class="verbatim">  screen  (stumpwm:current-screen)
+</pre><p>Return the minor mode object associated with MINOR-MODE.
+</p></dd></dl>
+
+
+<dl>
+<dt><a name="index-_002aminor_002dmode_002a"></a><u>Variable:</u> <b>*minor-mode*</b></dt>
+<dd><p>A dynamic variable bound to the minor mode object when executing a minor mode
+command.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-_002aminor_002dmode_002denable_002dhook_002a"></a><u>Variable:</u> <b>*minor-mode-enable-hook*</b></dt>
+<dd><p>A hook run whenever a minor mode is enabled. Functions are called with the
+minor mode symbol and the object they have been added to. This is run when a
+minor mode is explicitly enabled via enable-minor-mode.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-_002aminor_002dmode_002ddisable_002dhook_002a"></a><u>Variable:</u> <b>*minor-mode-disable-hook*</b></dt>
+<dd><p>A hook run whenever a minor mode is disabled. Functions are called with the
+minor mode symbol and the scope object. This is run when a minor mode is
+explicitly disabled via disable-minor-mode. This is run AFTER the minor mode has
+been disabled, and is called with the minor mode and the first object it was
+disabled in.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-_002aunscoped_002dminor_002dmodes_002a"></a><u>Variable:</u> <b>*unscoped-minor-modes*</b></dt>
+<dd><p>A dynamic variable holding all unscoped minor modes as mixed into the same
+object.
+</p></dd></dl>
+
+
+<dl>
+<dt><a name="index-minor_002dmode"></a><u>Class:</u> <b>minor-mode</b></dt>
+<dd><p>The root minor mode class. All minor modes are subclasses of
+this class.<br>Direct Superclasses: standard-object<br>
+Direct Subclasses: <br>
+Direct Slots: <br>&nbsp;&nbsp;<br>
+</p></dd></dl>
+
+
+<hr size="1">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="stumpwm-23.11_53.html#Minor-Modes" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-23.11_55.html#Minor-Mode-Scopes" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-23.11_53.html#Minor-Modes" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-23.11_53.html#Minor-Modes" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-23.11_57.html#Internals" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-23.11.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="stumpwm-23.11_83.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-23.11_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated on <i>January 28, 2024</i> using <a href="http://www.nongnu.org/texi2html/"><i>texi2html 1.82</i></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

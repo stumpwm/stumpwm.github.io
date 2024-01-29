@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
 <html>
-<!-- Created on November 1, 2014 by texi2html 1.82
+<!-- Created on January 28, 2024 by texi2html 1.82
 texi2html was written by: 
             Lionel Cons <Lionel.Cons@cern.ch> (original author)
             Karl Berry  <karl@freefriends.org>
@@ -10,10 +10,10 @@ Maintained by: Many creative people.
 Send bugs and suggestions to <texi2html-bug@nongnu.org>
 -->
 <head>
-<title>StumpWM Manual: 9. Screens</title>
+<title>StumpWM Manual: 2.3 Modifiers</title>
 
-<meta name="description" content="StumpWM Manual: 9. Screens">
-<meta name="keywords" content="StumpWM Manual: 9. Screens">
+<meta name="description" content="StumpWM Manual: 2.3 Modifiers">
+<meta name="keywords" content="StumpWM Manual: 2.3 Modifiers">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
 <meta name="Generator" content="texi2html 1.82">
@@ -42,139 +42,171 @@ ul.toc {list-style: none}
 
 <body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
 
-<a name="Screens"></a>
+<a name="Modifiers"></a>
 <table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="stumpwm-0.9.8_8.html#Customizing-Groups" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Xinerama" title="Next section in reading order"> &gt; </a>]</td>
+<tr><td valign="middle" align="left">[<a href="stumpwm-0.9.8_8.html#Binding-Keys" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.8_10.html#Commands" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="stumpwm-0.9.8_8.html#Groups" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="stumpwm-0.9.8.html#Top" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="stumpwm-0.9.8_10.html#Interacting-With-Unix" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.8_6.html#Key-Bindings" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.8_6.html#Key-Bindings" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.8_10.html#Commands" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left">[<a href="stumpwm-0.9.8.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[Contents]</td>
-<td valign="middle" align="left">[<a href="stumpwm-0.9.8_17.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.8_47.html#Command-and-Function-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="stumpwm-0.9.8_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<a name="Screens-1"></a>
-<h1 class="chapter">9. Screens</h1>
-<p>StumpWM handles multiple screens.
+<hr size="1">
+<a name="Modifiers-1"></a>
+<h2 class="section">2.3 Modifiers</h2>
+
+<p>Many users have had some difficulty with setting up modifiers for
+StumpWM keybindings. This is caused by a combination of how StumpWM
+handles modifiers and the default modifiers list for many users&rsquo; X
+servers.
 </p>
-<dl>
-<dt><a name="index-snext"></a><u>Command:</u> <b>snext</b></dt>
-<dd><p>Go to the next screen.
-</p></dd></dl>
+<ul>
+<li>
+My &ldquo;Super&rdquo; key doesn&rsquo;t work!
 
-<dl>
-<dt><a name="index-sprev"></a><u>Command:</u> <b>sprev</b></dt>
-<dd><p>Go to the previous screen.
-</p></dd></dl>
-
-<dl>
-<dt><a name="index-sother"></a><u>Command:</u> <b>sother</b></dt>
-<dd><p>Go to the last screen.
-</p></dd></dl>
-
-
-<table class="menu" border="0" cellspacing="0">
-<tr><td align="left" valign="top"><a href="#Xinerama">9.1 Xinerama</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">                    
-</td></tr>
-<tr><td align="left" valign="top"><a href="#Programming-With-Screens">9.2 Programming With Screens</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">    
-</td></tr>
-</table>
-
-<hr size="6">
-<a name="Xinerama"></a>
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Screens" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Programming-With-Screens" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#Screens" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Screens" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="stumpwm-0.9.8_10.html#Interacting-With-Unix" title="Next chapter"> &gt;&gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="stumpwm-0.9.8.html#Top" title="Cover (top) of document">Top</a>]</td>
-<td valign="middle" align="left">[Contents]</td>
-<td valign="middle" align="left">[<a href="stumpwm-0.9.8_17.html#Command-and-Function-Index" title="Index">Index</a>]</td>
-<td valign="middle" align="left">[<a href="stumpwm-0.9.8_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
-</tr></table>
-<a name="Xinerama-1"></a>
-<h2 class="section">9.1 Xinerama</h2>
-<p>StumpWM will attempt to detect Xinerama heads at startup (and at no other
-time.) Heads are logically contained by screens. In a dual-monitor Xinerama
-configuration, there will be one screen with two heads. Non-rectangular layouts
-are supported (frames will not be created in the &rsquo;dead zone&rsquo;.) And message
-windows will be displayed on the current head&ndash;that is, the head to which the
-currently focused frame belongs.
+<p>This is most likely caused by having the Hyper and Super keys listed
+as the same modifier in the modifier list.
 </p>
-<hr size="6">
-<a name="Programming-With-Screens"></a>
+<table><tr><td>&nbsp;</td><td><pre class="example">$ xmodmap
+xmodmap:  up to 3 keys per modifier, (keycodes in parentheses):
+
+shift       Shift_L (0x32),  Shift_R (0x3e)
+lock        Caps_Lock (0x42)
+control     Control_L (0x25),  Control_R (0x6d)
+mod1        Alt_L (0x40),  Alt_R (0x71),  Meta_L (0x9c)
+mod2        Num_Lock (0x4d)
+mod3
+mod4        Super_L (0x7f),  Hyper_L (0x80)
+mod5        Mode_switch (0x5d),  ISO_Level3_Shift (0x7c)
+</pre></td></tr></table>
+
+<p>The problem is in the line beginning with &ldquo;mod4&rdquo;. The way to set up
+the modifier list correctly is to have just the Super key as the mod4
+modifier. The following <code>xmodmap</code> commands will do just that.
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example"># clear out the mod4 modifier
+$ xmodmap -e 'clear mod4'
+$ xmodmap
+xmodmap:  up to 3 keys per modifier, (keycodes in parentheses):
+
+shift       Shift_L (0x32),  Shift_R (0x3e)
+lock        Caps_Lock (0x42)
+control     Control_L (0x25),  Control_R (0x6d)
+mod1        Alt_L (0x40),  Alt_R (0x71),  Meta_L (0x9c)
+mod2        Num_Lock (0x4d)
+mod3
+mod4
+mod5        Mode_switch (0x5d),  ISO_Level3_Shift (0x7c)
+
+# add Super as a mod4 modifier
+$ xmodmap -e 'add mod4 = Super_L'
+$ xmodmap
+xmodmap:  up to 3 keys per modifier, (keycodes in parentheses):
+
+shift       Shift_L (0x32),  Shift_R (0x3e)
+lock        Caps_Lock (0x42)
+control     Control_L (0x25),  Control_R (0x6d)
+mod1        Alt_L (0x40),  Alt_R (0x71),  Meta_L (0x9c)
+mod2        Num_Lock (0x4d)
+mod3
+mod4        Super_L (0x73),  Super_L (0x7f)
+mod5        Mode_switch (0x5d),  ISO_Level3_Shift (0x7c)
+</pre></td></tr></table>
+
+<p>You can automate this by storing the commands in a file and calling
+xmodmap when you start your X session.
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">$ cat ~/.Xmodmap
+clear mod4
+add mod4 = Super_L
+</pre></td></tr></table>
+
+<p>If you use <code>startx</code>, modify your &lsquo;<tt>~/.xsession</tt>&rsquo; or &lsquo;<tt>~/.xinitrc</tt>&rsquo; file.
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">$ cat ~/.xsession
+#!/bin/sh
+
+xmodmap ~/.Xmodmap
+exec /usr/bin/stumpwm
+</pre></td></tr></table>
+
+<p>If you use a graphical login manager (GDM, KDM, etc.), your &lsquo;<tt>~/.Xmodmap</tt>&rsquo;
+file should be fed to <code>xmodmap</code> when you log in. FIXME: verify this.
+</p>
+</li><li>
+Handling Meta and Alt: when do I use <kbd>M-</kbd> and <kbd>A-</kbd>?
+
+<p>If you have no Meta keys defined (see the output of the <code>xmodmap</code>
+command), then StumpWM will treat the <kbd>M-</kbd> prefix in keybindings to
+mean Alt. However, if there are Meta keys defined, then the <kbd>M-</kbd>
+prefix refers to them, and the <kbd>A-</kbd> prefix refers to Alt.
+</p>
+<p>Most users will simply use <kbd>M-</kbd> to refer to their Alt keys. However,
+users that define separate Meta and Alt keys will use <kbd>M-</kbd> to refer
+to the former, and <kbd>A-</kbd> to refer to the latter.
+</p>
+</li><li>
+How can I set up a Hyper key and use it with StumpWM?
+
+<p>To set up a Hyper key, you need to do two things: bind a physical key
+to be a Hyper key, and add that key to the modifiers list.
+</p>
+<p>The following example shows how to bind the control key at the
+bottom-left of most keyboards to be Hyper. This is useful if you&rsquo;ve
+made Caps Lock into a control key, and have no use for the bottom-left
+key.
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">$ xmodmap -e 'keycode 37 = Hyper_L'
+$ xmodmap -e 'clear mod5'
+$ xmodmap -e 'add mod5 = Hyper_L'
+</pre></td></tr></table>
+
+<p>To use a different key for Hyper, replace the keycode &ldquo;37&rdquo; above.
+Use the <code>xev</code> program to see the keycode that any physical key has.
+Refer to the section above on setting up the Super key to see how to
+automate setting the Hyper key when you start X.
+</p>
+<p>Now you can use <kbd>H-</kbd> as a prefix in StumpWM bindings.
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">(define-key *top-map* (kbd &quot;H-RET&quot;) &quot;fullscreen&quot;)
+(define-key *top-map* (kbd &quot;H-Left&quot;) &quot;gprev&quot;)
+(define-key *top-map* (kbd &quot;H-Right&quot;) &quot;gnext&quot;)
+(define-key *top-map* (kbd &quot;H-TAB&quot;) &quot;other&quot;)
+</pre></td></tr></table>
+
+<p>Since essentially no programs have Hyper bindings, you can safely bind
+commands to the <var>*top-map*</var>.
+</p>
+</li></ul>
+
+<hr size="1">
 <table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Xinerama" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="stumpwm-0.9.8_10.html#Interacting-With-Unix" title="Next section in reading order"> &gt; </a>]</td>
+<tr><td valign="middle" align="left">[<a href="stumpwm-0.9.8_8.html#Binding-Keys" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.8_10.html#Commands" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#Screens" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Screens" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="stumpwm-0.9.8_10.html#Interacting-With-Unix" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.8_6.html#Key-Bindings" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.8_6.html#Key-Bindings" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.8_10.html#Commands" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left">[<a href="stumpwm-0.9.8.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[Contents]</td>
-<td valign="middle" align="left">[<a href="stumpwm-0.9.8_17.html#Command-and-Function-Index" title="Index">Index</a>]</td>
-<td valign="middle" align="left">[<a href="stumpwm-0.9.8_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
-</tr></table>
-<a name="Programming-With-Screens-1"></a>
-<h2 class="section">9.2 Programming With Screens</h2>
-
-<dl>
-<dt><a name="index-current_002dscreen"></a><u>Function:</u> <b>current-screen</b></dt>
-<dd><p>Return the current screen.
-</p></dd></dl>
-
-
-<dl>
-<dt><a name="index-screen_002dcurrent_002dwindow"></a><u>Function:</u> <b>screen-current-window</b><i> screen</i></dt>
-<dd><p>Return the current window on the specified screen
-</p></dd></dl>
-
-
-<dl>
-<dt><a name="index-current_002dwindow"></a><u>Function:</u> <b>current-window</b></dt>
-<dd><p>Return the current window on the current screen
-</p></dd></dl>
-
-
-<dl>
-<dt><a name="index-_002ascreen_002dlist_002a"></a><u>Variable:</u> <b>*screen-list*</b></dt>
-<dd><p>The list of screens managed by stumpwm.
-</p></dd></dl>
-
-        
-<hr size="6">
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Screens" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="stumpwm-0.9.8_10.html#Interacting-With-Unix" title="Next chapter"> &gt;&gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="stumpwm-0.9.8.html#Top" title="Cover (top) of document">Top</a>]</td>
-<td valign="middle" align="left">[Contents]</td>
-<td valign="middle" align="left">[<a href="stumpwm-0.9.8_17.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.8_47.html#Command-and-Function-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="stumpwm-0.9.8_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <p>
  <font size="-1">
-  This document was generated by <em>David Bjergaard</em> on <em>November 1, 2014</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
+  This document was generated on <i>January 28, 2024</i> using <a href="http://www.nongnu.org/texi2html/"><i>texi2html 1.82</i></a>.
  </font>
  <br>
 

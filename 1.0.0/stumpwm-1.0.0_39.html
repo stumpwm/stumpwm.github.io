@@ -1,0 +1,244 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- Created on January 28, 2024 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>StumpWM Manual: 7. The Mode Line</title>
+
+<meta name="description" content="StumpWM Manual: 7. The Mode Line">
+<meta name="keywords" content="StumpWM Manual: 7. The Mode Line">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="../style.css">
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="Mode_002dline"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="stumpwm-1.0.0_38.html#Frame-Dumping" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-1.0.0_40.html#Groups" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-1.0.0_36.html#Frames" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-1.0.0.html#Top" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-1.0.0_40.html#Groups" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-1.0.0.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="stumpwm-1.0.0_63.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-1.0.0_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<hr size="1">
+<a name="The-Mode-Line"></a>
+<h1 class="chapter">7. The Mode Line</h1>
+<p>The mode line is a bar that runs across either the top or bottom of
+a head and is used to display information. By default the mode line
+displays the list of windows, similar to the output <kbd>C-t w</kbd> produces.
+</p>
+<p>Alternatively, external panel applications such as the GNOME panel and
+KDE&rsquo;s kicker may be used. Simply starting one of these programs is enough
+to set it as the mode line of the head it would like to be on (if the
+panel is XRandR aware) or whichever head is available. In order to
+avoid problems displaying menus, configure your panel application for
+positioning at the top or bottom of the head rather than relying on
+<var>*mode-line-position*</var>
+</p>
+<p>The mode line can be turned on and off with the <code>mode-line</code>
+command or the lisp function <code>stumpwm:toggle-mode-line</code>. Each
+head has its own mode line. For example:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">;; turn on/off the mode line for the current head only.
+(stumpwm:toggle-mode-line (stumpwm:current-screen)
+                          (stumpwm:current-head))
+</pre></td></tr></table>
+
+<p>The mode line is updated after every StumpWM command.
+</p>
+<p>To display the window list and the current date on the modeline, one
+might do the following:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">(setf stumpwm:*screen-mode-line-format*
+      (list &quot;%w | &quot;
+            '(:eval (stumpwm:run-shell-command &quot;date&quot; t))))
+</pre></td></tr></table>
+
+<p><code>(stumpwm:run-shell-command &quot;date&quot; t)</code> runs the command
+<code>date</code> and returns its output as a string.
+</p>
+<dl>
+<dt><a name="index-mode_002dline"></a><u>Command:</u> <b>mode-line</b></dt>
+<dd><p>A command to toggle the mode line visibility.
+</p></dd></dl>
+
+
+<dl>
+<dt><a name="index-toggle_002dmode_002dline"></a><u>Function:</u> <b>toggle-mode-line</b><i> screen head &amp;optional (format (quote *screen-mode-line-format*))</i></dt>
+<dd><p>Toggle the state of the mode line for the specified screen
+</p></dd></dl>
+
+
+<dl>
+<dt><a name="index-_002ascreen_002dmode_002dline_002dformat_002a"></a><u>Variable:</u> <b>*screen-mode-line-format*</b></dt>
+<dd><p>This variable describes what will be displayed on the modeline for each screen.
+Turn it on with the function TOGGLE-MODE-LINE or the mode-line command.
+</p>
+<p>It is a list where each element may be a string, a symbol, or a list.
+</p>
+<p>For a symbol its value is used.
+</p>
+<p>For a list of the form (:eval FORM) FORM is evaluated and the
+result is used as a mode line element.
+</p>
+<p>If it is a string the string is printed with the following formatting
+options:
+</p>
+<dl compact="compact">
+<dt> %h</dt>
+<dd><p>List the number of the head the mode-line belongs to
+</p>
+</dd>
+<dt> %w</dt>
+<dd><p>List all windows in the current group windows using <var>*window-format*</var>
+</p>
+</dd>
+<dt> %W</dt>
+<dd><p>List all windows on the current head of the current group using
+<var>*window-format*</var>
+</p>
+</dd>
+<dt> %g</dt>
+<dd><p>List the groups using <var>*group-format*</var>
+</p>
+</dd>
+<dt> %n</dt>
+<dd><p>The current group&rsquo;s name
+</p>
+</dd>
+<dt> %u</dt>
+<dd><p>Using <var>*window-format*</var>, return a 1 line list of the urgent windows, space seperated.
+</p>
+</dd>
+<dt> %v</dt>
+<dd><p>Using <var>*window-format*</var>, return a 1 line list of the windows, space
+separated. The currently focused window is highlighted with
+fmt-highlight. Any non-visible windows are colored the
+*hidden-window-color*.
+</p>
+</dd>
+<dt> %d</dt>
+<dd><p>Using <var>*time-modeline-string*</var>, print the time.
+</p>
+</dd>
+</dl>
+
+<p>A number of modules have been written that extends the possible
+formatting strings.  See their documentation for details.
+</p></dd></dl>
+
+
+<p>The following variables control the color, position, and size of the
+mode line. See <a href="stumpwm-1.0.0_54.html#Colors">Colors</a> for an explanation of how to set these
+color variables.
+</p>
+<dl>
+<dt><a name="index-_002amode_002dline_002dposition_002a"></a><u>Variable:</u> <b>*mode-line-position*</b></dt>
+<dd><p>Specifies where the mode line is displayed. Valid values are :top and :bottom.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-_002amode_002dline_002dborder_002dwidth_002a"></a><u>Variable:</u> <b>*mode-line-border-width*</b><i> 1</i></dt>
+<dd><p>nil
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-_002amode_002dline_002dpad_002dx_002a"></a><u>Variable:</u> <b>*mode-line-pad-x*</b></dt>
+<dd><p>nil
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-_002amode_002dline_002dpad_002dy_002a"></a><u>Variable:</u> <b>*mode-line-pad-y*</b></dt>
+<dd><p>nil
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-_002amode_002dline_002dbackground_002dcolor_002a"></a><u>Variable:</u> <b>*mode-line-background-color*</b></dt>
+<dd><p>nil
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-_002amode_002dline_002dforeground_002dcolor_002a"></a><u>Variable:</u> <b>*mode-line-foreground-color*</b></dt>
+<dd><p>nil
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-_002amode_002dline_002dborder_002dcolor_002a"></a><u>Variable:</u> <b>*mode-line-border-color*</b></dt>
+<dd><p>nil
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-_002amode_002dline_002dtimeout_002a"></a><u>Variable:</u> <b>*mode-line-timeout*</b></dt>
+<dd><p>The modeline updates after each command, when a new window appears or
+an existing one disappears, and on a timer. This variable controls how
+many seconds elapse between each update. If this variable is changed
+while the modeline is visible, you must toggle the modeline to update
+timer.
+</p></dd></dl>
+
+
+<hr size="1">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="stumpwm-1.0.0_38.html#Frame-Dumping" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-1.0.0_40.html#Groups" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-1.0.0_36.html#Frames" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-1.0.0.html#Top" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-1.0.0_40.html#Groups" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-1.0.0.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="stumpwm-1.0.0_63.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-1.0.0_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated on <i>January 28, 2024</i> using <a href="http://www.nongnu.org/texi2html/"><i>texi2html 1.82</i></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

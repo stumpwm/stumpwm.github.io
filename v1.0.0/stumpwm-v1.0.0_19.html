@@ -1,0 +1,173 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- Created on January 28, 2024 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>StumpWM Manual: 2.2 Binding Keys</title>
+
+<meta name="description" content="StumpWM Manual: 2.2 Binding Keys">
+<meta name="keywords" content="StumpWM Manual: 2.2 Binding Keys">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="../style.css">
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="Binding-Keys"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="stumpwm-v1.0.0_18.html#List-of-Default-Keybindings" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-v1.0.0_20.html#Modifiers" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-v1.0.0_17.html#Key-Bindings" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-v1.0.0_17.html#Key-Bindings" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-v1.0.0_21.html#Commands" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-v1.0.0.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="stumpwm-v1.0.0_63.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-v1.0.0_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<hr size="1">
+<a name="Binding-Keys-1"></a>
+<h2 class="section">2.2 Binding Keys</h2>
+
+<dl>
+<dt><a name="index-define_002dkey"></a><u>Function:</u> <b>define-key</b><i> map key command</i></dt>
+<dd><p>Add a keybinding mapping for the key, <var>key</var>, to the command,
+<var>command</var>, in the specified keymap. If <var>command</var> is nil, remove an
+exising binding.  For example,
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">(stumpwm:define-key stumpwm:*root-map* (stumpwm:kbd &quot;C-z&quot;) &quot;echo Zzzzz...&quot;)
+</pre></td></tr></table>
+
+<p>Now when you type C-t C-z, you&rsquo;ll see the text &ldquo;Zzzzz...&rdquo; pop up.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-undefine_002dkey"></a><u>Function:</u> <b>undefine-key</b><i> map key</i></dt>
+<dd><p>Clear the key binding in the specified keybinding.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-kbd"></a><u>Function:</u> <b>kbd</b><i> keys</i></dt>
+<dd><p>This compiles a key string into a key structure used by
+&lsquo;define-key&rsquo;, &lsquo;undefine-key&rsquo;, &lsquo;set-prefix-key&rsquo; and
+others.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-set_002dprefix_002dkey"></a><u>Command:</u> <b>set-prefix-key</b><i> key</i></dt>
+<dd><p>Change the stumpwm prefix key to KEY.
+</p><table><tr><td>&nbsp;</td><td><pre class="example">(stumpwm:set-prefix-key (stumpwm:kbd &quot;C-M-H-s-z&quot;))
+</pre></td></tr></table>
+
+<p>This will change the prefix key to &lt;Control&gt; + &lt;Meta&gt; + &lt;Hyper&gt; + &lt;Super&gt; +
+the &lt;z&gt; key. By most standards, a terrible prefix key but it makes a
+great example.
+</p></dd></dl>
+
+
+<dl>
+<dt><a name="index-make_002dsparse_002dkeymap"></a><u>Function:</u> <b>make-sparse-keymap</b></dt>
+<dd><p>Create an empty keymap. If you want to create a new list of bindings
+in the key binding tree, this is where you start. To hang frame
+related bindings off <kbd>C-t C-f</kbd> one might use the following code:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">(defvar *my-frame-bindings*
+  (let ((m (stumpwm:make-sparse-keymap)))
+    (stumpwm:define-key m (stumpwm:kbd &quot;f&quot;) &quot;curframe&quot;)
+    (stumpwm:define-key m (stumpwm:kbd &quot;M-b&quot;) &quot;move-focus left&quot;)
+    m ; NOTE: this is important
+  ))
+
+(stumpwm:define-key stumpwm:*root-map* (stumpwm:kbd &quot;C-f&quot;) '*my-frame-bindings*)
+</pre></td></tr></table>
+</dd></dl>
+
+
+<dl>
+<dt><a name="index-_002aroot_002dmap_002a"></a><u>Variable:</u> <b>*root-map*</b></dt>
+<dd><p>This is the keymap by default bound to <kbd>C-t</kbd>. It is known as the <em>prefix map</em>.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-_002atop_002dmap_002a"></a><u>Variable:</u> <b>*top-map*</b></dt>
+<dd><p>The top level key map. This is where you&rsquo;ll find the binding for the
+<em>prefix map</em>.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-_002agroups_002dmap_002a"></a><u>Variable:</u> <b>*groups-map*</b></dt>
+<dd><p>The keymap that group related key bindings sit on. It is bound to <kbd>C-t g</kbd> by default.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-_002aexchange_002dwindow_002dmap_002a"></a><u>Variable:</u> <b>*exchange-window-map*</b></dt>
+<dd><p>The keymap that exchange-window key bindings sit on. It is bound to <kbd>C-t x</kbd> by default.
+</p></dd></dl>
+
+
+<dl>
+<dt><a name="index-bind"></a><u>Command:</u> <b>bind</b><i> key command</i></dt>
+<dd><p>Hang a key binding off the escape key.
+</p></dd></dl>
+
+
+<hr size="1">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="stumpwm-v1.0.0_18.html#List-of-Default-Keybindings" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-v1.0.0_20.html#Modifiers" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-v1.0.0_17.html#Key-Bindings" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-v1.0.0_17.html#Key-Bindings" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-v1.0.0_21.html#Commands" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-v1.0.0.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="stumpwm-v1.0.0_63.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-v1.0.0_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated on <i>January 28, 2024</i> using <a href="http://www.nongnu.org/texi2html/"><i>texi2html 1.82</i></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

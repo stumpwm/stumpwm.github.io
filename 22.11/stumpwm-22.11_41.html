@@ -1,0 +1,198 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- Created on January 28, 2024 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>StumpWM Manual: 5.6 Window Selection Expressions</title>
+
+<meta name="description" content="StumpWM Manual: 5.6 Window Selection Expressions">
+<meta name="keywords" content="StumpWM Manual: 5.6 Window Selection Expressions">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="../style.css">
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="Window-Selection-Expressions"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="stumpwm-22.11_40.html#Rule-Based-Window-Placement" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-22.11_42.html#Frames" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-22.11_35.html#Windows" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-22.11_35.html#Windows" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-22.11_42.html#Frames" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-22.11.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="stumpwm-22.11_82.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-22.11_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<hr size="1">
+<a name="Window-Selection-Expressions-1"></a>
+<h2 class="section">5.6 Window Selection Expressions</h2>
+<p>Window Selection Expressions (WSE) were inspired by SQL. The intent is
+to allow writing consise code to select the windows you need and to
+act upon them (or just to get the list of selected windows). The
+implementation includes a set of (hopefully) consistent
+concisely-named wrappers for the StumpWM functionality useful for
+window set description and the act-on-matching-windows macro that
+encapsulates the logic of iterating over a window set.
+</p>
+<p>If we had SQL in StumpWM, we would write
+<code>select window_id from windows as w where w.title = 'XTerm'</code>. WSE chooses to be
+more Lisp-style and instead uses
+<code>(act-on-matching-windows (w) (titled-p w &quot;XTerm&quot;) w)</code>
+</p>
+<p>The <code>act-on-matching-windows</code> function also allows performing some
+actions, for example getting all the windows titled XTerm into the
+current group:
+<code>(act-on-matching-windows (w) (titled-p w &quot;XTerm&quot;) (pull-w w))</code>
+</p>
+<dl>
+<dt><a name="index-move_002dwindows_002dto_002dgroup"></a><u>Function:</u> <b>move-windows-to-group</b><i> windows &amp;optional (arggroup nil)</i></dt>
+<dd><p>Move all windows from the list to the group
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-act_002don_002dmatching_002dwindows"></a><u>Macro:</u> <b>act-on-matching-windows</b><i> (var &amp;optional (range (quote (current-screen)))) condition &amp;rest code</i></dt>
+<dd><p>Run code on all windows matching condition; var is the shared lambda
+  variable. Range can be any screen/group/frame or :screen/:group/:frame
+  for the current instance. Condition is just the code to evaluate.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-pull_002dw"></a><u>Function:</u> <b>pull-w</b><i> w &amp;optional g</i></dt>
+<dd><p>Pull the window w: to the current group or to the specified group g.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-titled_002dp"></a><u>Function:</u> <b>titled-p</b><i> w title</i></dt>
+<dd><p>Check whether window title of the window w is equal to the string
+  title.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-title_002dre_002dp"></a><u>Function:</u> <b>title-re-p</b><i> w tre</i></dt>
+<dd><p>Check whether the window title of the window w matches the regular
+  expression tre.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-classed_002dp"></a><u>Function:</u> <b>classed-p</b><i> w class</i></dt>
+<dd><p>Check whether the window class of the window w is equal to the string
+  class.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-class_002dre_002dp"></a><u>Function:</u> <b>class-re-p</b><i> w cre</i></dt>
+<dd><p>Check whether the window class of the window w matches the regular
+  expression cre.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-typed_002dp"></a><u>Function:</u> <b>typed-p</b><i> w type</i></dt>
+<dd><p>Check whether the window type of the window w is equal to the string
+  type.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-type_002dre_002dp"></a><u>Function:</u> <b>type-re-p</b><i> w tre</i></dt>
+<dd><p>Check whether the window type of the window w matches the regular
+  expression tre.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-roled_002dp"></a><u>Function:</u> <b>roled-p</b><i> w role</i></dt>
+<dd><p>Check whether the window role of the window w is equal to the string
+  role.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-role_002dre_002dp"></a><u>Function:</u> <b>role-re-p</b><i> w rre</i></dt>
+<dd><p>Check whether the window role of the window w matches the regular
+  expression rre.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-resed_002dp"></a><u>Function:</u> <b>resed-p</b><i> w res</i></dt>
+<dd><p>Check whether the window resource of the window w is equal to the
+  string res.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-res_002dre_002dp"></a><u>Function:</u> <b>res-re-p</b><i> w rre</i></dt>
+<dd><p>Check whether the window resource of the window w matches the regular
+  expression rre.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-grouped_002dp"></a><u>Function:</u> <b>grouped-p</b><i> w &amp;optional name</i></dt>
+<dd><p>Check whether the window w belongs to the group name or the current
+  group if name is not specified.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-in_002dframe_002dp"></a><u>Function:</u> <b>in-frame-p</b><i> w &amp;optional f</i></dt>
+<dd><p>Check whether the window w belongs to the frame f or to the current
+  frame if the frame is not specified.
+</p></dd></dl>
+
+
+<hr size="1">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="stumpwm-22.11_40.html#Rule-Based-Window-Placement" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-22.11_42.html#Frames" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-22.11_35.html#Windows" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-22.11_35.html#Windows" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-22.11_42.html#Frames" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-22.11.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="stumpwm-22.11_82.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-22.11_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated on <i>January 28, 2024</i> using <a href="http://www.nongnu.org/texi2html/"><i>texi2html 1.82</i></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

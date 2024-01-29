@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
 <html>
-<!-- Created on November 1, 2014 by texi2html 1.82
+<!-- Created on January 28, 2024 by texi2html 1.82
 texi2html was written by: 
             Lionel Cons <Lionel.Cons@cern.ch> (original author)
             Karl Berry  <karl@freefriends.org>
@@ -10,10 +10,10 @@ Maintained by: Many creative people.
 Send bugs and suggestions to <texi2html-bug@nongnu.org>
 -->
 <head>
-<title>StumpWM Manual: 10. Interacting With Unix</title>
+<title>StumpWM Manual: 3. Commands</title>
 
-<meta name="description" content="StumpWM Manual: 10. Interacting With Unix">
-<meta name="keywords" content="StumpWM Manual: 10. Interacting With Unix">
+<meta name="description" content="StumpWM Manual: 3. Commands">
+<meta name="keywords" content="StumpWM Manual: 3. Commands">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
 <meta name="Generator" content="texi2html 1.82">
@@ -42,84 +42,38 @@ ul.toc {list-style: none}
 
 <body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
 
-<a name="Interacting-With-Unix"></a>
+<a name="Commands"></a>
 <table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="stumpwm-0.9.8_9.html#Programming-With-Screens" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="stumpwm-0.9.8_11.html#Interacting-With-X11" title="Next section in reading order"> &gt; </a>]</td>
+<tr><td valign="middle" align="left">[<a href="stumpwm-0.9.8_9.html#Modifiers" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.8_11.html#Message-and-Input-Bar" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="stumpwm-0.9.8_9.html#Screens" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.8_6.html#Key-Bindings" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="stumpwm-0.9.8.html#Top" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="stumpwm-0.9.8_11.html#Interacting-With-X11" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.8_11.html#Message-and-Input-Bar" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left">[<a href="stumpwm-0.9.8.html#Top" title="Cover (top) of document">Top</a>]</td>
 <td valign="middle" align="left">[Contents]</td>
-<td valign="middle" align="left">[<a href="stumpwm-0.9.8_17.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.8_47.html#Command-and-Function-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="stumpwm-0.9.8_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<a name="Interacting-With-Unix-1"></a>
-<h1 class="chapter">10. Interacting With Unix</h1>
-
-<dl>
-<dt><a name="index-run_002dshell_002dcommand"></a><u>Command:</u> <b>run-shell-command</b><i> cmd &amp;optional collect-output-p</i></dt>
-<dd><p>Run the specified shell command. If <var>collect-output-p</var> is <code>T</code>
-then run the command synchonously and collect the output. Be
-careful. If the shell command doesn&rsquo;t return, it will hang StumpWM. In
-such a case, kill the shell command to resume StumpWM.
-</p></dd></dl>
-
-
-<dl>
-<dt><a name="index-programs_002din_002dpath"></a><u>Function:</u> <b>programs-in-path</b><i> &amp;optional full-path (path (split-string (getenv PATH) :))</i></dt>
-<dd><p>Return a list of programs in the path. if <var>full-path</var> is
-<var>t</var> then return the full path, otherwise just return the
-filename. <var>path</var> is by default the <code>PATH</code> evironment variable
-but can be specified. It should be a string containing each directory
-seperated by a colon.
-</p></dd></dl>
-
-<dl>
-<dt><a name="index-pathname_002dis_002dexecutable_002dp"></a><u>Function:</u> <b>pathname-is-executable-p</b><i> pathname</i></dt>
-<dd><p>Return T if the pathname describes an executable file.
-</p></dd></dl>
-
-
-<dl>
-<dt><a name="index-_002ashell_002dprogram_002a"></a><u>Variable:</u> <b>*shell-program*</b></dt>
-<dd><p>The shell program used by <code>run-shell-command</code>.
-</p></dd></dl>
-
-
-<dl>
-<dt><a name="index-getenv"></a><u>Function:</u> <b>getenv</b><i> var</i></dt>
-<dd><p>Return the value of the environment variable.
-</p></dd></dl>
-
-<dl>
-<dt><a name="index-_0028setf-getenv_0029"></a><u>Function:</u> <b>(setf getenv)</b><i> val var</i></dt>
-<dd><p>Set the value of the environment variable, <var>var</var> to <var>val</var>.
-</p></dd></dl>
-
-
-<hr size="6">
-<table cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="stumpwm-0.9.8_9.html#Screens" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="stumpwm-0.9.8_11.html#Interacting-With-X11" title="Next chapter"> &gt;&gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="stumpwm-0.9.8.html#Top" title="Cover (top) of document">Top</a>]</td>
-<td valign="middle" align="left">[Contents]</td>
-<td valign="middle" align="left">[<a href="stumpwm-0.9.8_17.html#Command-and-Function-Index" title="Index">Index</a>]</td>
-<td valign="middle" align="left">[<a href="stumpwm-0.9.8_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
-</tr></table>
+<hr size="1">
+<a name="Commands-1"></a>
+<h1 class="chapter">3. Commands</h1>
+<p>If you&rsquo;ve used emacs before you&rsquo;ll find commands and functions
+familiar. Commands are functions that can be bound to keys and
+executed interactively from StumpWM&rsquo;s input bar. A command expects a
+certain number of arguments and any that are not supplied will be
+prompted for.
+</p>
+<p>FIXME: actually write some docs here
+</p>
+<hr size="1">
 <p>
  <font size="-1">
-  This document was generated by <em>David Bjergaard</em> on <em>November 1, 2014</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
+  This document was generated on <i>January 28, 2024</i> using <a href="http://www.nongnu.org/texi2html/"><i>texi2html 1.82</i></a>.
  </font>
  <br>
 

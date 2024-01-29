@@ -1,0 +1,210 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- Created on January 28, 2024 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>StumpWM Manual: 13. Miscellaneous Commands</title>
+
+<meta name="description" content="StumpWM Manual: 13. Miscellaneous Commands">
+<meta name="keywords" content="StumpWM Manual: 13. Miscellaneous Commands">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="../style.css">
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="Miscellaneous-Commands"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="stumpwm-22.05_54.html#Interacting-With-X11" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-22.05_56.html#Menus" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-22.05_54.html#Interacting-With-X11" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-22.05.html#Top" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-22.05_65.html#Colors" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-22.05.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="stumpwm-22.05_76.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-22.05_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<hr size="1">
+<a name="Miscellaneous-Commands-1"></a>
+<h1 class="chapter">13. Miscellaneous Commands</h1>
+<p>The following is a list of commands that don&rsquo;t really fit in any other
+</p><dl>
+<dt><a name="index-split_002dstring"></a><u>Function:</u> <b>split-string</b><i> string &amp;optional (separators</i></dt>
+<dd><p>)
+Splits STRING into substrings where there are matches for SEPARATORS.
+Each match for SEPARATORS is a splitting point.
+The substrings between the splitting points are made into a list
+which is returned.
+***If SEPARATORS is absent, it defaults to &quot;[ ftnrv]+&quot;.
+</p>
+<p>If there is match for SEPARATORS at the beginning of STRING, we do not
+include a null substring for that.  Likewise, if there is a match
+at the end of STRING, we don&rsquo;t include a null substring for that.
+</p>
+<p>Modifies the match data; use &lsquo;save-match-data&rsquo; if necessary.
+</p></dd></dl>
+
+<p>@&nbsp;split-string
+</p>
+<dl>
+<dt><a name="index-argument_002dline_002dend_002dp"></a><u>Function:</u> <b>argument-line-end-p</b><i> input</i></dt>
+<dd><p>Return T if we&rsquo;re outta arguments from the input line.
+</p></dd></dl>
+
+<p>@&nbsp;argument-line-end-p
+</p><dl>
+<dt><a name="index-argument_002dpop"></a><u>Function:</u> <b>argument-pop</b><i> input</i></dt>
+<dd><p>Pop the next argument off.
+</p></dd></dl>
+
+<p>@&nbsp;argument-pop
+</p><dl>
+<dt><a name="index-argument_002dpop_002drest"></a><u>Function:</u> <b>argument-pop-rest</b><i> input</i></dt>
+<dd><p>Return the remainder of the argument text.
+</p></dd></dl>
+
+<p>@&nbsp;argument-pop-rest
+</p><dl>
+<dt><a name="index-_002adisplay_002a"></a><u>Variable:</u> <b>*display*</b></dt>
+<dd><p>The display for the X server
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-input_002ddelete_002dregion"></a><u>Function:</u> <b>input-delete-region</b><i> input start end</i></dt>
+<dd><p>Delete the region between start and end in the input string
+</p></dd></dl>
+
+<p>@&nbsp;input-delete-region
+</p><dl>
+<dt><a name="index-input_002dgoto_002dchar"></a><u>Function:</u> <b>input-goto-char</b><i> input point</i></dt>
+<dd><p>Move the cursor to the specified point in the string
+</p></dd></dl>
+
+<p>@&nbsp;input-goto-char
+</p><dl>
+<dt><a name="index-input_002dpoint"></a><u>Function:</u> <b>input-point</b><i> input</i></dt>
+<dd><p>Return the position of the cursor.
+</p></dd></dl>
+
+<p>@&nbsp;input-point
+</p><dl>
+<dt><a name="index-input_002dsubstring"></a><u>Function:</u> <b>input-substring</b><i> input start end</i></dt>
+<dd><p>Return a the substring in INPUT bounded by START and END.
+</p></dd></dl>
+
+<p>@&nbsp;input-substring
+</p><dl>
+<dt><a name="index-input_002dvalidate_002dregion"></a><u>Function:</u> <b>input-validate-region</b><i> input start end</i></dt>
+<dd><p>Return a value pair of numbers where the first number is &lt; the
+second and neither excedes the bounds of the input string.
+</p></dd></dl>
+
+<p>@&nbsp;input-validate-region
+</p><dl>
+<dt><a name="index-list_002ddirectory"></a><u>Function:</u> <b>list-directory</b><i> dirname</i></dt>
+<dd><p>Returns a fresh list of pathnames corresponding to the truenames of
+all files within the directory named by the non-wild pathname
+designator DIRNAME.  The pathnames of sub-directories are returned in
+directory form - see PATHNAME-AS-DIRECTORY.
+</p></dd></dl>
+
+<p>@&nbsp;list-directory
+</p><dl>
+<dt><a name="index-move_002dto_002dhead"></a><u>Macro:</u> <b>move-to-head</b><i> list elt</i></dt>
+<dd><p>Move the specified element in in LIST to the head of the list.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-no_002dfocus"></a><u>Function:</u> <b>no-focus</b><i> group last-win</i></dt>
+<dd><p>don&rsquo;t focus any window but still read keyboard events.
+</p></dd></dl>
+
+<p>@&nbsp;no-focus
+</p><dl>
+<dt><a name="index-_002arecord_002dlast_002dmsg_002doverride_002a"></a><u>Variable:</u> <b>*record-last-msg-override*</b></dt>
+<dd><p>assign this to T and messages won&rsquo;t be recorded. It is
+recommended this is assigned using LET.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-_002atoplevel_002dio_002a"></a><u>Variable:</u> <b>*toplevel-io*</b></dt>
+<dd><p>Top-level I/O loop
+</p></dd></dl>
+
+
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="stumpwm-22.05_56.html#Menus">13.1 Menus</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="stumpwm-22.05_60.html#StumpWM_0027s-Data-Directory">13.3 StumpWM&rsquo;s Data Directory</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="stumpwm-22.05_61.html#Debugging-StumpWM">13.4 Debugging StumpWM</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="stumpwm-22.05_62.html#Sending-a-Bug-Report">13.5 Sending a Bug Report</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="stumpwm-22.05_63.html#Timers">13.6 Timers</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="stumpwm-22.05_64.html#Getting-Help">13.7 Getting Help</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+<hr size="1">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="stumpwm-22.05_54.html#Interacting-With-X11" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-22.05_56.html#Menus" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-22.05_54.html#Interacting-With-X11" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-22.05.html#Top" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-22.05_65.html#Colors" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-22.05.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="stumpwm-22.05_76.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-22.05_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated on <i>January 28, 2024</i> using <a href="http://www.nongnu.org/texi2html/"><i>texi2html 1.82</i></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

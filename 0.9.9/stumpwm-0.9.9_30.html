@@ -1,0 +1,208 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- Created on January 28, 2024 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>StumpWM Manual: 5.2 Customizing Window Appearance</title>
+
+<meta name="description" content="StumpWM Manual: 5.2 Customizing Window Appearance">
+<meta name="keywords" content="StumpWM Manual: 5.2 Customizing Window Appearance">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="../style.css">
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="Customizing-Window-Appearance"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="stumpwm-0.9.9_29.html#Window-Marks" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.9_31.html#Controlling-Raise-And-Map-Requests" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.9_28.html#Windows" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.9_28.html#Windows" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.9_34.html#Frames" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.9.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.9_60.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.9_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<hr size="1">
+<a name="Customizing-Window-Appearance-1"></a>
+<h2 class="section">5.2 Customizing Window Appearance</h2>
+
+<dl>
+<dt><a name="index-_002amaxsize_002dborder_002dwidth_002a"></a><u>Variable:</u> <b>*maxsize-border-width*</b></dt>
+<dd><p>The width in pixels given to the borders of windows with maxsize or ratio hints.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-_002atransient_002dborder_002dwidth_002a"></a><u>Variable:</u> <b>*transient-border-width*</b></dt>
+<dd><p>The width in pixels given to the borders of transient or pop-up windows.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-_002anormal_002dborder_002dwidth_002a"></a><u>Variable:</u> <b>*normal-border-width*</b></dt>
+<dd><p>The width in pixels given to the borders of regular windows.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-_002awindow_002dborder_002dstyle_002a"></a><u>Variable:</u> <b>*window-border-style*</b></dt>
+<dd><p>This controls the appearance of the border around windows. valid
+values are:
+</p><dl compact="compact">
+<dt> <var>:thick</var></dt>
+<dd><p>All space within the frame not used by the window is dedicated to the
+border.
+</p>
+</dd>
+<dt> <var>:thin</var></dt>
+<dd><p>Only the border width as controlled by *maxsize-border-width*
+*normal-border-width* and *transient-border-width* is used as the
+border. The rest is filled with the unfocus color.
+</p>
+</dd>
+<dt> <var>:tight</var></dt>
+<dd><p>The same as :thin but the border surrounds the window and the wasted
+space within the frame is not obscured, revealing the background.
+</p>
+</dd>
+<dt> <var>:none</var></dt>
+<dd><p>Like :tight but no border is ever visible.
+</p></dd>
+</dl>
+
+<p>After changing this variable you may need to call
+sync-all-frame-windows to see the change.
+</p></dd></dl>
+
+
+<p>See <a href="stumpwm-0.9.9_51.html#Colors">Colors</a> for an explanation of how to set these color
+variables.
+</p>
+<dl>
+<dt><a name="index-set_002dwin_002dbg_002dcolor"></a><u>Function:</u> <b>set-win-bg-color</b><i> color</i></dt>
+<dd><p>Set the background color of the window. The background color will only
+be visible for windows with size increment hints such as &lsquo;<samp>emacs</samp>&rsquo;
+and &lsquo;<samp>xterm</samp>&rsquo;.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-set_002dfocus_002dcolor"></a><u>Function:</u> <b>set-focus-color</b><i> color</i></dt>
+<dd><p>Set the border color for focused windows. This is only used when
+there is more than one frame.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-set_002dunfocus_002dcolor"></a><u>Function:</u> <b>set-unfocus-color</b><i> color</i></dt>
+<dd><p>Set the border color for windows without focus. This is only used when
+there is more than one frame.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-set_002dfloat_002dfocus_002dcolor"></a><u>Function:</u> <b>set-float-focus-color</b><i> color</i></dt>
+<dd><p>Set the border color for focused windows in a float group.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-set_002dfloat_002dunfocus_002dcolor"></a><u>Function:</u> <b>set-float-unfocus-color</b><i> color</i></dt>
+<dd><p>Set the border color for windows without focus in a float group.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-set_002dnormal_002dgravity"></a><u>Function:</u> <b>set-normal-gravity</b><i> gravity</i></dt>
+<dd><p>Set the default gravity for normal windows. Possible values are
+<code>:center</code> <code>:top</code> <code>:left</code> <code>:right</code> <code>:bottom</code>
+<code>:top-left</code> <code>:top-right</code> <code>:bottom-left</code> and
+<code>:bottom-right</code>.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-set_002dmaxsize_002dgravity"></a><u>Function:</u> <b>set-maxsize-gravity</b><i> gravity</i></dt>
+<dd><p>Set the default gravity for maxsize windows.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-set_002dtransient_002dgravity"></a><u>Function:</u> <b>set-transient-gravity</b><i> gravity</i></dt>
+<dd><p>Set the default gravity for transient/pop-up windows.
+</p></dd></dl>
+
+
+<dl>
+<dt><a name="index-gravity"></a><u>Command:</u> <b>gravity</b><i> gravity</i></dt>
+<dd><p>Set a window&rsquo;s gravity within its frame. Gravity controls where the
+window will appear in a frame if it is smaller that the
+frame. Possible values are:
+</p>
+<dl compact="compact">
+<dt> <var>center</var></dt>
+<dt> <var>top</var></dt>
+<dt> <var>right</var></dt>
+<dt> <var>bottom</var></dt>
+<dt> <var>left</var></dt>
+<dt> <var>top-right</var></dt>
+<dt> <var>top-left</var></dt>
+<dt> <var>bottom-right</var></dt>
+<dt> <var>bottom-left</var></dt>
+</dl>
+</dd></dl>
+
+
+<hr size="1">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="stumpwm-0.9.9_29.html#Window-Marks" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.9_31.html#Controlling-Raise-And-Map-Requests" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.9_28.html#Windows" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.9_28.html#Windows" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.9_34.html#Frames" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.9.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.9_60.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.9_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated on <i>January 28, 2024</i> using <a href="http://www.nongnu.org/texi2html/"><i>texi2html 1.82</i></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

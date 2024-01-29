@@ -1,0 +1,189 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- Created on January 28, 2024 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>StumpWM Manual: 1.3.4 Dynamic Group Basics</title>
+
+<meta name="description" content="StumpWM Manual: 1.3.4 Dynamic Group Basics">
+<meta name="keywords" content="StumpWM Manual: 1.3.4 Dynamic Group Basics">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="../style.css">
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="Dynamic-Group-Basics"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="stumpwm-23.11_7.html#Floating-Group-Basics" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-23.11_9.html#Dynamic-Group-Index" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-23.11_1.html#Introduction" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-23.11_4.html#Basic-Concepts" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-23.11_19.html#Key-Bindings" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-23.11.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="stumpwm-23.11_83.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-23.11_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<hr size="1">
+<a name="Dynamic-Group-Basics-1"></a>
+<h3 class="subsection">1.3.4 Dynamic Group Basics</h3>
+<p>Within a dynamic group, windows are organized into a <em>master window</em> and a
+<em>window stack</em>, with one of each per head. When a new window is added to a
+head within a dynamic group, that heads master window is pushed onto that heads
+window stack, and the new window becomes the master window. When a head becomes
+to full (ie more windows cannot be placed upon the stack) a overflow policy is
+used to determine which window to move to a separate head or group. 
+</p>
+<dl>
+<dt><a name="index-gnew_002ddynamic"></a><u>Command:</u> <b>gnew-dynamic</b><i>  name</i></dt>
+<dd><p>Create a new dynamic group named NAME.
+</p></dd></dl>
+
+
+<dl>
+<dt><a name="index-gnewbg_002ddynamic"></a><u>Command:</u> <b>gnewbg-dynamic</b><i>  name</i></dt>
+<dd><p>Create a new dynamic group named NAME in the background.
+</p></dd></dl>
+
+
+<dl>
+<dt><a name="index-rotate_002dwindows"></a><u>Command:</u> <b>rotate-windows</b><i>  direction</i></dt>
+<dd><p>Rotate all windows in the current group and head forward (clockwise) or
+backward (counterclockwise)
+</p></dd></dl>
+
+
+<dl>
+<dt><a name="index-change_002dlayout"></a><u>Command:</u> <b>change-layout</b><i>  layout</i></dt>
+<dd><p>Change the layout of the current head and group.
+</p></dd></dl>
+
+
+<dl>
+<dt><a name="index-change_002ddefault_002dlayout"></a><u>Command:</u> <b>change-default-layout</b><i>  layout &amp;optional update-heads</i></dt>
+<dd><p>Default Values:
+</p><pre class="verbatim">  update-heads  :unset
+</pre><p>Change the default layout for dynamic groups.
+</p></dd></dl>
+
+
+<dl>
+<dt><a name="index-change_002dsplit_002dratio"></a><u>Command:</u> <b>change-split-ratio</b><i>  ratio</i></dt>
+<dd><p>Change the size of the master window of the current head and group.
+</p></dd></dl>
+
+
+<dl>
+<dt><a name="index-change_002ddefault_002dsplit_002dratio"></a><u>Command:</u> <b>change-default-split-ratio</b><i>  ratio &amp;optional update-heads</i></dt>
+<dd><p>Default Values:
+</p><pre class="verbatim">  update-heads  :unset
+</pre><p>Change the default size of the master window for dynamic groups.
+</p></dd></dl>
+
+
+<dl>
+<dt><a name="index-retile"></a><u>Command:</u> <b>retile</b><i>  &amp;optional retile-floats</i></dt>
+<dd><p>Default Values:
+</p><pre class="verbatim">  retile-floats  t
+</pre><p>Force a retile of all windows.
+</p></dd></dl>
+
+
+<dl>
+<dt><a name="index-select_002dfloating_002dwindow"></a><u>Command:</u> <b>select-floating-window</b><i>  &amp;optional fmt window-list</i></dt>
+<dd><p>Default Values:
+</p><pre class="verbatim">  fmt          stumpwm:*window-format*
+  window-list  nil
+</pre><p>Select a floating window from a menu.
+</p></dd></dl>
+
+
+<dl>
+<dt><a name="index-_002arotation_002dfocus_002dpolicy_002a"></a><u>Variable:</u> <b>*rotation-focus-policy*</b></dt>
+<dd><p>A keyword determining what frame to focus after rotating the windows in a
+dynamic group. Valid values are:
+:PRESERVE, meaning to stay on the same frame
+:FOLLOW, meaning to follow the current window as it rotates
+:MASTER, meaning to always stay to the master
+:MASTER-OR-FOLLOW, meaning to stay on the master, or if initiating the rotation 
+while focused on a stack window to follow that window.
+</p></dd></dl>
+
+
+<p>When defining commands, anything restricted to tiling groups will also be
+active in dynamic groups. To fully restrict it to tiling groups, call the
+function dyn-blacklist-command on the command in question.
+</p>
+<p>The head placement policy, overflow policy, master layout, and default
+split ratio of dynamic groups are special in that they can only be
+modified once a dynamic group object has been instantiated. To change
+their initial values the function <code>set-dynamic-group-initial-values</code>
+can be used to modify these values before instantiating a dynamic group,
+but not after. 
+</p>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="stumpwm-23.11_9.html#Dynamic-Group-Index">1.3.5 Dynamic Group Index</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+<hr size="1">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="stumpwm-23.11_7.html#Floating-Group-Basics" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-23.11_9.html#Dynamic-Group-Index" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-23.11_1.html#Introduction" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-23.11_4.html#Basic-Concepts" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-23.11_19.html#Key-Bindings" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-23.11.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="stumpwm-23.11_83.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-23.11_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated on <i>January 28, 2024</i> using <a href="http://www.nongnu.org/texi2html/"><i>texi2html 1.82</i></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

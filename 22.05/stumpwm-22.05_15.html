@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- Created on January 28, 2024 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>StumpWM Manual: 1.5 Interacting with the Lisp process</title>
+
+<meta name="description" content="StumpWM Manual: 1.5 Interacting with the Lisp process">
+<meta name="keywords" content="StumpWM Manual: 1.5 Interacting with the Lisp process">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="../style.css">
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="Interacting-with-the-Lisp-process"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="stumpwm-22.05_14.html#Manipulating-Windows" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-22.05_16.html#Init-File" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-22.05_1.html#Introduction" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-22.05_1.html#Introduction" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-22.05_18.html#Key-Bindings" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-22.05.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="stumpwm-22.05_76.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-22.05_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<hr size="1">
+<a name="Interacting-with-the-Lisp-process-1"></a>
+<h2 class="section">1.5 Interacting with the Lisp process</h2>
+
+<p>Since StumpWM is a Lisp program, there is a way for you to evaluate
+Lisp code directly, on the same Lisp process that StumpWM is running on.
+Type <kbd>C-t :</kbd> and an input box will appear. Then type some Lisp
+expression.
+</p>
+<p>When you call <code>eval</code> this way, you will be in the STUMPWM-USER
+package, which imports all the exported symbols from the main STUMPWM
+package.
+</p>
+<dl compact="compact">
+<dt> <code>*mode-line-border-width*</code></dt>
+<dd><p>Reads the value of <var>*mode-line-border-width*</var>.
+</p>
+</dd>
+<dt> <code>(setf *mode-line-border-width* 3)</code></dt>
+<dd><p>Sets the variable <var>*mode-line-border-width*</var> to 3.
+</p>
+</dd>
+<dt> <code>(set-prefix-key (kbd &quot;C-M-H-s-z&quot;))</code></dt>
+<dd><p>Calls the <code>set-prefix-key</code> function (and sets a new keyboard prefix)
+</p></dd>
+</dl>
+
+<hr size="1">
+<p>
+ <font size="-1">
+  This document was generated on <i>January 28, 2024</i> using <a href="http://www.nongnu.org/texi2html/"><i>texi2html 1.82</i></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

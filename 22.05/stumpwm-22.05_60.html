@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- Created on January 28, 2024 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>StumpWM Manual: 13.3 StumpWM's Data Directory</title>
+
+<meta name="description" content="StumpWM Manual: 13.3 StumpWM's Data Directory">
+<meta name="keywords" content="StumpWM Manual: 13.3 StumpWM's Data Directory">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="../style.css">
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="StumpWM_0027s-Data-Directory"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="stumpwm-22.05_59.html#Batch-Menus" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-22.05_61.html#Debugging-StumpWM" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-22.05_55.html#Miscellaneous-Commands" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-22.05_55.html#Miscellaneous-Commands" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-22.05_65.html#Colors" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-22.05.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="stumpwm-22.05_76.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-22.05_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<hr size="1">
+<a name="StumpWM_0027s-Data-Directory-1"></a>
+<h2 class="section">13.3 StumpWM&rsquo;s Data Directory</h2>
+<p>If you want to store StumpWM data between sessions, the recommended
+method is to store them in &lsquo;<tt>~/.stumpwm.d/</tt>&rsquo;. StumpWM supplies
+some functions to make doing this easier.
+</p>
+<dl>
+<dt><a name="index-_002adata_002ddir_002a"></a><u>Variable:</u> <b>*data-dir*</b></dt>
+<dd><p>The directory used by stumpwm to store data between sessions.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-data_002ddir_002dfile"></a><u>Function:</u> <b>data-dir-file</b><i> name &amp;optional type</i></dt>
+<dd><p>Return a pathname inside stumpwm&rsquo;s data dir with the specified name and type
+</p></dd></dl>
+
+<p>@&nbsp;data-dir-file
+</p><dl>
+<dt><a name="index-with_002ddata_002dfile"></a><u>Macro:</u> <b>with-data-file</b><i> (s file &amp;rest keys &amp;key (if-exists supersede) &amp;allow-other-keys) &amp;body body</i></dt>
+<dd><p>Open a file in StumpWM&rsquo;s data directory. keyword arguments are sent
+directly to OPEN. Note that IF-EXISTS defaults to :supersede, instead
+of :error.
+</p></dd></dl>
+
+
+<hr size="1">
+<p>
+ <font size="-1">
+  This document was generated on <i>January 28, 2024</i> using <a href="http://www.nongnu.org/texi2html/"><i>texi2html 1.82</i></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

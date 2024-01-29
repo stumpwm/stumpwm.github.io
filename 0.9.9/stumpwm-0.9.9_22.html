@@ -1,0 +1,242 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- Created on January 28, 2024 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>StumpWM Manual: 3.2 StumpWM Types</title>
+
+<meta name="description" content="StumpWM Manual: 3.2 StumpWM Types">
+<meta name="keywords" content="StumpWM Manual: 3.2 StumpWM Types">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="../style.css">
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="StumpWM-Types"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="stumpwm-0.9.9_21.html#Writing-Commands" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.9_23.html#Message-and-Input-Bar" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.9_20.html#Commands" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.9_20.html#Commands" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.9_23.html#Message-and-Input-Bar" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.9.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.9_60.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.9_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<hr size="1">
+<a name="StumpWM-Types-1"></a>
+<h2 class="section">3.2 StumpWM Types</h2>
+<p>All command arguments must be of a defined &ldquo;StumpWM type&rdquo;. The
+following types are pre-defined:
+</p>
+
+<dl compact="compact">
+<dt> <var>:y-or-n</var></dt>
+<dd><p>A yes or no question returning T or NIL.
+</p></dd>
+<dt> <var>:variable</var></dt>
+<dd><p>A lisp variable
+</p></dd>
+<dt> <var>:function</var></dt>
+<dd><p>A lisp function
+</p></dd>
+<dt> <var>:command</var></dt>
+<dd><p>A stumpwm command as a string.
+</p></dd>
+<dt> <var>:key-seq</var></dt>
+<dd><p>A key sequence starting from *TOP-MAP*
+</p></dd>
+<dt> <var>:window-number</var></dt>
+<dd><p>An existing window number
+</p></dd>
+<dt> <var>:number</var></dt>
+<dd><p>An integer number
+</p></dd>
+<dt> <var>:string</var></dt>
+<dd><p>A string
+</p></dd>
+<dt> <var>:key</var></dt>
+<dd><p>A single key chord
+</p></dd>
+<dt> <var>:window-name</var></dt>
+<dd><p>An existing window&rsquo;s name
+</p></dd>
+<dt> <var>:direction</var></dt>
+<dd><p>A direction symbol. One of :UP :DOWN :LEFT :RIGHT
+</p></dd>
+<dt> <var>:gravity</var></dt>
+<dd><p>A gravity symbol. One of :center :top :right :bottom :left :top-right :top-left :bottom-right :bottom-left
+</p></dd>
+<dt> <var>:group</var></dt>
+<dd><p>An existing group
+</p></dd>
+<dt> <var>:frame</var></dt>
+<dd><p>A frame
+</p></dd>
+<dt> <var>:shell</var></dt>
+<dd><p>A shell command
+</p></dd>
+<dt> <var>:rest</var></dt>
+<dd><p>The rest of the input yes to be parsed.
+</p></dd>
+<dt> <var>:module</var></dt>
+<dd><p>An existing stumpwm module
+</p></dd>
+</dl>
+
+<p>Additional types can be defined using the macro
+<code>define-stumpwm-type</code>. Emacs users who are accustomed to writing
+more complicated interactive declarations using &quot;(interactive (list
+&hellip;))&quot; forms will find that similar logic can be put into StumpWM
+type definitions. The macro is called like this:
+</p>
+<p>(define-stumpwm-type :type-name (input prompt)
+  body)
+</p>
+<p>The keyword :type-name will then be available for use in
+<code>defcommand</code> macros. When commands are called, the bodies
+of these type definitions are called in turn to produce actual
+argument values.
+</p>
+<p>Type definitions produce their value in one of several ways: by
+reading it from the argument line bound to a keystroke, by prompting
+the user to enter a value, or by generating it programmatically.
+</p>
+<p>Within the body of the type definition, the argument &ldquo;input&rdquo; is bound
+to the argument line provided in the command string, and &ldquo;prompt&rdquo; to
+the string prompt provided in the <code>defcommand</code> form. The
+usual convention is to first check if an argument has been provided in
+&ldquo;input&rdquo; and, if it hasn&rsquo;t, to prompt for it using &ldquo;prompt&rdquo;.
+</p>
+<p>StumpWM provides several convenience functions for handling the value
+of &ldquo;input&rdquo;:
+</p>
+<ul>
+<li>
+<code>argument-pop</code> (input) pop the next space-delimited
+argument from the argument line.
+
+</li><li>
+<code>argument-pop-rest</code> (input) return the remainder of the
+argument line as a single string, leaving input empty
+
+</li><li>
+<code>argument-pop-or-read</code> (input prompt &amp;optional
+completions) either pop an argument from the argument line, or if it
+is empty use &ldquo;prompt&rdquo; to prompt the user for a value
+
+</li><li>
+<code>argument-pop-rest-or-read</code> (input prompt &amp;optional
+completions) either return the remainder of the argument line as a
+string, leaving input empty, or use &ldquo;prompt&rdquo; to prompt the user for
+a value
+
+</li></ul>
+
+<p>As an example, here&rsquo;s a new type called :smart-direction. The
+existing :direction type simply asks for one of the four directions
+&ldquo;left&rdquo;, &ldquo;right&rdquo;, &ldquo;up&rdquo; or &ldquo;down&rdquo;, without checking to see if there&rsquo;s a
+frame in that direction. Our new type, :smart-direction, will look
+around the current frame, and only allow the user to choose a
+direction in which another frame lies. If only one direction is
+possible it will return that automatically without troubling the user.
+It signals an error for invalid directions; it could alternately
+return a &ldquo;nil&rdquo; value in those cases, and let the command handle that.
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">(define-stumpwm-type :smart-direction (input prompt)
+  (let ((valid-dirs
+         (loop  ; gather all the directions in which there's a neighbouring frame
+            with values = '((&quot;up&quot; :up)
+                            (&quot;down&quot; :down)
+                            (&quot;left&quot; :left)
+                            (&quot;right&quot; :right))
+            with frame-set =
+              (group-frames (window-group (current-window)))
+            for dir in values
+            for neighbour = (neighbour
+                             (second dir)
+                             (window-frame (current-window)) frame-set)
+            if (and neighbour (frame-window neighbour))
+            collect dir))
+        (arg (argument-pop input)))  ; store a possible argument
+    (cond ((null valid-dirs)  ; no directions, bail out
+           (throw 'error &quot;No valid directions&quot;))
+          (arg  ; an arg was bound, but is it valid?
+           (or (second (assoc arg valid-dirs :test #'string=))
+               (throw 'error &quot;Not a valid direction&quot;)))
+          ((= 1 (length valid-dirs))  ; only one valid direction
+           (second (car valid-dirs)))
+          (t  ; multiple possibilities, prompt for direction
+           (second (assoc (completing-read input prompt valid-dirs
+                                           :require-match t)
+                          valid-dirs :test #'string=))))))
+
+(defcommand smarty (dir) ((:smart-direction &quot;Pick a direction: &quot;))
+  ;; `dir' is a keyword here
+  (message &quot;You're going ~a&quot; (string-downcase dir)))
+
+(define-key *root-map* (kbd &quot;R&quot;) &quot;smarty right&quot;)
+</pre></td></tr></table>
+
+<hr size="1">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="stumpwm-0.9.9_21.html#Writing-Commands" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.9_23.html#Message-and-Input-Bar" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.9_20.html#Commands" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.9_20.html#Commands" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.9_23.html#Message-and-Input-Bar" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.9.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.9_60.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-0.9.9_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated on <i>January 28, 2024</i> using <a href="http://www.nongnu.org/texi2html/"><i>texi2html 1.82</i></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

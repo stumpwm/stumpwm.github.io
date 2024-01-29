@@ -1,0 +1,153 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- Created on January 28, 2024 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>StumpWM Manual: 16.1 Writing Modules</title>
+
+<meta name="description" content="StumpWM Manual: 16.1 Writing Modules">
+<meta name="keywords" content="StumpWM Manual: 16.1 Writing Modules">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="../style.css">
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="Writing-Modules"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="stumpwm-22.05_68.html#Modules" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-22.05_70.html#Hacking" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-22.05_68.html#Modules" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-22.05_68.html#Modules" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-22.05_70.html#Hacking" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-22.05.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="stumpwm-22.05_76.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-22.05_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<hr size="1">
+<a name="Writing-Modules-1"></a>
+<h2 class="section">16.1 Writing Modules</h2>
+<p>Make sure to read <a href="stumpwm-22.05_70.html#Hacking">Hacking</a>. If you are familiar with writing lisp
+packages for ASDF then you can jump in and get started.  In either
+case, quicklisp ships a <code>quickproject</code> package that makes setting
+up a new module very easy.  After installing quicklisp (see the
+README.md for a link):
+</p>
+<p>We&rsquo;re going to put our new module in the &lsquo;<tt>modules/</tt>&rsquo; directory of
+<var>*data-dir*</var> so that it will be immediately loadable by StumpWM.
+</p>
+<p>First make the directory &lsquo;<tt>new-module</tt>&rsquo;, then from a REPL issue:
+</p><table><tr><td>&nbsp;</td><td><pre class="example">(ql:quickload &quot;quickproject&quot;)
+(quickproject:make-project #p&quot;~/.stumpwm.d/modules/new-module&quot; :depends-on '(stumpwm) :name &quot;new-module&quot;)
+</pre></td></tr></table>
+<p>This will create:
+</p><table><tr><td>&nbsp;</td><td><pre class="example">  -rw-rw-r--  1 dave dave   68 Apr  6 19:38 package.lisp
+  -rw-rw-r--  1 dave dave   53 Mar 16  2014 README.txt
+  -rw-rw-r--  1 dave dave  271 Mar 16  2014 new-module.asd
+  -rw-rw-r--  1 dave dave 1.8K Apr  6 17:51 new-module.lisp
+</pre></td></tr></table>
+
+<p>The file &lsquo;<tt>new-module.lisp</tt>&rsquo; will contain the actual implementation
+of your module.  ASDF requires two other files in order to understand
+how to load and compile your module.  They are &lsquo;<tt>new-module.asd</tt>&rsquo;
+and &lsquo;<tt>package.lisp</tt>&rsquo;.  In our example, &lsquo;<tt>new-module.asd</tt>&rsquo; should
+contain:
+</p><table><tr><td>&nbsp;</td><td><pre class="example">(asdf:defsystem #:new-module
+  :serial t
+  :description &quot;Describe new-module here&quot;
+  :author &quot;Anne N. O'Nymous&quot;
+  :license &quot;GPLv3&quot;
+  :depends-on (#:stumpwm)
+  :components ((:file &quot;package&quot;)
+               (:file &quot;new-module&quot;))) ; any other files you make go here
+</pre></td></tr></table>
+<p>The &lsquo;<tt>package.lisp</tt>&rsquo; will contain:
+</p><table><tr><td>&nbsp;</td><td><pre class="example">(defpackage #:new-module
+  (:use #:cl :stumpwm))
+</pre></td></tr></table>
+<p>With these two files defined, and the implementation written in
+&lsquo;<tt>new-module.lisp</tt>&rsquo;, you should be able to load your module.
+</p>
+<p>Before we load it, we have to add the path to our <var>*load-path*</var>.
+This can be accomplished by running the following from a REPL:
+</p><table><tr><td>&nbsp;</td><td><pre class="example">(stumpwm:add-to-load-path &quot;~/.stumpwm.d/modules/new-module&quot;)
+</pre></td></tr></table>
+<p>You can also run this interactively with <kbd>C-t ;</kbd>, which is bound
+to the <code>colon</code> command.
+</p>
+<p>Because we&rsquo;ve put our module in a sub-directory of the default
+<var>*module-dir*</var>, it will automatically get added to the
+<var>*load-path*</var> the next time StumpWM starts.  If you choose to
+develop your module somewhere else (e.g.
+&lsquo;<tt>~/quicklisp/local-projects</tt>&rsquo;), then you&rsquo;ll have add
+</p><table><tr><td>&nbsp;</td><td><pre class="example">(add-to-load-path &quot;~/quicklisp/local-projects/new-module&quot;)
+</pre></td></tr></table>
+<p>to your &lsquo;<tt>.stumpwmrc</tt>&rsquo;.
+</p>
+<p>When you&rsquo;ve finished writing your module, you can distribute it
+however you see fit.  If it becomes very popular, or you would like
+the StumpWM devs to maintain it (and they agree), you can have your
+module merged with the stumpwm-contrib repository on github, just open
+a pull request to start the discussion.
+</p>
+<hr size="1">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="stumpwm-22.05_68.html#Modules" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-22.05_70.html#Hacking" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-22.05_68.html#Modules" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-22.05_68.html#Modules" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-22.05_70.html#Hacking" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-22.05.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="stumpwm-22.05_76.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-22.05_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated on <i>January 28, 2024</i> using <a href="http://www.nongnu.org/texi2html/"><i>texi2html 1.82</i></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

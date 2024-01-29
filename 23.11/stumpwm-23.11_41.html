@@ -1,0 +1,226 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- Created on January 28, 2024 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>StumpWM Manual: 5.5 Rule Based Window Placement</title>
+
+<meta name="description" content="StumpWM Manual: 5.5 Rule Based Window Placement">
+<meta name="keywords" content="StumpWM Manual: 5.5 Rule Based Window Placement">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="../style.css">
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="Rule-Based-Window-Placement"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="stumpwm-23.11_40.html#Programming-With-Windows" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-23.11_42.html#Window-Selection-Expressions" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-23.11_36.html#Windows" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-23.11_36.html#Windows" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-23.11_43.html#Frames" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-23.11.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="stumpwm-23.11_83.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-23.11_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<hr size="1">
+<a name="Rule-Based-Window-Placement-1"></a>
+<h2 class="section">5.5 Rule Based Window Placement</h2>
+
+<dl>
+<dt><a name="index-define_002dframe_002dpreference"></a><u>Macro:</u> <b>define-frame-preference</b><i>  target-group &amp;body frame-rules</i></dt>
+<dd><p>Create a rule that matches windows and automatically places them in
+a specified group and frame. Each frame rule is a lambda list:
+</p><table><tr><td>&nbsp;</td><td><pre class="example">(frame-number raise lock &amp;key from-group create restore dump-name class class-not
+instance instance-not type type-not role role-not title title-not
+match-properties-and-function match-properties-or-function)
+</pre></td></tr></table>
+
+<dl compact="compact">
+<dt> <var>target-group</var></dt>
+<dd><p>When nil, rule applies in the current group. When non nil, <var>lock</var> determines
+applicability of rule
+</p>
+</dd>
+<dt> <var>frame-number</var></dt>
+<dd><p>The frame number to send matching windows to
+</p>
+</dd>
+<dt> <var>raise</var></dt>
+<dd><p>When non-nil, raise and focus the window in its frame
+</p>
+</dd>
+<dt> <var>lock</var></dt>
+<dd><p>When this is nil, this rule will only match when <var>target-group</var>
+matches the group designated by <var>from-group</var>.
+When non-nil, this rule matches regardless
+of the group and the window is sent to <var>target-group</var>. If
+<var>lock</var> and <var>raise</var> are both non-nil, then stumpwm will jump to
+the specified group and focus the matched window.
+</p>
+</dd>
+<dt> <var>from-group</var></dt>
+<dd><p>When <var>lock</var> is NIL, and this is non-NIL, this rule will only match
+when <var>target-group</var> matches <var>from-group</var>. This should be set
+to either a group name(a string), or an expression that returns a group(e.g (current-group)).
+When this is NIL, the rule matches if <var>target-group</var> matches
+the group the window is in, or the current group if the window has no group.
+</p></dd>
+<dt> <var>create</var></dt>
+<dd><p>When non-NIL the group is created and eventually restored when the value of
+create is a group dump filename in *DATA-DIR*. Defaults to NIL.
+</p>
+</dd>
+<dt> <var>restore</var></dt>
+<dd><p>When non-NIL the group is restored even if it already exists. This arg should
+be set to the dump filename to use for forced restore. Defaults to NIL
+</p>
+</dd>
+<dt> <var>class</var></dt>
+<dd><p>The windows class must match <var>class</var>.
+</p>
+</dd>
+<dt> <var>class-not</var></dt>
+<dd><p>The windows class must not match <var>class-not</var>
+</p>
+</dd>
+<dt> <var>instance</var></dt>
+<dd><p>The windows instance/resource name must match <var>instance</var>.
+</p>
+</dd>
+<dt> <var>instance-not</var></dt>
+<dd><p>The windows instance/resource name must not match <var>instance-not</var>.
+</p>
+</dd>
+<dt> <var>type</var></dt>
+<dd><p>The windows type must match <var>type</var>.
+</p>
+</dd>
+<dt> <var>type-not</var></dt>
+<dd><p>The windows type must not match <var>type-not</var>.
+</p>
+</dd>
+<dt> <var>role</var></dt>
+<dd><p>The windows role must match <var>role</var>.
+</p>
+</dd>
+<dt> <var>role-not</var></dt>
+<dd><p>The windows role must not match <var>role-not</var>.
+</p>
+</dd>
+<dt> <var>title</var></dt>
+<dd><p>The windows title must match <var>title</var>.
+</p>
+</dd>
+<dt> <var>title-not</var></dt>
+<dd><p>The windows title must not match <var>title-not</var>.
+</p>
+</dd>
+<dt> <var>match-properties-and-function</var></dt>
+<dd><p>A function that, if provided, must return true alongside the provided properties
+in order for the rule to match. This function takes one argument, the window. 
+Must be an unquoted symbol to be looked up at runtime. 
+</p>
+</dd>
+<dt> <var>match-properties-or-function</var></dt>
+<dd><p>A function that, if provided and returning true, will cause the rule to match
+regardless of whether the window properties match. Takes one argument, the window.
+Must be an unquoted symbol to be looked up at runtime. 
+</p></dd>
+</dl>
+</dd></dl>
+
+<dl>
+<dt><a name="index-clear_002dwindow_002dplacement_002drules"></a><u>Function:</u> <b>clear-window-placement-rules</b></dt>
+<dd><p>Clear all window placement rules.
+</p></dd></dl>
+
+
+<dl>
+<dt><a name="index-remember"></a><u>Command:</u> <b>remember</b><i>  lock title</i></dt>
+<dd><p>Make a generic placement rule for the current window. Might be too specific/not specific enough!
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-forget"></a><u>Command:</u> <b>forget</b></dt>
+<dd><p>Forget the window placement rule that matches the current window.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-dump_002dwindow_002dplacement_002drules"></a><u>Command:</u> <b>dump-window-placement-rules</b><i>  file</i></dt>
+<dd><p>Dump *window-placement-rules* to FILE.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-restore_002dwindow_002dplacement_002drules"></a><u>Command:</u> <b>restore-window-placement-rules</b><i>  file</i></dt>
+<dd><p>Restore *window-placement-rules* from FILE.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-_002awindow_002dplacement_002drules_002a"></a><u>Variable:</u> <b>*window-placement-rules*</b></dt>
+<dd><p>List of rules governing window placement. Use define-frame-preference to
+add rules
+</p></dd></dl>
+
+<hr size="1">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="stumpwm-23.11_40.html#Programming-With-Windows" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-23.11_42.html#Window-Selection-Expressions" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-23.11_36.html#Windows" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-23.11_36.html#Windows" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-23.11_43.html#Frames" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-23.11.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="stumpwm-23.11_83.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-23.11_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated on <i>January 28, 2024</i> using <a href="http://www.nongnu.org/texi2html/"><i>texi2html 1.82</i></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

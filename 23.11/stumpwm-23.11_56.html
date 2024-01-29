@@ -1,0 +1,168 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- Created on January 28, 2024 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>StumpWM Manual: 10.3 Minor Mode Example</title>
+
+<meta name="description" content="StumpWM Manual: 10.3 Minor Mode Example">
+<meta name="keywords" content="StumpWM Manual: 10.3 Minor Mode Example">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="../style.css">
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="Minor-Mode-Example"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="stumpwm-23.11_55.html#Minor-Mode-Scopes" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-23.11_57.html#Internals" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-23.11_53.html#Minor-Modes" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-23.11_53.html#Minor-Modes" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-23.11_57.html#Internals" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-23.11.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="stumpwm-23.11_83.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-23.11_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<hr size="1">
+<a name="Minor-Mode-Example-1"></a>
+<h2 class="section">10.3 Minor Mode Example</h2>
+
+<p>A simple example of a minor mode is a version of the Emacs modes viper
+or evil for StumpWM. Such a minor mode might look like this:
+</p>
+<pre class="verbatim">(define-minor-mode swm-evil-mode () ()
+  (:scope :screen)
+  (:interactive t)
+  (:top-map '((&quot;i&quot; . &quot;swm-evil-mode&quot;)
+              (&quot;j&quot; . &quot;move-focus down&quot;)
+              (&quot;k&quot; . &quot;move-focus up&quot;)
+              (&quot;h&quot; . &quot;move-focus left&quot;)
+              (&quot;l&quot; . &quot;move-focus right&quot;)
+              (&quot;p&quot; . &quot;pull-hidden-previous&quot;)
+              (&quot;n&quot; . &quot;pull-hidden-next&quot;)
+              (&quot;S&quot; . &quot;hsplit&quot;)
+              (&quot;s&quot; . &quot;vsplit&quot;)
+              (&quot;r&quot; . &quot;remove-split&quot;)
+              (&quot;g&quot; . *groups-map*)
+              (&quot;x&quot; . *exchange-window-map*)))
+  (:lighter-make-clickable nil)
+  (:lighter &quot;EVIL&quot;))
+</pre>
+<p>In the above example, the minor mode <code>swm-evil-mode</code> is defined,
+alongside a command of the same name which toggles it on and off. The
+minor mode is scoped to a screen, meaning that upon activation it will
+be dynamically mixed in to the screen object. The lighter is the string
+<code>&quot;EVIL&quot;</code> and the lighter is not made clickable.
+</p>
+<p>When defining a minor mode top map it is important to avoid multi-key
+bindings that clobber the prefix key. For example, if the prefix key is
+<kbd>C-t</kbd> then defining the keybinding <kbd>C-t n</kbd> in the top map of a
+minor mode is an error. Instead bind the key <kbd>n</kbd> in the minor mode&rsquo;s
+root map.
+</p>
+<p>As another example we can define a frame topbar mode. This should adjust
+every frame to leave extra space at the top of the frame to display a
+bar of some sort. The following assumes that the functions
+<code>frame-display-height</code> and <code>frame-display-y</code> are generic. 
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">(defclass frame-topbar ()
+  ((frame-topbar-height :initform 10 :accessor frame-topbar-height)))
+
+(defmethod frame-display-height :around (group (frame frame-topbar))
+  (let ((height (call-next-method)))
+    (- height (frame-topbar-height frame))))
+
+(defmethod frame-display-y :around (group (frame frame-topbar))
+  (let ((y (call-next-method)))
+    (+ y (frame-topbar-height frame))))
+
+(define-minor-mode frame-bar (frame-topbar minor-mode) ()
+  (:global t)
+  (:scope :frame)
+  (:lighter &quot;T-BAR&quot;)
+  (:interactive frame-topbar-mode))
+
+(defmethod update-instance-for-different-class :after
+    (prev (obj frame-bar) &amp;rest rest)
+  (declare (ignore prev rest))
+  (when (frame-window obj)
+    (let* ((group (window-group (frame-window obj)))
+           (windows (frame-windows group obj)))
+      (mapc #'maximize-window windows))))
+</pre></td></tr></table>
+
+<p>In the above example, a class is defined which holds the height of the
+frame topbar. Then two around methods are defined such that windows
+querying the frame for their y position and height get an updated value
+reflecting the topbars presence. Then a minor mode is defined which
+inherits from the class we defined. It is scoped to frames and is a
+global minor mode, so it will be enabled in all existing frames and any
+other frames as they are created. Finally the initialization is handled
+in the after method for update-instance-for-different-class, which
+updates every window to have a new size which respects the topbar.
+</p>
+<p>The implementation of the actual topbar is left as an exercise for the
+reader. 
+</p>
+<hr size="1">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="stumpwm-23.11_55.html#Minor-Mode-Scopes" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-23.11_57.html#Internals" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-23.11_53.html#Minor-Modes" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-23.11_53.html#Minor-Modes" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-23.11_57.html#Internals" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-23.11.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="stumpwm-23.11_83.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-23.11_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated on <i>January 28, 2024</i> using <a href="http://www.nongnu.org/texi2html/"><i>texi2html 1.82</i></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

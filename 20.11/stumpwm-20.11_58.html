@@ -1,0 +1,147 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- Created on January 28, 2024 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>StumpWM Manual: 13.2.2 Batch Menus</title>
+
+<meta name="description" content="StumpWM Manual: 13.2.2 Batch Menus">
+<meta name="keywords" content="StumpWM Manual: 13.2.2 Batch Menus">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="../style.css">
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="Batch-Menus"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="stumpwm-20.11_57.html#Single-Selection-Menus" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-20.11_59.html#StumpWM_0027s-Data-Directory" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-20.11_54.html#Miscellaneous-Commands" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-20.11_56.html#Menus-1" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-20.11_64.html#Colors" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-20.11.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="stumpwm-20.11_75.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-20.11_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<hr size="1">
+<h3 class="subsection">13.2.2 Batch Menus</h3>
+<p>Batch menus provide a menu that allows the user to mark items. Items
+are marked by highlighting an item, then pressing a corresponding
+key. The key pressed depends on the menu being shown, and the desired
+action. For example, in a menu allowing users to manage windows,
+windows to be closed/removed could be marked by &lt;d&gt;, and windows
+to be raised could be marked by &lt;r&gt;. All available actions and
+their keybindings are shown below. These can be customized with <var>*batch-menu-map*</var>.
+</p>
+<dl compact="compact">
+<dt> <kbd>n</kbd></dt>
+<dt> <kbd>Space</kbd></dt>
+<dd><p>Highlight the next item.
+</p>
+</dd>
+<dt> <kbd>p</kbd></dt>
+<dd><p>Highlight the previous item.
+</p>
+</dd>
+<dt> <kbd>u</kbd></dt>
+<dd><p>Unmark the selected item, then move the cursor down.
+</p>
+</dd>
+<dt> <kbd>DEL</kbd></dt>
+<dd><p>Unmark the selected item, then move the cursor up if it is not at the
+top of the menu.
+</p>
+</dd>
+<dt> <kbd>x</kbd></dt>
+<dt> <kbd>RET</kbd></dt>
+<dd><p>Exit the menu and perform the actions associated with each mark.
+</p>
+</dd>
+</dl>
+<dl>
+<dt><a name="index-_002abatch_002dmenu_002dmap_002a"></a><u>Variable:</u> <b>*batch-menu-map*</b></dt>
+<dd><p>The keymap used by batch-menu menus in addition to *menu-map*
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-select_002dfrom_002dbatch_002dmenu"></a><u>Function:</u> <b>select-from-batch-menu</b><i> screen table &amp;key (prompt Select:) allowed-markers (initial-selection 0) extra-keymap</i></dt>
+<dd><p>Prompt the user with a menu that allows them to mark each item
+with a character. They can exit the menu by pressing enter, or
+whatever key is mapped to &rsquo;menu-finish&rsquo; in *menu-map*. Value returned
+is an alist, where the cdr of each entry is a list of
+items that were marked with that character. Note that the lisp printer cannot
+distinguish between &rsquo;(a . (b c d)) and &rsquo;(a b c d).
+</p>
+<p>Example when &quot;foo&quot; and &quot;bar&quot; are marked with &rsquo;#d&rsquo;, and &quot;baz&quot; is not marked:
+    ((#d &quot;foo&quot; &quot;bar&quot;) (NIL &quot;baz&quot;))
+ALLOWED-MARKERS is a list of characters. If this parameter is specified, no
+    other markers are allowed.
+EXTRA-KEYMAP can be a keymap whose bindings will take precedence
+    over the default bindings.
+</p></dd></dl>
+
+<p>@&nbsp;select-from-batch-menu
+</p>
+
+<hr size="1">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="stumpwm-20.11_57.html#Single-Selection-Menus" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-20.11_59.html#StumpWM_0027s-Data-Directory" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-20.11_54.html#Miscellaneous-Commands" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-20.11_56.html#Menus-1" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-20.11_64.html#Colors" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-20.11.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="stumpwm-20.11_75.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-20.11_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated on <i>January 28, 2024</i> using <a href="http://www.nongnu.org/texi2html/"><i>texi2html 1.82</i></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

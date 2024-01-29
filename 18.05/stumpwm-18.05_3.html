@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- Created on January 28, 2024 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>StumpWM Manual: 1.2 Basic Usage</title>
+
+<meta name="description" content="StumpWM Manual: 1.2 Basic Usage">
+<meta name="keywords" content="StumpWM Manual: 1.2 Basic Usage">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="../style.css">
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="Basic-Usage"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="stumpwm-18.05_2.html#Starting-StumpWM" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-18.05_4.html#Basic-Concepts" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-18.05_1.html#Introduction" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-18.05_1.html#Introduction" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-18.05_17.html#Key-Bindings" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-18.05.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="stumpwm-18.05_64.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-18.05_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<hr size="1">
+<a name="Basic-Usage-1"></a>
+<h2 class="section">1.2 Basic Usage</h2>
+<p>Once you have StumpWM up and running, the first thing you might want
+to do is start <code>emacs</code>. Type <kbd>C-t e</kbd>, or in other words
+<kbd>Control + t</kbd> followed by <kbd>e</kbd>. Now perhaps you want an
+<code>xterm</code>. Type <kbd>C-t c</kbd>. Now you have some programs running.
+</p>
+<p>To see a list of windows StumpWM is managing, type <kbd>C-t w</kbd>. The
+highlighted window is the one you&rsquo;re looking at right now. It&rsquo;s the
+focused window.
+</p>
+<p>All of StumpWM&rsquo;s keys are bound to named commands, which can be
+executed not only by keys but also from the input bar. Type <kbd>C-t
+;</kbd> to open a command prompt. Now type <code>time</code> and press
+return. Note, <code>time</code> can also be called by typing <kbd>C-t a</kbd>.
+Throughout this manual you&rsquo;ll find definitions for commands,
+functions, and variables. Any command you see in this manual can be
+executed from the input bar or bound to a key.
+</p>
+<p>At this point you probably want to switch back from your new
+<code>xterm</code> to <code>emacs</code>. Type <kbd>C-t C-t</kbd>. This runs the
+<code>other</code> command. Type it again and you&rsquo;re back to xterm.
+</p>
+<p>Perhaps you&rsquo;d like to see <code>emacs</code> and <code>xterm</code>
+side-by-side. Type <kbd>C-t s</kbd>. You have now split the screen into 2
+<code>frames</code>. For more information see <a href="stumpwm-18.05_37.html#Frames">Frames</a>. To switch to the
+empty frame type <kbd>C-t TAB</kbd>. Now let&rsquo;s pull the xterm window into
+this empty frame. Type <kbd>C-t w</kbd> for a window listing. Find the
+<code>xterm</code> window. See the number beside it? Type <kbd>C-t</kbd> followed
+by <code>xterm</code>&rsquo;s window number.
+</p>
+<p>Another common activity is browsing the internet. Type <kbd>C-t !</kbd>.
+The input bar pops up again. You can now run a shell command.  Let&rsquo;s
+start a web browser: type <code>firefox</code> into the input bar and press
+return.
+</p>
+<p>Unfortunately, <code>firefox</code> probably isn&rsquo;t wide enough because it&rsquo;s
+in one of the frames. Type <kbd>C-t Q</kbd> to remove all frames but the
+current one and resize it to fit the screen.
+</p>
+<p>For a full list of key bindings, see <a href="stumpwm-18.05_18.html#List-of-Default-Keybindings">List of Default Keybindings</a>.
+</p>
+<hr size="1">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="stumpwm-18.05_2.html#Starting-StumpWM" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-18.05_4.html#Basic-Concepts" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-18.05_1.html#Introduction" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-18.05_1.html#Introduction" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-18.05_17.html#Key-Bindings" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-18.05.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="stumpwm-18.05_64.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-18.05_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated on <i>January 28, 2024</i> using <a href="http://www.nongnu.org/texi2html/"><i>texi2html 1.82</i></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>
