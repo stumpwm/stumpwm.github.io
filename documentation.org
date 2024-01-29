@@ -20,7 +20,6 @@ open an issue on the issue tracker.
 - 22.05 :: [[./22.05/stumpwm-22.05.html][html]], [[./22.05/stumpwm-22.05.pdf][pdf]], [[./22.05/stumpwm-22.05.info][info]]
 - 20.11 :: [[./20.11/stumpwm-20.11.html][html]], [[./20.11/stumpwm-20.11.pdf][pdf]], [[./20.11/stumpwm-20.11.info][info]]
 - 19.11 :: [[./19.11/stumpwm-19.11.html][html]], [[./19.11/stumpwm-19.11.pdf][pdf]], [[./19.11/stumpwm-19.11.info][info]]
-- 18.11 :: [[./18.11/stumpwm-18.11.html][html]], [[./18.11/stumpwm-18.11.pdf][pdf]], [[./18.11/stumpwm-18.11.info][info]]
 - 18.05 :: [[./18.05/stumpwm-18.05.html][html]], [[./18.05/stumpwm-18.05.pdf][pdf]], [[./18.05/stumpwm-18.05.info][info]]
 - 1.0.0 :: [[./1.0.0/stumpwm-1.0.0.html][html]], [[./1.0.0/stumpwm-1.0.0.pdf][pdf]], [[./1.0.0/stumpwm-1.0.0.info][info]]
 - v1.0.1-rc :: [[./v1.0.1-rc/stumpwm-v1.0.1-rc.html][html]], [[./v1.0.1-rc/stumpwm-v1.0.1-rc.pdf][pdf]], [[./v1.0.1-rc/stumpwm-v1.0.1-rc.info][info]]
