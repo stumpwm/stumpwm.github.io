@@ -1,0 +1,145 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- Created on January 31, 2024 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>StumpWM Manual: 17. Modules</title>
+
+<meta name="description" content="StumpWM Manual: 17. Modules">
+<meta name="keywords" content="StumpWM Manual: 17. Modules">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="../style.css">
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="Modules"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="stumpwm_74.html#Hooks" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm_76.html#Writing-Modules" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm_74.html#Hooks" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm.html#Top" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm_77.html#Hacking" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="stumpwm_83.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<hr size="1">
+<a name="Modules-1"></a>
+<h1 class="chapter">17. Modules</h1>
+<p>A module is an ASDF system that adds additional functionality to
+StumpWM.  StumpWM searches for modules in the
+<var>*data-dir*</var>&lsquo;<tt>/modules</tt>&rsquo; directory.  By default this is
+&lsquo;<tt>~/.stumpwm.d/modules</tt>&rsquo;.
+</p>
+<p>Officially supported modules exist in a separate repository within the
+StumpWM organization on github.  You can install the latest copy by
+issuing <code>make install-modules</code> from StumpWM&rsquo;s root source
+directory.  This will run:
+</p><table><tr><td>&nbsp;</td><td><pre class="example">git clone git@github.com:stumpwm/stumpwm-contrib.git ~/.stumpwm.d/modules
+</pre></td></tr></table>
+
+
+<dl>
+<dt><a name="index-load_002dmodule"></a><u>Command:</u> <b>load-module</b><i>  name</i></dt>
+<dd><p>Loads the contributed module with the given NAME.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-list_002dmodules"></a><u>Function:</u> <b>list-modules</b></dt>
+<dd><p>Return a list of the available modules.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-_002aload_002dpath_002a"></a><u>Variable:</u> <b>*load-path*</b></dt>
+<dd><p>A list of paths in which modules can be found, by default it is
+  populated by any asdf systems found in &lsquo;*module-dir*&rsquo; set from the
+  configure script when StumpWM was built, or later by the user using
+  &lsquo;add-to-load-path&rsquo;
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-add_002dto_002dload_002dpath"></a><u>Command:</u> <b>add-to-load-path</b><i>  path</i></dt>
+<dd><p>If &lsquo;PATH&rsquo; is not in &lsquo;*LOAD-PATH*&rsquo; add it, check if &lsquo;PATH&rsquo; contains
+an asdf system, and if so add it to the central registry
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-init_002dload_002dpath"></a><u>Function:</u> <b>init-load-path</b><i>  path</i></dt>
+<dd><p>Recursively builds a list of paths that contain modules, then
+add them to the load path. This is called each time StumpWM starts
+with the argument &lsquo;*module-dir*&rsquo;
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-find_002dmodule"></a><u>Function:</u> <b>find-module</b><i>  name</i></dt>
+<dd><p>nil
+</p></dd></dl>
+
+
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="stumpwm_76.html#Writing-Modules">17.1 Writing Modules</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+<hr size="1">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="stumpwm_74.html#Hooks" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm_76.html#Writing-Modules" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm_74.html#Hooks" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm.html#Top" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm_77.html#Hacking" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="stumpwm_83.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated on <i>January 31, 2024</i> using <a href="http://www.nongnu.org/texi2html/"><i>texi2html 1.82</i></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

@@ -1,0 +1,222 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- Created on January 31, 2024 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>StumpWM Manual: 10.2 Minor Mode Scopes</title>
+
+<meta name="description" content="StumpWM Manual: 10.2 Minor Mode Scopes">
+<meta name="keywords" content="StumpWM Manual: 10.2 Minor Mode Scopes">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="../style.css">
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="Minor-Mode-Scopes"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="stumpwm_54.html#Programming-With-Minor-Modes" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm_56.html#Minor-Mode-Example" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm_53.html#Minor-Modes" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm_53.html#Minor-Modes" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm_57.html#Internals" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="stumpwm_83.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<hr size="1">
+<a name="Minor-Mode-Scopes-1"></a>
+<h2 class="section">10.2 Minor Mode Scopes</h2>
+
+<p>Minor modes can be scoped to different objects in a rather arbitrary
+manner. These scopes are defined by the macro
+<code>DEFINE-MINOR-MODE-SCOPE</code>. Because minor modes are implemented as
+mixins, the object returned by a scopes current object function must be
+a class instance. 
+</p>
+<dl>
+<dt><a name="index-define_002dminor_002dmode_002dscope"></a><u>Macro:</u> <b>define-minor-mode-scope</b><i> (designator class &amp;optional filter-type) &amp;body retrieve-current-object</i></dt>
+<dd><p>Default Values:
+</p><pre class="verbatim">  filter-type  nil
+</pre><p>Define a minor mode scope for use with DEFINE-MINOR-MODE.  This generates a
+call to ADD-MINOR-MODE-SCOPE which is evaluated when compiled, loaded, or
+executed. DESIGNATOR should be a keyword and TYPE should denote a class, while
+FILTER-TYPE should denote a general type. RETRIEVE-CURRENT-OBJECT should be a
+thunk body which returns the current object for this scope.
+</p></dd></dl>
+
+
+<dl>
+<dt><a name="index-define_002ddescended_002dminor_002dmode_002dscope"></a><u>Macro:</u> <b>define-descended-minor-mode-scope</b><i>  designator parent &amp;key class filter-type retrieve-current-object</i></dt>
+<dd><p>Default Values:
+</p><pre class="verbatim">  class                    nil
+  filter-type              nil
+  retrieve-current-object  nil
+</pre><p>Define a descended scope which inherits the parents type and functions unless
+provided.
+</p></dd></dl>
+
+
+<dl>
+<dt><a name="index-add_002dminor_002dmode_002dscope"></a><u>Function:</u> <b>add-minor-mode-scope</b><i>  designator type current-object-thunk &amp;optional filter-type</i></dt>
+<dd><p>Default Values:
+</p><pre class="verbatim">  filter-type  nil
+</pre><p>Add a list of the TYPE, CURRENT-OBJECT-THUNK, and ALL-OBJECTS-THUNK, under
+DESIGNATOR in the minor mode scope hash table.
+</p></dd></dl>
+
+
+<p>When a minor mode is defined its scope is looked up and validated by the
+function <code>VALIDATE-SCOPE</code>. This function takes a scope and a list
+of superclasses, and ensures that the scope can descend from the
+superclasses scopes. This restricts the valid scopes to ensure that a
+minor mode scoped to <code>:GROUP</code> cant be a subclass of a minor mode
+scoped to <code>:WINDOW</code>, for example. However there is a way to
+override this by explicitly stating that two otherwise incompatible
+scopes are compatible. This is done by defining methods for the generic
+function <code>VALIDATE-SUPERSCOPE</code> which dispatch upon the scope
+designators. Such methods should return at least one value, indicating
+if the superscope is a valid parent of the scope. If multiple values are
+returned, the second value must indicate whether the superscope is an
+invalid parent of the scope. For example:
+</p>
+<pre class="verbatim">(defmethod stumpwm:validate-superscope ((c (eql :id1)) (p (eql :id2)))
+  &quot;Explicitly allow id1 to descend from id2&quot;
+  (values t nil))
+
+(defmethod stumpwm:validate-superscope ((c (eql :id3)) (p (eql :id4)))
+  &quot;Explicitly prevent id3 from descending from id4&quot;
+  (values nil t))
+</pre>
+<p>When defining and using scopes the type specifier is important; it is
+used to determine what minor modes should be mixed into an object when
+it is created. For this reason it is important when defining a minor
+mode or minor mode scope to understand the type hierarchy. It may also
+be in the programmers best interests to define an accompanying type.
+</p>
+<p>The following scopes are predefined:
+</p><ul>
+<li>
+Designator: <code>:UNSCOPED</code>, type: <code>T</code>
+Current object: return the global unscoped object.<br>
+
+</li><li>
+Designator: <code>:SCREEN</code>, type: <code>SCREEN</code>
+Current object: return the current screen.<br>
+
+</li><li>
+Designator: <code>:GROUP</code>, type: <code>GROUP</code>
+Current object: return the current group.<br>
+
+</li><li>
+Designator: <code>:TILE-GROUP</code>, type: <code>TILE-GROUP</code>
+Current object: return the current group.<br>
+
+</li><li>
+Designator: <code>:DYNAMIC-GROUP</code>, type: <code>DYNAMIC-GROUP</code>
+Current object: return the current group.<br>
+
+</li><li>
+Designator: <code>:FLOAT-GROUP</code>, type: <code>FLOAT-GROUP</code>
+Current object: return the current group.<br>
+
+</li><li>
+Designator: <code>:TILING-NON-DYNAMIC-GROUP</code>, type: <code>TILE-GROUP</code>
+Current object: return the current group when it is a non-dynamic tiling
+group.<br>
+
+</li><li>
+Designator: <code>:HEAD</code>, type: <code>HEAD</code>
+Current object: return the current head.<br>
+
+</li><li>
+Designator: <code>:FRAME</code>, type: <code>FRAME</code>
+Current object: return the current frame when in a tiling group.<br>
+
+</li><li>
+Designator: <code>:FRAME-EXCLUDING-HEAD</code>, type: <code>ONLY-FRAME-NO-HEADS</code>
+Descends from minor mode scope <code>:FRAME</code>.
+
+</li><li>
+Designator: <code>:WINDOW</code>, type: <code>WINDOW</code>
+
+<p>Current object: return the current window.<br>
+All objects: collect every window from every group in the current screen.
+</p>
+</li><li>
+Designator: <code>:TILE-WINDOW</code>, type: <code>TILE-WINDOW</code>
+
+<p>Current object: return the current window.<br>
+All objects: collect every window from every tiling group, filtering all
+floating windows.
+</p>
+</li><li>
+Designator: <code>:FLOAT-WINDOW</code>, type: <code>FLOAT-WINDOW</code>
+
+<p>Current object: return the current window.<br>
+All objects: colelct every window from every group, filtering all non
+floating windows.
+</p>
+</li></ul>
+
+<hr size="1">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="stumpwm_54.html#Programming-With-Minor-Modes" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm_56.html#Minor-Mode-Example" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm_53.html#Minor-Modes" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm_53.html#Minor-Modes" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm_57.html#Internals" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="stumpwm_83.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated on <i>January 31, 2024</i> using <a href="http://www.nongnu.org/texi2html/"><i>texi2html 1.82</i></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

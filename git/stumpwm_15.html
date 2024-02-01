@@ -1,0 +1,196 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- Created on January 31, 2024 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>StumpWM Manual: 1.4.2 Manipulating Windows</title>
+
+<meta name="description" content="StumpWM Manual: 1.4.2 Manipulating Windows">
+<meta name="keywords" content="StumpWM Manual: 1.4.2 Manipulating Windows">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="../style.css">
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="Manipulating-Windows"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="stumpwm_14.html#Moving-Between-Frames" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm_16.html#Interacting-with-the-Lisp-process" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm_1.html#Introduction" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm_13.html#Manipulating-Frames-and-Windows" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm_19.html#Key-Bindings" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="stumpwm_83.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<hr size="1">
+<a name="Manipulating-Windows-1"></a>
+<h3 class="subsection">1.4.2 Manipulating Windows</h3>
+
+<p>Some commands change which window is currently focused, some move
+windows between frames, and some may do both at once.
+</p>
+<p>There are two general ways to move focus between windows: either
+between windows belonging to the current frame, or between all windows
+within the current group. Within a single frame:
+</p>
+<ul>
+<li>
+<code>next-in-frame</code> (<kbd>C-t C-M-n</kbd>) focus the next window in the current
+frame&rsquo;s list of windows.
+
+</li><li>
+<code>prev-in-frame</code> (<kbd>C-t C-M-p</kbd>) focus the previous window in the
+current frame&rsquo;s list of windows.
+
+</li><li>
+<code>other-in-frame</code> (<kbd>C-t M-t</kbd>) focus the most recently focused window
+in the current frame&rsquo;s list of windows.
+
+</li><li>
+<code>frame-windowlist</code> (unbound by default) display a menu of windows in
+the currently-focused frame, and allow the user to choose one.
+Alternately, the command <code>frame-windows</code> will simply display the
+list of window names, with no menu choice available.
+
+</li></ul>
+
+<p>Within the current group, the following commands will go straight to
+the specified window. They will never move a window from its original
+frame, and so may result in focus switching frames.
+</p>
+<ul>
+<li>
+<code>next</code> (<kbd>C-t M-n</kbd>) focus the next window in the current group.
+
+</li><li>
+<code>prev</code> (<kbd>C-t M-p</kbd>) focus the previous window in the current group.
+
+</li><li>
+<code>other</code> or <code>other-window</code> (unbound by default) focus the
+most recently focused window in the current group.
+
+</li><li>
+<code>next-urgent</code> (<kbd>C-t C-u</kbd>) focus the next window that has marked
+itself &ldquo;urgent&rdquo;.
+
+</li><li>
+<code>select</code> or <code>select-window</code> (<kbd>C-t '</kbd>) prompt for the
+title of a window and focus it. Works with partial completion of the
+title.
+
+</li><li>
+<code>select-window-by-name</code> (unbound by default) prompt for the
+title of a window and focus it. Requires the window title to be entered
+exactly.
+
+</li><li>
+<code>select-window-by-number</code> (<kbd>C-t &lt;number&gt;</kbd>) choose a window by
+number.
+
+</li><li>
+<code>windowlist</code> (<kbd>C-t &quot;</kbd>) display a menu of windows in the
+currently-focused group, and allow the user to choose one.
+
+</li></ul>
+
+<p>The following commands always keep the current frame focused. If the
+selected window is not in the current frame, it will be pulled there
+from wherever it is (hence the &ldquo;pull&rdquo; naming scheme).
+</p>
+<ul>
+<li>
+<code>pull</code> or <code>pull-window-by-number</code> (<kbd>C-t C-&lt;number&gt;</kbd>)
+pull the numbered window into the current frame.
+
+</li><li>
+<code>pull-hidden-next</code> (<kbd>C-t n</kbd> or <kbd>C-t SPC</kbd>) pull the next
+currently undisplayed window in the window list into the current frame.
+
+</li><li>
+<code>pull-hidden-previous</code> (<kbd>C-t p</kbd>) pull the previous currently
+undisplayed window in the window list into the current frame.
+
+</li><li>
+<code>pull-hidden-other</code> (<kbd>C-t C-t</kbd>) pull the most recently
+focused, currently undisplayed window into the current frame.
+
+</li></ul>
+
+<p>The following commands move the current window from one frame to
+another, bringing focus with them.
+</p>
+<ul>
+<li>
+<code>move-window</code> (<kbd>C-t M-&lt;arrow&gt;</kbd>) move the currently focused
+window in the direction indicated by the arrow key.
+
+</li><li>
+<code>exchange-direction</code> (unbound by default) prompt for a
+direction, then swap the currently focused window with the top window of
+the frame in that direction.
+
+</li></ul>
+
+<hr size="1">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="stumpwm_14.html#Moving-Between-Frames" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm_16.html#Interacting-with-the-Lisp-process" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm_1.html#Introduction" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm_13.html#Manipulating-Frames-and-Windows" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm_19.html#Key-Bindings" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="stumpwm_83.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated on <i>January 31, 2024</i> using <a href="http://www.nongnu.org/texi2html/"><i>texi2html 1.82</i></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

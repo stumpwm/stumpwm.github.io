@@ -1,0 +1,150 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- Created on January 31, 2024 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>StumpWM Manual: 4.3 Programming The Message Bar</title>
+
+<meta name="description" content="StumpWM Manual: 4.3 Programming The Message Bar">
+<meta name="keywords" content="StumpWM Manual: 4.3 Programming The Message Bar">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="../style.css">
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="Programming-The-Message-Bar"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="stumpwm_33.html#Using-The-Input-Bar" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm_35.html#Programming-the-Input-Bar" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm_31.html#Message-and-Input-Bar" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm_31.html#Message-and-Input-Bar" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm_36.html#Windows" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="stumpwm_83.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<hr size="1">
+<a name="Programming-The-Message-Bar-1"></a>
+<h2 class="section">4.3 Programming The Message Bar</h2>
+
+<dl>
+<dt><a name="index-echo_002dstring"></a><u>Function:</u> <b>echo-string</b><i>  screen msg</i></dt>
+<dd><p>Display <var>string</var> in the message bar on <var>screen</var>. You almost always want to use <code>message</code>.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-message"></a><u>Function:</u> <b>message</b><i>  fmt &amp;rest args</i></dt>
+<dd><p>run FMT and ARGS through &lsquo;format&rsquo; and echo the result to the current screen.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-with_002dmessage_002dqueuing"></a><u>Macro:</u> <b>with-message-queuing</b><i>  new-on-bottom-p &amp;body body</i></dt>
+<dd><p>Queue all messages sent by (MESSAGE ...), (ECHO-STRING ...), (ECHO-STRING-LIST ...)
+ forms within BODY without clobbering earlier messages.
+When NEW-ON-BOTTOM-P is non-nil, new messages are queued at the bottom.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-_002aqueue_002dmessages_002dp_002a"></a><u>Variable:</u> <b>*queue-messages-p*</b></dt>
+<dd><p>When non-nil, ECHO-STRING-LIST will retain old messages in addition to new ones.
+When the value is :new-on-bottom, new messages are added to the bottom as in a log file.
+See also WITH-MESSAGE-QUEUING.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-_002ainput_002dhistory_002dignore_002dduplicates_002a"></a><u>Variable:</u> <b>*input-history-ignore-duplicates*</b></dt>
+<dd><p>Do not add a command to the input history if it&rsquo;s already the first in the list.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-_002ainput_002dcompletion_002dstyle_002a"></a><u>Variable:</u> <b>*input-completion-style*</b></dt>
+<dd><p>The completion style to use.
+A completion style has to implement input-completion-reset
+and input-completion-complete.
+Available completion styles include
+</p><dl compact="compact">
+<dt> make-input-completion-style-cyclic</dt>
+<dt> make-input-completion-style-unambiguous</dt>
+</dl>
+</dd></dl>
+
+<dl>
+<dt><a name="index-make_002dinput_002dcompletion_002dstyle_002dcyclic"></a><u>Function:</u> <b>make-input-completion-style-cyclic</b></dt>
+<dd><p>nil
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-make_002dinput_002dcompletion_002dstyle_002dunambiguous"></a><u>Function:</u> <b>make-input-completion-style-unambiguous</b><i>  &amp;key display-limit</i></dt>
+<dd><p>Default Values:
+</p><pre class="verbatim">  display-limit  64
+</pre><p>nil
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-copy_002dlast_002dmessage"></a><u>Command:</u> <b>copy-last-message</b></dt>
+<dd><p>Copy the last message displayed into the X selection
+</p></dd></dl>
+
+
+<hr size="1">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="stumpwm_33.html#Using-The-Input-Bar" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm_35.html#Programming-the-Input-Bar" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm_31.html#Message-and-Input-Bar" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm_31.html#Message-and-Input-Bar" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm_36.html#Windows" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="stumpwm_83.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated on <i>January 31, 2024</i> using <a href="http://www.nongnu.org/texi2html/"><i>texi2html 1.82</i></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

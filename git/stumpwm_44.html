@@ -1,0 +1,137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- Created on January 31, 2024 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>StumpWM Manual: 6.1 Interactively Resizing Frames</title>
+
+<meta name="description" content="StumpWM Manual: 6.1 Interactively Resizing Frames">
+<meta name="keywords" content="StumpWM Manual: 6.1 Interactively Resizing Frames">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="../style.css">
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="Interactively-Resizing-Frames"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="stumpwm_43.html#Frames" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm_45.html#Frame-Dumping" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm_43.html#Frames" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm_43.html#Frames" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm_46.html#Mode_002dline" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="stumpwm_83.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<hr size="1">
+<a name="Interactively-Resizing-Frames-1"></a>
+<h2 class="section">6.1 Interactively Resizing Frames</h2>
+<p>There is a mode called <code>iresize</code> that lets you interactively
+resize the current frame. To enter the mode use the <code>iresize</code>
+command or type &lt;C-t r&gt;.
+</p>
+<p>The following keybindings apply to the mode:
+</p><dl compact="compact">
+<dt> <kbd>C-p</kbd></dt>
+<dt> <kbd>Up</kbd></dt>
+<dt> <kbd>k</kbd></dt>
+<dd><p>Shrink the frame vertically.
+</p>
+</dd>
+<dt> <kbd>C-n</kbd></dt>
+<dt> <kbd>Down</kbd></dt>
+<dt> <kbd>j</kbd></dt>
+<dd><p>Expand the frame vertically.
+</p>
+</dd>
+<dt> <kbd>C-f</kbd></dt>
+<dt> <kbd>Right</kbd></dt>
+<dt> <kbd>l</kbd></dt>
+<dd><p>Expand the frame horizontally.
+</p>
+</dd>
+<dt> <kbd>C-b</kbd></dt>
+<dt> <kbd>Left</kbd></dt>
+<dt> <kbd>h</kbd></dt>
+<dd><p>Shrink the frame horizontally.
+</p>
+</dd>
+<dt> <kbd>C-g</kbd></dt>
+<dt> <kbd>ESC</kbd></dt>
+<dd><p>Abort the interactive resize.
+</p>
+</dd>
+<dt> <kbd>RET</kbd></dt>
+<dd><p>Select the highlighted option.
+</p>
+</dd>
+</dl>
+
+<dl>
+<dt><a name="index-iresize"></a><u>Command:</u> <b>iresize</b></dt>
+<dd><p>Starts interactive command &quot;IRESIZE&quot;
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-setup_002diresize"></a><u>Function:</u> <b>setup-iresize</b></dt>
+<dd><p>Start the interactive resize mode.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-_002aresize_002dmap_002a"></a><u>Variable:</u> <b>*resize-map*</b></dt>
+<dd><p>The keymap used for resizing a window
+</p></dd></dl>
+
+
+<dl>
+<dt><a name="index-_002aresize_002dincrement_002a"></a><u>Variable:</u> <b>*resize-increment*</b></dt>
+<dd><p>Number of pixels to increment by when interactively resizing frames.
+</p></dd></dl>
+
+
+<hr size="1">
+<p>
+ <font size="-1">
+  This document was generated on <i>January 31, 2024</i> using <a href="http://www.nongnu.org/texi2html/"><i>texi2html 1.82</i></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>
