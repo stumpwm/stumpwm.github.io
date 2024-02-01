@@ -14,7 +14,6 @@ git-manual:
 	texi2pdf -c git/stumpwm-git.texi -o git/stumpwm-git.pdf
 	rm git/stumpwm-git.texi
 	git add git/
-	git commit -a -m "Automated stumpwm manual commita for git directory."
 	rm -rf stumpwm
 
 website-force: 
