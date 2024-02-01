@@ -1,0 +1,145 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- Created on January 31, 2024 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>StumpWM Manual: 3. Commands</title>
+
+<meta name="description" content="StumpWM Manual: 3. Commands">
+<meta name="keywords" content="StumpWM Manual: 3. Commands">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="../style.css">
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="Commands"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="stumpwm-git_25.html#Circumventing-Remapped-Keys" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-git_27.html#Writing-Commands" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-git_19.html#Key-Bindings" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-git.html#Top" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-git_31.html#Message-and-Input-Bar" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-git.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="stumpwm-git_83.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-git_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<hr size="1">
+<a name="Commands-1"></a>
+<h1 class="chapter">3. Commands</h1>
+<p>If you&rsquo;ve used Emacs before you&rsquo;ll find the distinction between
+commands and functions familiar. Commands are simply functions that
+can be bound to keys and executed interactively from StumpWM&rsquo;s input
+bar. Whereas, in Emacs, the special &quot;(interactive)&quot; declaration is
+used to turn a function into a command, in StumpWM commands are made
+with a separate <code>defcommand</code> or
+<code>define-interactive-keymap</code> macro.
+</p>
+<p>Once a command is defined, you can call it by invoking the
+<code>colon</code> command (<kbd>C-t ;</kbd>), and typing the name
+of the command. This may be sufficient for commands that aren&rsquo;t used
+very often. To see all the currently-defined commands, invoke the
+command called <code>commands</code>: ie press <kbd>C-t ;</kbd>,
+type &ldquo;commands&rdquo;, and hit return.
+</p>
+<p>Commonly-used commands can also be bound to a keystroke, which is much
+more convenient. To do this, use the <code>define-key</code>
+function (see <a href="stumpwm-git_19.html#Key-Bindings">Key Bindings</a>), giving the name of the command as a
+string. For example:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">(define-key *root-map* (kbd &quot;d&quot;) &quot;exchange-direction&quot;)
+</pre></td></tr></table>
+
+<p>You cannot give the command name as a symbol, nor can you bind a key
+to a regular function defined with <code>defun</code>.
+</p>
+<p>If the command takes arguments (see <a href="stumpwm-git_27.html#Writing-Commands">Writing Commands</a>), you can fix
+those arguments when defining the key-binding, by including the
+arguments in the same string as the command name, separated by a
+space. For instance, the <code>exchange-direction</code> command,
+which is unbound by default, requires a direction in which to exchange
+windows. If you call <code>exchange-direction</code> directly, it
+will prompt you for the direction. If you know that you often exchange
+in left/right directions, and want those actions bound to keys, you
+can use the following in your customization file:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">(define-key *root-map* (kbd &quot;[&quot;) &quot;exchange-direction left&quot;)
+(define-key *root-map* (kbd &quot;]&quot;) &quot;exchange-direction right&quot;)
+</pre></td></tr></table>
+
+<p>Multiple arguments can be included by adding them to the command
+string, separated by spaces. Not all argument types can be represented
+as strings, but StumpWM will do its best to convert types.
+</p>
+<p>StumpWM does not implement the Emacs concept of prefix arguments.
+</p>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="stumpwm-git_27.html#Writing-Commands">3.1 Writing Commands</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="stumpwm-git_29.html#StumpWM-Types">3.3 StumpWM Types</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="stumpwm-git_30.html#Common-Built_002din-Commands">3.4 Common Built-in Commands</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+<hr size="1">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="stumpwm-git_25.html#Circumventing-Remapped-Keys" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-git_27.html#Writing-Commands" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-git_19.html#Key-Bindings" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-git.html#Top" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-git_31.html#Message-and-Input-Bar" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-git.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="stumpwm-git_83.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-git_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated on <i>January 31, 2024</i> using <a href="http://www.nongnu.org/texi2html/"><i>texi2html 1.82</i></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

@@ -1,0 +1,263 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- Created on January 31, 2024 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>StumpWM Manual: 10. Minor Modes</title>
+
+<meta name="description" content="StumpWM Manual: 10. Minor Modes">
+<meta name="keywords" content="StumpWM Manual: 10. Minor Modes">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="../style.css">
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="Minor-Modes"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="stumpwm-git_52.html#Programming-With-Screens" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-git_54.html#Programming-With-Minor-Modes" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-git_50.html#Screens" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-git.html#Top" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-git_57.html#Internals" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-git.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="stumpwm-git_83.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-git_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<hr size="1">
+<a name="Minor-Modes-1"></a>
+<h1 class="chapter">10. Minor Modes</h1>
+
+<p>Like Emacs, StumpWM has the concept of minor modes. These are defined by
+the macro <code>DEFINE-MINOR-MODE</code>. Defining a minor mode creates a
+class and a set of methods specializing upon it. Minor modes are scoped
+to a window, head, group, or screen, or they may be unscoped. In
+addition to this minor modes may be local or global. When a minor mode
+is global all new instances of the scope object will be created with the
+minor mode already active in them. Minor modes define their own top
+level and root level keymaps, as well as hooks that are run upon
+enabling or disabling the minor mode, and a lighter to display in the
+mode line.
+</p>
+<p>Minor modes are mixins that get added to the appropriate scope object
+when enabled. As such minor modes allow the augmenting, modifying, and
+overriding of default StumpWM behavior by defining methods for the
+generic functions of the scope object. For example, a minor mode may be
+scoped to a window and define a method for the generic function
+<code>UPDATE-DECORATION</code> to change how window decoration is handled for
+the windows it is enabled in.
+</p>
+<dl>
+<dt><a name="index-define_002dminor_002dmode"></a><u>Macro:</u> <b>define-minor-mode</b><i>  mode superclasses slots &amp;rest options</i></dt>
+<dd><p>Define a minor mode as a class to be instantiated when the minor mode is
+activated. Minor modes are dynamically mixed in to and out of the appropriate
+object when they are enabled or disabled.
+</p>
+<p>If <var>SUPERCLASSES</var> is not provided a default superclass of MINOR-MODE will be
+provided. <var>OPTIONS</var> may include all normal options when defining a class,
+with the addition of the following options:
+</p>
+<ul>
+<li>
+(:SCOPE SCOPE-DESIGNATOR)<br>
+The :SCOPE option determines what object(s) the minor mode can be mixed in
+with. New scopes can be defined with the macro DEFINE-MINOR-MODE-SCOPE.
+
+</li><li>
+(:GLOBAL (OR T NIL))<br>
+When true the :GLOBAL option changes the way enable methods are defined to track
+the minor mode and autoenable it in all existing scope objects, as well as
+autoenabled when new scope objects are instantiated. If the :SCOPE option is
+:UNSCOPED then this option does not need to be provided.
+
+</li><li>
+(:TOP-MAP spec)<br>
+The minor modes top map is created based upon the provided spec, which must be a
+list of cons cells whose car is a key sequence and whose cdr is a binding. For
+example: <code>(list (cons &quot;C-m x&quot; &quot;echo&quot;))</code>. This would bind the key
+sequence <kbd>C-m x</kbd> to the echo command. A reference to this keymap is stored
+as a slot in the minor mode object and can be accessed via the reader
+<code>MODE-KEYMAP</code> where <code>MODE</code> is the minor mode name.
+
+</li><li>
+(:ROOT-MAP spec)<br>
+The minor modes root map is created based upon the provided spec. The spec is as
+described in the :TOP-MAP option.
+
+</li><li>
+(:EXPOSE-KEYMAPS (OR T NIL))<br>
+This value is used at macroexpansion time to determine whether or not to
+generate keymap variables or store the keymap within the object. When T the
+variables *MODE-TOP-MAP* and *MODE-ROOT-MAP* will be generated.
+
+</li><li>
+(:REBIND (MEMBER :TOP-MAP :ROOT-MAP :ALL-MAPS))<br>
+
+<p>This option controls rebinding of the top and root maps. When it is :TOP-MAP the
+top map is rebound, when it is :ROOT-MAP the root map is rebound, and when it is
+:ALL-MAPS both the top and root map are rebound. Any rebound map will be rebound
+to the provided keymap specification. This only has an effect if the minor mode
+has previously been defined.
+</p>
+</li><li>
+(:LIGHTER T)<br>
+The :LIGHTER option will be used to generate a function returning a string to
+display in the mode line. When :LIGHTER is NULL a string is generated based upon
+the mode name. When it is a string that string is used as is. Otherwise :LIGHTER
+will assumed to be funcallable and used as is. When it is a symbol or a list
+that doesn&rsquo;t begin with LAMBDA or FUNCTION a warning is issued that
+DEFINE-MINOR-MODE is assuming it is funcallable. When assumed to be funcallable,
+it is called with the mode object as its only argument.
+
+</li><li>
+(:LIGHTER-MAKE-CLICKABLE (OR T NIL))<br>
+When :LIGHTER-MAKE-CLICKABLE is T then the :LIGHTER is wrapped in a call to
+FORMAT-WITH-ON-CLICK-ID, called with the id :ML-ON-CLICK-MINOR-MODE and the mode
+as a quoted symbol.
+
+</li><li>
+(:LIGHTER-ON-CLICK FUNCTION)<br>
+When :LIGHTER-ON-CLICK is provided it must be a function of arity one, which
+will be called whenever the minor modes lighter is clicked, with the button code
+of the click as its only argument. If this is provided then
+:LIGHTER-MAKE-CLICKABLE is implied to be T.
+
+</li><li>
+(:INTERACTIVE (OR SYMBOL T NIL))<br>
+The :INTERACTIVE option determines whether a command to toggle the minor mode on
+and off is generated. If it is T then a command with the same name as the minor
+mode is generated. If it is a symbol then that symbol will be used when defining
+the command.
+
+</li><li>
+(:ENABLE-WHEN (MODE OBJECT) &amp;BODY BODY)<br>
+When provided, the :ENABLE-WHEN option generates a method for the enable-when
+generic function. MODE is bound to the mode symbol, and OBJECT is bound to the
+scope object. If this is not provided, a method is generated which returns T for
+the minor mode and its scope. If it is provided and is nil, then no method is
+generated and a method for ENABLE-WHEN which dispatches upon the mode as a
+symbol and the scope type for the minor mode must be manually defined.
+
+</li><li>
+(:MAKE-HOOKS (OR T NIL))<br>
+When :MAKE-HOOKS is T a set of hook variables are generated. These variables are
+fourfold: *MODE-HOOK* is run after explicitly enabling the minor
+mode. *MODE-ENABLE-HOOK* is run when the minor mode is
+autoenabled. *MODE-DISABLE-HOOK* is run when the minor mode is
+autodisabled. Finally *MODE-DESTROY-HOOK* is run when the minor mode is
+explicitly disabled. 
+
+</li><li>
+(:DEFINE-COMMAND-DEFINER (OR T NIL))<br>
+When :DEFINE-COMMAND-DEFINER is T a macro is defined for defining commands that
+are active only when the minor mode is active. Commands defined with this macro
+have the special variable *MINOR-MODE* bound to the minor mode object in their
+body. The generated macro is called DEFINE-MODE-COMMAND. This option defaults to
+T.
+
+</li><li>
+(:MIX-BEFORE &amp;REST RULES)<br>
+The :MIX-BEFORE option defines rules on the order this class should be mixed in
+relative to other minor modes. This allows the implementer of a minor mode to
+make the mixing process aware of dependencies that dont otherwise make sense as
+a class hierarchy; If minor modes FOO and BAR both define around methods for the
+same method, but FOO&rsquo;s method must be called first, FOO can add a rule stating
+that it must come before BAR in the mixin list. RULES must be a set of conses
+which have the form (SYMBOL-DESIGNATOR . PACKAGE-DESIGNATOR). SYMBOL-DESIGNATOR
+must be a valid argument to #&rsquo;STRING, and PACKAGE-DESIGNATOR must be a valid
+argument to #&rsquo;FIND-PACKAGE. Together these shall form a single symbol which
+should be the class name of the minor mode being referred to by the rule.
+
+</li><li>
+(:MIX-AFTER &amp;REST RULES)<br>
+The :MIX-AFTER option is similar to the :MIX-BEFORE option, except it specifies
+classes that this minor mode should occur after in the mixin list.
+</li></ul>
+
+<p>Example:
+</p><pre class="verbatim">(define-minor-mode evil-mode () ()
+  (:scope :unscoped)
+  (:top-map '((&quot;j&quot; . &quot;move-focus down&quot;)
+              (&quot;k&quot; . &quot;move-focus up&quot;)
+              (&quot;h&quot; . &quot;move-focus left&quot;)
+              (&quot;l&quot; . &quot;move-focus right&quot;)
+              (&quot;x&quot; . *exchange-window-map*)
+              (&quot;C-m b&quot; . &quot;evil-echo&quot;)))
+  (:lighter &quot;EVIL&quot;)
+  (:lighter-make-clickable nil))
+
+(define-evil-mode-command evil-echo () ()
+  (run-commands &quot;echo&quot;))
+</pre></dd></dl>
+
+
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="stumpwm-git_54.html#Programming-With-Minor-Modes">10.1 Programming With Minor Modes</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="stumpwm-git_55.html#Minor-Mode-Scopes">10.2 Minor Mode Scopes</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="stumpwm-git_56.html#Minor-Mode-Example">10.3 Minor Mode Example</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+<hr size="1">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="stumpwm-git_52.html#Programming-With-Screens" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-git_54.html#Programming-With-Minor-Modes" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-git_50.html#Screens" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-git.html#Top" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-git_57.html#Internals" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-git.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="stumpwm-git_83.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-git_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated on <i>January 31, 2024</i> using <a href="http://www.nongnu.org/texi2html/"><i>texi2html 1.82</i></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

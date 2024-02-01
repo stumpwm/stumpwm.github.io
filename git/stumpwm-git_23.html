@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- Created on January 31, 2024 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>StumpWM Manual: 2.4 AltGr Keys</title>
+
+<meta name="description" content="StumpWM Manual: 2.4 AltGr Keys">
+<meta name="keywords" content="StumpWM Manual: 2.4 AltGr Keys">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="../style.css">
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="AltGr-Keys"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="stumpwm-git_22.html#Modifiers" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-git_24.html#Remapped-Keys" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-git_19.html#Key-Bindings" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-git_19.html#Key-Bindings" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-git_26.html#Commands" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-git.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="stumpwm-git_83.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-git_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<hr size="1">
+<a name="AltGr-Keys-1"></a>
+<h2 class="section">2.4 AltGr Keys</h2>
+
+<p>StumpWM uses the CLX client library for X11, which doesnt support the
+XKB extension. As such support for Alt Graph must be handled
+specially.
+</p>
+<p>Preliminary support for Alt Graph in StumpWM is done by registering
+AltGr as a modifier key and specially handling it when it is a member of
+a key press&rsquo; state. By default StumpWM treats AltGr key presses as a
+normal key and not a modifier, and this behavior should not be changed
+unless necessary. To enable treating AltGr as a modifier, the user must
+place the following in their stumpwmrc:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">(register-altgr-as-modifier)
+</pre></td></tr></table>
+
+<p>Additionally, the variable <var>*altgr-offset*</var> defaults to 2, which may
+be appropriate for the users keyboard layout, or may not. Some users may
+have an AltGr offset of 4, or potentially 6. If, after calling
+<code>register-altgr-as-modifier</code>, keys on AltGr aren&rsquo;t being registered
+properly, then the offset may need to be changed. The user can check
+this explicitly by finding a keysym that requires AltGr and passing it
+to <code>keysym-requires-altgr</code>. As an example, some layouts have <kbd>ł</kbd> on
+<kbd>AltGr+l</kbd>. In such a case, the following example would return true
+when <var>*altgr-offset*</var> is correct:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">(stumpwm::keysym-requires-altgr
+  (stumpwm::stumpwm-name-&gt;keysym &quot;lstroke&quot;))
+</pre></td></tr></table>
+
+<dl>
+<dt><a name="index-register_002daltgr_002das_002dmodifier"></a><u>Function:</u> <b>register-altgr-as-modifier</b></dt>
+<dd><p>Register the keysym(s) for ISO_Level3_Shift as modifiers.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-_002aaltgr_002doffset_002a"></a><u>Variable:</u> <b>*altgr-offset*</b></dt>
+<dd><p>The offset of altgr keysyms. Often 2 or 4, but always an even number.
+</p></dd></dl>
+
+
+<hr size="1">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="stumpwm-git_22.html#Modifiers" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-git_24.html#Remapped-Keys" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-git_19.html#Key-Bindings" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-git_19.html#Key-Bindings" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-git_26.html#Commands" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-git.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="stumpwm-git_83.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-git_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated on <i>January 31, 2024</i> using <a href="http://www.nongnu.org/texi2html/"><i>texi2html 1.82</i></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

@@ -5,13 +5,14 @@ website:
 git-manual:
 	-git clone https://github.com/stumpwm/stumpwm.git
 	cd stumpwm && autoconf && ./configure
-	make -C stumpwm stumpwm.texi
 	make -C stumpwm stumpwm.info
 	-rm -rf git
 	mkdir git
 	cp stumpwm/stumpwm.info git/stumpwm-git.info
-	texi2html --css-ref="../style.css" --split=node --output=git/ stumpwm/stumpwm.texi
-	texi2pdf -c stumpwm/stumpwm.texi -o git/stumpwm-git.pdf
+	cp stumpwm/stumpwm.texi git/stumpwm-git.texi
+	texi2html --css-ref="../style.css" --split=node --output=git/ git/stumpwm-git.texi
+	texi2pdf -c git/stumpwm-git.texi -o git/stumpwm-git.pdf
+	rm git/stumpwm-git.texi
 	git add git/
 	git commit -a -m "Automated stumpwm manual commita for git directory."
 	rm -rf stumpwm

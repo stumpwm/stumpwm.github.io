@@ -1,0 +1,378 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- Created on January 31, 2024 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>StumpWM Manual: 6. Frames</title>
+
+<meta name="description" content="StumpWM Manual: 6. Frames">
+<meta name="keywords" content="StumpWM Manual: 6. Frames">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="../style.css">
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="Frames"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="stumpwm-git_42.html#Window-Selection-Expressions" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-git_44.html#Interactively-Resizing-Frames" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-git_36.html#Windows" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-git.html#Top" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-git_46.html#Mode_002dline" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-git.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="stumpwm-git_83.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-git_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<hr size="1">
+<a name="Frames-1"></a>
+<h1 class="chapter">6. Frames</h1>
+<p>Frames contain windows. All windows exist within a frame.
+</p>
+<p>Those used to ratpoison will notice that this differs from ratpoison&rsquo;s
+window pool, where windows and frames are not so tightly connected.
+</p>
+<dl>
+<dt><a name="index-pull_002dwindow_002dby_002dnumber"></a><u>Command:</u> <b>pull-window-by-number</b><i>  n &amp;optional group</i></dt>
+<dd><p>Default Values:
+</p><pre class="verbatim">  group  (stumpwm:current-group)
+</pre><p>Pull window N from another frame into the current frame and focus it.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-hsplit"></a><u>Command:</u> <b>hsplit</b><i>  &amp;optional ratio</i></dt>
+<dd><p>Default Values:
+</p><pre class="verbatim">  ratio  &quot;1/2&quot;
+</pre><p>Split the current frame into 2 side-by-side frames.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-vsplit"></a><u>Command:</u> <b>vsplit</b><i>  &amp;optional ratio</i></dt>
+<dd><p>Default Values:
+</p><pre class="verbatim">  ratio  &quot;1/2&quot;
+</pre><p>Split the current frame into 2 frames, one on top of the other.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-hsplit_002dequally"></a><u>Command:</u> <b>hsplit-equally</b><i>  amt</i></dt>
+<dd><p>Deprecated. Use &lsquo;vsplit-uniformly&rsquo; instead.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-vsplit_002duniformly"></a><u>Command:</u> <b>vsplit-uniformly</b><i>  amt</i></dt>
+<dd><p>Split current frame in n rows of equal size.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-vsplit_002dequally"></a><u>Command:</u> <b>vsplit-equally</b><i>  amt</i></dt>
+<dd><p>Deprecated. Use &lsquo;hsplit-uniformly&rsquo; instead.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-hsplit_002duniformly"></a><u>Command:</u> <b>hsplit-uniformly</b><i>  amt</i></dt>
+<dd><p>Split current frame in n columns of equal size.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-remove_002dsplit"></a><u>Command:</u> <b>remove-split</b><i>  &amp;optional group frame</i></dt>
+<dd><p>Default Values:
+</p><pre class="verbatim">  group  (stumpwm:current-group)
+  frame  (stumpwm::tile-group-current-frame stumpwm:group)
+</pre><p>Remove the specified frame in the specified group (defaults to current group,
+current frame). Windows in the frame are migrated to the frame taking up its
+space.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-only"></a><u>Command:</u> <b>only</b></dt>
+<dd><p>Delete all the frames but the current one and grow it to take up the entire head.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-curframe"></a><u>Command:</u> <b>curframe</b></dt>
+<dd><p>Display a window indicating which frame is focused.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-fnext"></a><u>Command:</u> <b>fnext</b></dt>
+<dd><p>Cycle through the frame tree to the next frame.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-fprev"></a><u>Command:</u> <b>fprev</b></dt>
+<dd><p>Cycle through the frame tree to the previous frame.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-sibling"></a><u>Command:</u> <b>sibling</b></dt>
+<dd><p>Jump to the frame&rsquo;s sibling. If a frame is split into two frames,
+these two frames are siblings.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-fother"></a><u>Command:</u> <b>fother</b></dt>
+<dd><p>Jump to the last frame that had focus.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-fselect"></a><u>Command:</u> <b>fselect</b><i>  frame-number</i></dt>
+<dd><p>Display a number in the corner of each frame and let the user to
+select a frame by number or click. If <var>frame-number</var> is specified,
+just jump to that frame.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-resize"></a><u>Command:</u> <b>resize</b><i>  width height</i></dt>
+<dd><p>Move the frame split directly to the right of the current frame as much as
+possible up to <var>width</var> pixels, or if impossible try the split directly to
+the left instead. Similarly, also move the frame split directly below the
+current frame as much as possible up to <var>height</var> pixels, or if impossible
+try the split directly above instead.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-resize_002ddirection"></a><u>Command:</u> <b>resize-direction</b><i>  d</i></dt>
+<dd><p>Resize frame to direction <var>d</var>
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-balance_002dframes"></a><u>Command:</u> <b>balance-frames</b><i>  &amp;aux</i></dt>
+<dd><p>Make frames the same height or width in the current frame&rsquo;s subtree.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-fclear"></a><u>Command:</u> <b>fclear</b></dt>
+<dd><p>Clear the current frame.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-move_002dfocus"></a><u>Command:</u> <b>move-focus</b><i>  dir</i></dt>
+<dd><p>Focus the frame adjacent to the current one in the specified
+direction. The following are valid directions:
+</p><dl compact="compact">
+<dt> up</dt>
+<dt> down</dt>
+<dt> left</dt>
+<dt> right</dt>
+</dl>
+</dd></dl>
+
+<dl>
+<dt><a name="index-move_002dwindow"></a><u>Command:</u> <b>move-window</b><i>  dir</i></dt>
+<dd><p>Just like move-focus except that the current is pulled along.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-next_002din_002dframe"></a><u>Command:</u> <b>next-in-frame</b></dt>
+<dd><p>Go to the next window in the current frame.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-prev_002din_002dframe"></a><u>Command:</u> <b>prev-in-frame</b></dt>
+<dd><p>Go to the previous window in the current frame.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-other_002din_002dframe"></a><u>Command:</u> <b>other-in-frame</b></dt>
+<dd><p>Go to the last accessed window in the current frame.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-next_002durgent"></a><u>Command:</u> <b>next-urgent</b></dt>
+<dd><p>Jump to the next urgent window
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-frame_002dwindowlist"></a><u>Command:</u> <b>frame-windowlist</b><i>  &amp;optional fmt</i></dt>
+<dd><p>Default Values:
+</p><pre class="verbatim">  fmt  stumpwm:*window-format*
+</pre><p>Allow the user to select a window from the list of windows in the current
+frame and focus the selected window.  The optional argument <var>fmt</var> can be
+specified to override the default window formatting.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-echo_002dframe_002dwindows"></a><u>Command:</u> <b>echo-frame-windows</b><i>  &amp;optional fmt</i></dt>
+<dd><p>Default Values:
+</p><pre class="verbatim">  fmt  stumpwm:*window-format*
+</pre><p>Display a list of all the windows in the current frame.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-exchange_002ddirection"></a><u>Command:</u> <b>exchange-direction</b><i>  dir &amp;optional win</i></dt>
+<dd><p>Default Values:
+</p><pre class="verbatim">  win  (stumpwm:current-window)
+</pre><p>Exchange the current window (by default) with the top window of the frame in specified direction. (bound to <kbd>C-t x</kbd> by default)
+</p><dl compact="compact">
+<dt> up</dt>
+<dt> down</dt>
+<dt> left</dt>
+<dt> right</dt>
+</dl>
+</dd></dl>
+
+<dl>
+<dt><a name="index-expose"></a><u>Command:</u> <b>expose</b></dt>
+<dd><p>Automagically lay out all windows in a grid and let the user select one, making
+that window the focused window. Set the variable &lsquo;*expose-auto-tile-fn*&rsquo; to
+another tiling function if a different layout is desired for tile groups. Set
+&lsquo;*expose-n-max*&rsquo; to the maximum number of windows to be displayed for choosing
+when in a tile group.
+</p></dd></dl>
+
+
+<dl>
+<dt><a name="index-save_002dframe_002dexcursion"></a><u>Macro:</u> <b>save-frame-excursion</b><i>  &amp;body body</i></dt>
+<dd><p>Execute body and then restore the current frame.
+</p></dd></dl>
+
+
+<dl>
+<dt><a name="index-run_002dor_002dpull"></a><u>Function:</u> <b>run-or-pull</b><i>  cmd props &amp;optional all-groups all-screens</i></dt>
+<dd><p>Default Values:
+</p><pre class="verbatim">  all-groups   stumpwm:*run-or-raise-all-groups*
+  all-screens  stumpwm:*run-or-raise-all-screens*
+</pre><p>Similar to run-or-raise, but move the matching window to the
+current frame instead of switching to the window.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-only_002done_002dframe_002dp"></a><u>Function:</u> <b>only-one-frame-p</b></dt>
+<dd><p>T if there is only one maximized frame in the current head.
+This can be used around a the &quot;only&quot; command to avoid the warning message.
+</p></dd></dl>
+
+
+<dl>
+<dt><a name="index-_002amin_002dframe_002dwidth_002a"></a><u>Variable:</u> <b>*min-frame-width*</b></dt>
+<dd><p>The minimum width a frame can be. A frame will not shrink below this
+width. Splitting will not affect frames if the new frame widths are
+less than this value.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-_002amin_002dframe_002dheight_002a"></a><u>Variable:</u> <b>*min-frame-height*</b></dt>
+<dd><p>The minimum height a frame can be. A frame will not shrink below this
+height. Splitting will not affect frames if the new frame heights are
+less than this value.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-_002anew_002dframe_002daction_002a"></a><u>Variable:</u> <b>*new-frame-action*</b></dt>
+<dd><p>When a new frame is created, this variable controls what is put in the
+new frame. Valid values are
+</p>
+<dl compact="compact">
+<dt> <code>:empty</code></dt>
+<dd><p>The frame is left empty
+</p>
+</dd>
+<dt> <code>:last-window</code></dt>
+<dd><p>The last focused window that is not currently visible is placed in the
+frame. This is the default.
+</p></dd>
+</dl>
+</dd></dl>
+
+<dl>
+<dt><a name="index-_002aexpose_002dauto_002dtile_002dfn_002a"></a><u>Variable:</u> <b>*expose-auto-tile-fn*</b></dt>
+<dd><p>Function to call to tile current windows.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-_002aexpose_002dn_002dmax_002a"></a><u>Variable:</u> <b>*expose-n-max*</b></dt>
+<dd><p>Maximum number of windows to display in the expose
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-_002aframe_002dindicator_002dtext_002a"></a><u>Variable:</u> <b>*frame-indicator-text*</b></dt>
+<dd><p>What appears in the frame indicator window?
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-_002aframe_002dindicator_002dtimer_002a"></a><u>Variable:</u> <b>*frame-indicator-timer*</b></dt>
+<dd><p>Keep track of the timer that hides the frame indicator.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-_002aframe_002dnumber_002dmap_002a"></a><u>Variable:</u> <b>*frame-number-map*</b></dt>
+<dd><p>Set this to a string to remap the frame numbers to more convenient keys.
+For instance,
+</p>
+<p>&quot;hutenosa&quot;
+</p>
+<p>would map frame 0 to 7 to be selectable by hitting the appropriate
+homerow key on a dvorak keyboard. Currently, only single char keys are
+supported. By default, the frame labels are the 36 (lower-case)
+alphanumeric characters, starting with numbers 0-9.
+</p></dd></dl>
+
+
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="stumpwm-git_44.html#Interactively-Resizing-Frames">6.1 Interactively Resizing Frames</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="stumpwm-git_45.html#Frame-Dumping">6.2 Frame Dumping</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+<hr size="1">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="stumpwm-git_42.html#Window-Selection-Expressions" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-git_44.html#Interactively-Resizing-Frames" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-git_36.html#Windows" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-git.html#Top" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-git_46.html#Mode_002dline" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="stumpwm-git.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[Contents]</td>
+<td valign="middle" align="left">[<a href="stumpwm-git_83.html#Command-and-Function-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="stumpwm-git_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated on <i>January 31, 2024</i> using <a href="http://www.nongnu.org/texi2html/"><i>texi2html 1.82</i></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>
