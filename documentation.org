@@ -14,17 +14,4 @@ info file and read it in emacs.  (This is done automatically during
 the build process).  If you find something missing from the manual,
 please add it by editing the =stumpwm.texi.in= in the git repo, or
 open an issue on the issue tracker.
-- git :: [[./git/stumpwm-git.html][html]], [[./git/stumpwm-git.pdf][pdf]], [[./git/stumpwm-git.info][info]]
-- 23.11 :: [[./23.11/stumpwm-23.11.html][html]], [[./23.11/stumpwm-23.11.pdf][pdf]], [[./23.11/stumpwm-23.11.info][info]]
-- 22.11 :: [[./22.11/stumpwm-22.11.html][html]], [[./22.11/stumpwm-22.11.pdf][pdf]], [[./22.11/stumpwm-22.11.info][info]]
-- 22.05 :: [[./22.05/stumpwm-22.05.html][html]], [[./22.05/stumpwm-22.05.pdf][pdf]], [[./22.05/stumpwm-22.05.info][info]]
-- 20.11 :: [[./20.11/stumpwm-20.11.html][html]], [[./20.11/stumpwm-20.11.pdf][pdf]], [[./20.11/stumpwm-20.11.info][info]]
-- 19.11 :: [[./19.11/stumpwm-19.11.html][html]], [[./19.11/stumpwm-19.11.pdf][pdf]], [[./19.11/stumpwm-19.11.info][info]]
-- 18.05 :: [[./18.05/stumpwm-18.05.html][html]], [[./18.05/stumpwm-18.05.pdf][pdf]], [[./18.05/stumpwm-18.05.info][info]]
-- 1.0.0 :: [[./1.0.0/stumpwm-1.0.0.html][html]], [[./1.0.0/stumpwm-1.0.0.pdf][pdf]], [[./1.0.0/stumpwm-1.0.0.info][info]]
-- v1.0.1-rc :: [[./v1.0.1-rc/stumpwm-v1.0.1-rc.html][html]], [[./v1.0.1-rc/stumpwm-v1.0.1-rc.pdf][pdf]], [[./v1.0.1-rc/stumpwm-v1.0.1-rc.info][info]]
-- v1.0.0 :: [[./v1.0.0/stumpwm-v1.0.0.html][html]], [[./v1.0.0/stumpwm-v1.0.0.pdf][pdf]], [[./v1.0.0/stumpwm-v1.0.0.info][info]]
-- 0.9.9 :: [[./0.9.9/stumpwm-0.9.9.html][html]], [[./0.9.9/stumpwm-0.9.9.pdf][pdf]], [[./0.9.9/stumpwm-0.9.9.info][info]]
-- 0.9.8 :: [[./0.9.8/stumpwm-0.9.8.html][html]], [[./0.9.8/stumpwm-0.9.8.pdf][pdf]], [[./0.9.8/stumpwm-0.9.8.info][info]]
-- 0.9.8-rc :: [[./0.9.8-rc/stumpwm-0.9.8-rc.html][html]], [[./0.9.8-rc/stumpwm-0.9.8-rc.pdf][pdf]], [[./0.9.8-rc/stumpwm-0.9.8-rc.info][info]]
-- 0.9.7 :: [[./0.9.7/stumpwm-0.9.7.html][html]], [[./0.9.7/stumpwm-0.9.7.pdf][pdf]], [[./0.9.7/stumpwm-0.9.7.info][info]]
+#+include: manuals.org
